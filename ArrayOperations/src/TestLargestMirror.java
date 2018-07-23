@@ -44,5 +44,13 @@ public class TestLargestMirror {
 		result = test.largestMirrorSeciton(new int[]{1, 2, 3, 4, 5, 1, 2, 2, 1});
 		assertEquals(4, result);
 	}
+	
+	@Test
+	public void testMirror6() {
+		ArrayOperations test = new ArrayOperations();
+		int result;
+		result = test.largestMirrorSeciton(new int[]{});
+		assertEquals(4, result);
+	}
 
 }

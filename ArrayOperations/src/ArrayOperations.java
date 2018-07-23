@@ -122,6 +122,10 @@ public class ArrayOperations {
 	 * @return largest consecutive mirror
 	 */
 	public int largestMirrorSeciton(int[] mirrorArray) {
+		if (mirrorArray.length == 0){
+			throw new AssertionError("Array is Empty");
+		}
+		
 		int largestMirrorCount = 0;
 		int localMirrorCount=0;
 		int lengthOfArray = mirrorArray.length;
