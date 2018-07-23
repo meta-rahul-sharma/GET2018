@@ -13,13 +13,14 @@ public class Test {
 	public static void main(String args[]) {
 		boolean loop;
 		do {
+			HexCalc calculate = new HexCalc();
 			in = new Scanner(System.in);
 			System.out.println("Enter first hex");
 			String hexFirst= in.nextLine();
 			
 			System.out.println("Enter second hex");
 			String hexSecond= in.nextLine();
-			if(HexCalc.checkHex(hexFirst) && HexCalc.checkHex(hexSecond)) {
+			if(calculate.checkHex(hexFirst) && calculate.checkHex(hexSecond)) {
 			    System.out.println("1. addHex"+"\n"+
 				       	           "2. subtractHex"+"\n"+
 				     	           "3. multiplyHex"+"\n"+
@@ -30,25 +31,25 @@ public class Test {
 			    int menu= in.nextInt();
 			    switch(menu) {
 			    case 1:
-				   System.out.println(HexCalc.add(hexFirst, hexSecond));
+				   System.out.println(calculate.add(hexFirst, hexSecond));
 				   break;
 			    case 2:
-				   System.out.println(HexCalc.subtract(hexFirst, hexSecond));
+				   System.out.println(calculate.subtract(hexFirst, hexSecond));
 				   break;
 			    case 3:
-				   System.out.println(HexCalc.multiply(hexFirst, hexSecond));
+				   System.out.println(calculate.multiply(hexFirst, hexSecond));
 				   break;
 			    case 4:
-				   System.out.println(HexCalc.divide(hexFirst, hexSecond));
+				   System.out.println(calculate.divide(hexFirst, hexSecond));
 				   break;
 			    case 5:
-					   System.out.println(HexCalc.isLessThan(hexFirst, hexSecond));
+					   System.out.println(calculate.isLessThan(hexFirst, hexSecond));
 					   break;
 			    case 6:
-					   System.out.println(HexCalc.isGreaterThan(hexFirst, hexSecond));
+					   System.out.println(calculate.isGreaterThan(hexFirst, hexSecond));
 					   break;					   
 			    case 7:
-					   System.out.println(HexCalc.isEqual(hexFirst, hexSecond));
+					   System.out.println(calculate.isEqual(hexFirst, hexSecond));
 					   break;
 			    default:
 				   System.out.println("Wrong choice");

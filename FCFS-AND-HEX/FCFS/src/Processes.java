@@ -1,71 +1,73 @@
 /**
  * creation date 17/7/2018
- * @author rahul sharma
- *creating processes
+ * 
+ * @author rahul sharma creating processes
  */
 public class Processes {
 	private int id;
-    private int arrival_time;
-    private int burst_time;
-    private int completion_time;
-    private int waiting_time;
-    private int turn_around_time;
-    public Processes() {
-    	
-    }
-    /**
-     * intialize process
-     * @param id
-     * @param arrival_time
-     * @param burst_time
-     */
-    public Processes(int id,int arrival_time, int burst_time) {
+	private int arrivalTime;
+	private int burstTime;
+	private int completionTime;
+	private int waitingTime;
+	private int turnAroundTime;
+
+	public Processes() {
+
+	}
+
+	/**
+	 * intialize process
+	 * @param id
+	 * @param arrivalTime
+	 * @param burstTime
+	 */
+	public Processes(int id,int arrivalTime, int burstTime) {
     	this.id=id;
-    	this.arrival_time=arrival_time;
-    	this.burst_time=burst_time;
+    	this.arrivalTime=arrivalTime;
+    	this.burstTime=burstTime;
     }
-    
-    public void setCompletionTime(final int completion_time) {
-    	this.completion_time = completion_time;
-    }
-    
-    public void setWaitingTime(final int waiting_time) {
-    	this.waiting_time = waiting_time;
-    }
-    
-    public void setTurnAroundTime(final int turn_around_time) {
-    	this.turn_around_time = turn_around_time;
-    }
-    
-    public void setArrivalTime(final int arrival_time) {
-    	this.arrival_time = arrival_time;
-    }
-    
-    public void setBurstTime(final int burst_time) {
-    	this.burst_time = burst_time;
-    }
-    
-    public int getArrivalTime() {
-    	return arrival_time;
-    }
-    
-    public int getBurstTime() {
-    	return burst_time;
-    }
-    
-    public int getCompletionTime() {
-    	return completion_time;
-    }
-    
-    public int getWaitingTime() {
-    	return waiting_time;
-    }
-    
-    public int getTurnAroundTime() {
-    	return turn_around_time;
-    }
-    
-    public int getId() {
-    	return id;
-    }
+
+	public void setCompletionTime(final int completionTime) {
+		this.completionTime = completionTime;
+	}
+
+	public void setWaitingTime(final int waiting_time) {
+		this.waitingTime = waiting_time;
+	}
+
+	public void setTurnAroundTime(final int turn_around_time) {
+		this.turnAroundTime = turn_around_time;
+	}
+
+	public void setArrivalTime(final int arrival_time) {
+		this.arrivalTime = arrival_time;
+	}
+
+	public void setBurstTime(final int burst_time) {
+		this.burstTime = burst_time;
+	}
+
+	public int getArrivalTime() {
+		return arrivalTime;
+	}
+
+	public int getBurstTime() {
+		return burstTime;
+	}
+
+	public int getCompletionTime() {
+		return completionTime;
+	}
+
+	public int getWaitingTime() {
+		return waitingTime;
+	}
+
+	public int getTurnAroundTime() {
+		return turnAroundTime;
+	}
+
+	public int getId() {
+		return id;
+	}
 }
