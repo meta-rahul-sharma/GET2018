@@ -14,17 +14,26 @@ public class MarkSheet {
 	 */
 	public MarkSheet(int noOfStudents) {
 		this.noOfStudents = noOfStudents;
-		studentGrades = new double[noOfStudents];  
+		if(noOfStudents > 0) {
+			studentGrades = new double[noOfStudents];
+		} else {
+			System.out.println("Wrong no. of Students passed as argument");
+		}
 	}
 	
 	/**
 	 * intializing marks for students 
 	 */
-	void initializeMarks() {
-		Scanner input = new Scanner(System.in);
+	void initializeMarks(int[] marks) {
+		//Scanner input = new Scanner(System.in);
 		for (int i = 0; i < noOfStudents; i++) {
-			System.out.println("Enter the marks for Student " + (i + 1) + " between 0 to 100");
-			studentGrades[i] = input.nextDouble(); 
+			//System.out.println("Enter the marks for Student " + (i + 1) + " between 0 to 100");
+			if(marks[i] >= 0 && marks[i] <= 100) {
+				studentGrades[i] = marks[i]; 
+			} else {
+				throw new AssertionError();
+			}
+					//= input.nextDouble(); 
 		}
 	}
 	
@@ -46,7 +55,7 @@ public class MarkSheet {
 	 * @return maximum grade around all students
 	 * @throws ArithmeticException
 	 */
-	double maximumGrade() throws ArithmeticException {
+	double maximumGrade() {
 		double maxGrade = studentGrades[0];
 		for (int i = 1; i < noOfStudents; i++) {
 			if (maxGrade < studentGrades[i]) {
@@ -61,7 +70,7 @@ public class MarkSheet {
 	 * @return minimum grade around all students
 	 * @throws ArithmeticException
 	 */
-	double minimumGrade() throws ArithmeticException {
+	double minimumGrade() {
 		double minGrade = studentGrades[0];
 		for (int i = 1; i < noOfStudents; i++) {
 			if (minGrade > studentGrades[i]) {
@@ -91,7 +100,7 @@ public class MarkSheet {
 	 * @return if grade between range
 	 * @throws ArithmeticException
 	 */
-	boolean checkEnteredGrades() throws ArithmeticException {
+	boolean checkEnteredGrades() {
 		for (int i = 0; i < noOfStudents; i++) {
 			if (studentGrades[i] > 100 || studentGrades[i] < 0) {
 				return true;
