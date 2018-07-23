@@ -28,5 +28,27 @@ public class TestFixXy {
 		result = test.fixXy(4, 5, new int[]{1, 4, 1, 5, 5, 4, 1});
 		assertArrayEquals(new int[]{1, 4, 5, 1, 1, 4, 5}, result);
 	}
+	
+	@Test(expected = AssertionError.class)
+	public void testFixXy4() {
+		ArrayOperations test = new ArrayOperations();
+		int[] result;
+		result = test.fixXy(4, 5, new int[]{1, 5, 4, 1, 5, 5, 4, 4});
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void testFixXy5() {
+		ArrayOperations test = new ArrayOperations();
+		int[] result;
+		result = test.fixXy(4, 5, new int[]{1, 4, 1, 5, 5, 1, 4});
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void testFixXy6() {
+		ArrayOperations test = new ArrayOperations();
+		int[] result;
+		result = test.fixXy(4, 5, new int[]{1, 5, 1, 5, 4, 4, 1, 1});
+		
+	}
 
 }

@@ -72,7 +72,7 @@ public class ArrayOperations {
 		}
 		
 		for(int i = 0; i < xPosition.size(); i++) {
-			if(i != xPosition.size()-1 && xPosition.get(i) == xPosition.get(i+1)){
+			if(i != xPosition.size()-1 && xPosition.get(i) == xPosition.get(i+1) - 1){
 				throw new AssertionError("Two "+ x + " at adjacent Positions");
 			}
 			
