@@ -3,16 +3,29 @@ package com.metacube.graphicslibrary;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Square class which implements Shape class
+ * @author Rahul Sharma
+ * Creation Date: 31/7/2018
+ */
 public class Square implements Shape {
 	private Point origin;
 	private double side;
 	private int representSide = 0;
 	private Date timeStamp;
 	
+	/**
+	 * Construction of Square Class initializing values
+	 * @param origin
+	 * @param parameters
+	 */
 	public Square(Point origin, List<Integer> parameters) {
 		this.origin = origin;
 		side = parameters.get(representSide);
 		timeStamp = new Date();
+		if(origin.getX() + side > 1920 || origin.getY() + side > 1080) {
+			throw new RuntimeException("Rectangle is out of Screen");
+		}
 	}
 	
 	@Override
@@ -30,6 +43,10 @@ public class Square implements Shape {
 		return origin;
 	}
 
+	/**
+	 * To check whether given point by user is
+	 * Enclosed by shape or not
+	 */
 	@Override
 	public boolean isPointEnclosed(Point enclosed) {
 		boolean pointEnclosed = false;

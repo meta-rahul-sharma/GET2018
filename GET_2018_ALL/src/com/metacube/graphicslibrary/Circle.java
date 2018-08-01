@@ -1,22 +1,36 @@
 package com.metacube.graphicslibrary;
+
 import java.util.Date;
 import java.util.List;
 
-
+/**
+ * Circle class which implements Shape class
+ * @author Rahul Sharma
+ * Creation Date: 31/7/2018
+ */
 public class Circle implements Shape {
 	private Point center;
 	private Point origin;
 	private double radius;
 	private int representRadius = 0;
 	private Date timeStamp;
-	
+
+	/**
+	 * Construction of Circle Class initializing values
+	 * @param center
+	 * @param parameters
+	 */
 	public Circle(Point center, List<Integer> parameters) {
 		this.center = center;
 		radius = parameters.get(representRadius);
 		timeStamp = new Date();
-		computeOrigin();
+		if (center.getX() + radius > 1920 || center.getY() + radius > 1080
+				|| center.getX() - radius < 0 || center.getY() - radius < 0) {
+			throw new RuntimeException("Circle out of Screen");
+		}
+			computeOrigin();
 	}
-	
+
 	@Override
 	public double getArea() {
 		return Math.PI * radius * radius;
@@ -32,17 +46,28 @@ public class Circle implements Shape {
 		return origin;
 	}
 
+	/**
+	 * To check whether given point by user is
+	 * Enclosed by shape or not
+	 */
 	@Override
 	public boolean isPointEnclosed(Point enclosed) {
 		boolean pointEnclosed = false;
-		if (Math.pow(origin.getX() - enclosed.getX(), 2)
-				+ Math.pow(origin.getY() - enclosed.getY(), 2) <= Math
-					.pow(radius, 2)) {
+		if (Math.pow(center.getX() - enclosed.getX(), 2)
+				+ Math.pow(center.getY() - enclosed.getY(), 2) <= Math.pow(
+				radius, 2)) {
 			pointEnclosed = true;
 		}
 		return pointEnclosed;
 	}
-	
+
+	/**
+	 * To compute origin point of circle 
+	 * origin will considered to be a point
+	 * on the circle that lies on the line 
+	 * connecting the center of the circle
+	 * to the origin of the screen
+	 */
 	private void computeOrigin() {
 		double valueOfX1;
 		double valueOfX2;
@@ -63,7 +88,7 @@ public class Circle implements Shape {
 			origin = new Point(valueOfX1, valueOfY);
 		} else if (valueOfX2 <= center.getX()) {
 			valueOfY = slope * valueOfX2;
-			
+
 			origin = new Point(valueOfX2, valueOfY);
 		}
 	}

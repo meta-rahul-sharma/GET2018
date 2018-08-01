@@ -2,10 +2,16 @@ package com.metacube.graphicslibrary;
 
 import java.util.Date;
 
+/**
+ * Shape interface which is used for
+ * method declaration
+ * @author Rahul Sharma
+ * Creation Date: 31/7/2018
+ */
 public interface Shape {
 	
 	public enum ShapeType {
-		square, rectangle, circle, triangle/*, regularPolygon*/;
+		square, rectangle, circle, triangle;
 	}
 	
 	public double getArea();
