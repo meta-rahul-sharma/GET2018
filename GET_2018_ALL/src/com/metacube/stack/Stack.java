@@ -10,14 +10,16 @@ public interface Stack <Type> {
 	/**
 	 * To Push the given element to Stack
 	 * @param new_element
+	 * @throws StackException 
 	 */
-	public void push(Type newElement);
+	public void push(Type newElement) throws StackException;
 
 	/**
 	 * To Pop the Top Element in Stack and return it
 	 * @return Popped Element from Stack
+	 * @throws StackException 
 	 */
-	public Type pop();
+	public Type pop() throws StackException;
 
 	/**
 	 * It checks whether the Stack is Empty or not

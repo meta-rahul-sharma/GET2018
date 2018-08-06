@@ -15,7 +15,7 @@ public class TestStack {
 	Stack<String> stackList;
 
 	@Before
-	public void init() {
+	public void init() throws StackException {
 		arrayStack = new ArrayStack<String>(5);
 		stackList = new ListStack<String>();
 
@@ -38,20 +38,20 @@ public class TestStack {
 		try {
 			arrayStack.push("Stars");
 			arrayStack.push("Written");
-		} catch (RuntimeException ex) {
+		} catch (StackException ex) {
 			assertEquals("stack is full", ex.getMessage());
 		}
 	}
 
 	@Test
-	public void testPopArrayStack() {
+	public void testPopArrayStack() throws StackException {
 		// Deleting Element from Stack
 		assertEquals("Our", arrayStack.pop());
 		assertEquals("In", arrayStack.pop());
 	}
 
 	@Test
-	public void testPushArrayStack() {
+	public void testPushArrayStack() throws StackException {
 		// Adding Element in Stack
 		arrayStack.push("Stars");
 		assertEquals("Stars", arrayStack.top());
@@ -79,21 +79,21 @@ public class TestStack {
 			arrayStack.pop();
 			arrayStack.pop();
 			arrayStack.pop();
-		} catch (RuntimeException ex) {
+		} catch (StackException ex) {
 			assertEquals("stack is empty", ex.getMessage());
 		}
 	}
 
 	
 	@Test
-	public void testPopListStack() {
+	public void testPopListStack() throws StackException {
 		// Deleting Element from Stack
 		assertEquals("Wall", stackList.pop());
 		assertEquals("the", stackList.pop());
 	}
 	
 	@Test
-	public void testPushListStack() {
+	public void testPushListStack() throws StackException {
 		// Adding Element in Stack
 		stackList.push("Street");
 		assertEquals("Street", stackList.top());
@@ -121,7 +121,7 @@ public class TestStack {
 			stackList.pop();
 			stackList.pop();
 			stackList.pop();
-		} catch (RuntimeException ex) {
+		} catch (StackException ex) {
 			assertEquals("stack is empty", ex.getMessage());
 		}
 	}

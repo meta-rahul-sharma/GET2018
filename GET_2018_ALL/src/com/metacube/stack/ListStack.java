@@ -23,10 +23,10 @@ public class ListStack<Type> implements Stack<Type> {
 	}
 
 	@Override
-	public Type pop() {
+	public Type pop() throws StackException {
 		Type item;
 		if (isEmpty()) {
-			throw new RuntimeException("stack is empty");
+			throw new StackException("stack is empty");
 		} else {
 			item = stack.get(stack.size() - 1);
 			stack.remove(stack.size() - 1);

@@ -19,11 +19,12 @@ public class ListQueue<Type> implements Queue<Type> {
 	
 	/**
 	 * Used for adding item in a Queue
+	 * @throws QueueException 
 	 */
 	@Override
-	public void addItem(Type addElement) {
+	public void addItem(Type addElement) throws QueueException {
 		if (isQueueFull()) {
-			throw new RuntimeException("queue is full");
+			throw new QueueException("queue is full");
 		} else {
 			queue.add(addElement);
 		}
@@ -32,12 +33,13 @@ public class ListQueue<Type> implements Queue<Type> {
 	/**
 	 * Used for deleting and returning item which was first
 	 * inserted in a Queue
+	 * @throws QueueException 
 	 */
 	@Override
-	public Type deleteItem() {
+	public Type deleteItem() throws QueueException {
 		Type item;
 		if (isQueueEmpty()) {
-			throw new RuntimeException("queue is empty");
+			throw new QueueException("queue is empty");
 		} else {
 			item = queue.get(0);
 			queue.remove(0);

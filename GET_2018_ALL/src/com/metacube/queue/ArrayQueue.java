@@ -7,7 +7,7 @@ package com.metacube.queue;
  * Creation Date: 1/8/2018
  */
 public class ArrayQueue<Type> implements Queue<Type> {
-	private int front = 0, rear = -1, maxSize;
+	private int rear = 0, front = -1, maxSize;
 	Type[] queue;
 
 	public ArrayQueue(int maxSize) {
@@ -17,26 +17,28 @@ public class ArrayQueue<Type> implements Queue<Type> {
 
 	/**
 	 * Used for adding item in a Queue
+	 * @throws QueueException 
 	 */
 	@Override
-	public void addItem(Type addElement) {
+	public void addItem(Type addElement) throws QueueException {
 		if (isQueueFull()) {
-			throw new RuntimeException("queue is full");
+			throw new QueueException("queue is full");
 		} else {
-			queue[front++] = addElement;
+			queue[rear++] = addElement;
 		}
 	}
 
 	/**
 	 * Used for deleting and returning item which was first inserted in a Queue
+	 * @throws QueueException 
 	 */
 	@Override
-	public Type deleteItem() {
+	public Type deleteItem() throws QueueException {
 		Type item;
 		if (isQueueEmpty()) {
-			throw new RuntimeException("queue is empty");
+			throw new QueueException("queue is empty");
 		} else {
-			item = queue[++rear];
+			item = queue[++front];
 		}
 		return item;
 	}
@@ -46,7 +48,7 @@ public class ArrayQueue<Type> implements Queue<Type> {
 	 */
 	@Override
 	public boolean isQueueEmpty() {
-		return (front - 1 == rear);
+		return (rear - 1 == front);
 	}
 
 	/**
@@ -54,6 +56,6 @@ public class ArrayQueue<Type> implements Queue<Type> {
 	 */
 	@Override
 	public boolean isQueueFull() {
-		return (front == maxSize);
+		return (rear == maxSize);
 	}
 }

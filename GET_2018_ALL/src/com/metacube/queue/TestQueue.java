@@ -8,13 +8,14 @@ import org.junit.Test;
 /**
  * Used for Testing purpose of Queue class
  * 
- * @author Rahul Sharma Creation Date: 1/8/2018
+ * @author Rahul Sharma 
+ * Creation Date: 1/8/2018
  */
 public class TestQueue {
 	Queue<Integer> queueArray;
 	Queue<Integer> queueList;
 	@Before
-	public void testUsingArrayQueue() {
+	public void testUsingArrayQueue() throws QueueException {
 		//Initialize ArrayQueue
 		queueArray = new ArrayQueue<Integer>(5);
 		queueArray.addItem(1);
@@ -35,7 +36,8 @@ public class TestQueue {
 		try {
 			queueArray.addItem(5);
 			queueArray.addItem(6);
-		} catch (RuntimeException ex) {
+			assertEquals(true, false);
+		} catch (QueueException ex) {
 			assertEquals("queue is full", ex.getMessage());
 		}
 	}
@@ -50,7 +52,8 @@ public class TestQueue {
 			queueArray.addItem(5);
 			queueArray.deleteItem();
 			queueArray.addItem(6);
-		} catch (RuntimeException ex) {
+			assertEquals(true, false);
+		} catch (QueueException ex) {
 			assertEquals("queue is full", ex.getMessage());
 		}
 	}
@@ -60,7 +63,8 @@ public class TestQueue {
 		try {
 			Queue<Integer> queue = new ArrayQueue<Integer>(5);
 			queue.deleteItem();
-		} catch (RuntimeException ex) {
+			assertEquals(true, false);
+		} catch (QueueException ex) {
 			assertEquals("queue is empty", ex.getMessage());
 		}
 	}
@@ -75,13 +79,14 @@ public class TestQueue {
 			queueArray.deleteItem();
 			queueArray.deleteItem();
 			queueArray.deleteItem();
-		} catch (RuntimeException ex) {
+			assertEquals(true, false);
+		} catch (QueueException ex) {
 			assertEquals("queue is empty", ex.getMessage());
 		}
 	}
 
 	@Test
-	public void ArrayQueueDeleteItem1() {
+	public void ArrayQueueDeleteItem1() throws QueueException {
 
 		int result = queueArray.deleteItem();
 		assertEquals(1, result);
@@ -89,7 +94,7 @@ public class TestQueue {
 	}
 
 	@Test
-	public void ArrayQueueDeleteItem2() {
+	public void ArrayQueueDeleteItem2() throws QueueException {
 		queueArray.addItem(5);
 		queueArray.deleteItem();
 		int result = queueArray.deleteItem();
@@ -101,7 +106,8 @@ public class TestQueue {
 		try {
 			queueList.addItem(5);
 			queueList.addItem(6);
-		} catch (RuntimeException ex) {
+			assertEquals(true, false);
+		} catch (QueueException ex) {
 			assertEquals("queue is full", ex.getMessage());
 		}
 	}
@@ -111,7 +117,8 @@ public class TestQueue {
 		try {
 			Queue<Integer> queueList = new ListQueue<Integer>(5);
 			queueList.deleteItem();
-		} catch (RuntimeException ex) {
+			assertEquals(true, false);
+		} catch (QueueException ex) {
 			assertEquals("queue is empty", ex.getMessage());
 		}
 	}
@@ -126,19 +133,20 @@ public class TestQueue {
 			queueList.deleteItem();
 			queueList.deleteItem();
 			queueList.deleteItem();
-		} catch (RuntimeException ex) {
+			assertEquals(true, false);
+		} catch (QueueException ex) {
 			assertEquals("queue is empty", ex.getMessage());
 		}
 	}
 
 	@Test
-	public void ListQueueDeleteItem1() {
+	public void ListQueueDeleteItem1() throws QueueException {
 		int result = queueList.deleteItem();
 		assertEquals(1, result);
 	}
 
 	@Test
-	public void ListQueueDeleteItem2() {
+	public void ListQueueDeleteItem2() throws QueueException {
 		queueList.addItem(5);
 		queueList.deleteItem();
 		int result = queueList.deleteItem();

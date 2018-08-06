@@ -18,19 +18,19 @@ public class ArrayStack<Type> implements Stack<Type> {
 	}
 	
 	@Override
-	public void push(Type newElement) {
+	public void push(Type newElement) throws StackException {
 		if(isFull()) {
-			throw new RuntimeException("stack is full");
+			throw new StackException("stack is full");
 		} else {
 			stack[top++] = newElement;
 		}
 	}
 
 	@Override
-	public Type pop() {
+	public Type pop() throws StackException {
 		Type item;
 		if(isEmpty()) {
-			throw new RuntimeException("stack is empty");
+			throw new StackException("stack is empty");
 		} else {
 			item = stack[--top];
 		}
