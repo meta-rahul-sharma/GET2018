@@ -102,8 +102,8 @@ public class Screen {
 		ArrayList<Shape> sortedShapes = new ArrayList<Shape>(shapes);
 		for (int i = 0; i < sortedShapes.size() - 1; i++) {
 			for (int j = 0; j < sortedShapes.size() - 1 - i; j++) {
-				if (sortedShapes.get(j).getTimeStamp()
-						.after(sortedShapes.get(j + 1).getTimeStamp())) {
+				if (sortedShapes.get(j).getTimeStamp() > 
+						(sortedShapes.get(j + 1).getTimeStamp())) {
 					Shape temp = sortedShapes.get(j + 1);
 					sortedShapes.set(j + 1, sortedShapes.get(j));
 					sortedShapes.set(j, temp);

@@ -21,7 +21,8 @@ public class Triangle implements Shape {
 	private int representHeight = 0;
 	private int representBase = 1;
 	private int representSide = 2;
-	private Date timeStamp;
+	private Date date;
+	private long timeStamp;
 
 	/**
 	 * Construction of Triangle Class initializing values
@@ -38,7 +39,8 @@ public class Triangle implements Shape {
 		if (sideOne < height) {
 			throw new RuntimeException("Triangle values not as Specification");
 		}
-		timeStamp = new Date();
+		date = new Date();
+		timeStamp = date.getTime();
 		computeOtherParameters();
 	}
 
@@ -106,7 +108,7 @@ public class Triangle implements Shape {
 	}
 
 	@Override
-	public Date getTimeStamp() {
+	public long getTimeStamp() {
 		return timeStamp;
 	}
 
