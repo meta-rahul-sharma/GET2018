@@ -12,7 +12,8 @@ public class Square implements Shape {
 	private Point origin;
 	private double side;
 	private int representSide = 0;
-	private Date timeStamp;
+	private Date date;
+	private long timeStamp;
 	
 	/**
 	 * Construction of Square Class initializing values
@@ -22,7 +23,8 @@ public class Square implements Shape {
 	public Square(Point origin, List<Integer> parameters) {
 		this.origin = origin;
 		side = parameters.get(representSide);
-		timeStamp = new Date();
+		date = new Date();
+		timeStamp = date.getTime();
 		if(origin.getX() + side > 1920 || origin.getY() + side > 1080) {
 			throw new RuntimeException("Rectangle is out of Screen");
 		}
@@ -63,7 +65,7 @@ public class Square implements Shape {
 	}
 
 	@Override
-	public Date getTimeStamp() {
+	public long getTimeStamp() {
 		return timeStamp;
 	}
 }

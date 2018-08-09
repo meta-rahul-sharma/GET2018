@@ -13,7 +13,8 @@ public class Rectangle implements Shape {
 	private double height, width;
 	private int representHeight = 0;
 	private int representWidth = 1;
-	private Date timeStamp;
+	private Date date;
+	private long timeStamp;
 
 	/**
 	 * Construction of Rectangle Class initializing values
@@ -24,7 +25,8 @@ public class Rectangle implements Shape {
 		this.origin = origin;
 		height = parameters.get(representHeight);
 		width = parameters.get(representWidth);
-		timeStamp = new Date();
+		date = new Date();
+		timeStamp = date.getTime();
 		if(origin.getX() + width > 1920 || origin.getY() + height> 1080) {
 			throw new RuntimeException("Rectangle is out of Screen");
 		}
@@ -67,7 +69,7 @@ public class Rectangle implements Shape {
 	}
 
 	@Override
-	public Date getTimeStamp() {
+	public long getTimeStamp() {
 		return timeStamp;
 	}
 }
