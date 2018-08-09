@@ -1,8 +1,11 @@
 package com.metacube.nestedinteger;
 
+import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
 
-import org.junit.Before;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
 /**
@@ -12,44 +15,55 @@ import org.junit.Test;
  */
 public class TestNestedList {
 
-	ImplementNestedList implement3 = new ImplementNestedList();
-	@Before
-	public void test() throws NestedListException {
-		ImplementNestedList implement = new ImplementNestedList();
-		implement.addToList(1);
-		implement.addToList(20);
-		
-		ImplementNestedList implement1 = new ImplementNestedList();
-		implement1.addToList(1);
-		implement1.addToList(implement.getList());
-		
-		ImplementNestedList implement2 = new ImplementNestedList();
-		implement2.addToList(1);
-		implement2.addToList(implement1.getList());
-		
-		implement3.addToList(1);
-		implement3.addToList(2);
-		implement3.addToList(implement2.getList());
-		implement3.addToList(3);
-		implement3.addToList(4);
-		implement3.addToList(5);
-	}
+	ImplementNestedList implement = new ImplementNestedList();
+	List<Object> nestedList = new ArrayList<Object>(asList(1, 2, asList(1, asList(1, asList(90, 99, 1000), 20), 3,
+			4, 5, asList(80, 2, asList(5, 4, 3, asList(22, 33, 83))))));
 	
 	@Test
 	public void testSum() throws NestedListException {
-		int sum = implement3.sum(implement3.getList());
-		assertEquals(38, sum);
+		int sum = implement.sum(nestedList);
+		assertEquals(1458, sum);
 	}
 	
 	@Test
 	public void testLargestValue() throws NestedListException {
-		int largestValue = implement3.largestValue(implement3.getList());
-		assertEquals(20, largestValue);
+		int largestValue = implement.largestValue(nestedList);
+		assertEquals(1000, largestValue);
 	}
 	
 	@Test
 	public void testSearch() throws NestedListException {
-		boolean search = implement3.search(implement3.getList(), 20);
+		boolean search = implement.search(nestedList, 20);
 		assertEquals(true, search);
+	}
+	
+	@Test
+	public void testSearch1() throws NestedListException {
+		boolean search = implement.search(nestedList, 89);
+		assertEquals(false, search);
+	}
+	
+	@Test
+	public void testWrongObjectType() {
+		List<Object> nestedList = new ArrayList<Object>(asList(1, 2, asList(1, asList(1, 20), 3, (char)'c', 4, 5)));
+		try {
+			@SuppressWarnings("unused")
+			boolean search = implement.search(nestedList, 5);
+			assertEquals(false, true);
+		} catch (NestedListException e) {
+			assertEquals("Wrong object Type", e.getMessage());
+		}	
+	}
+	
+	@Test
+	public void testGetValue() throws NestedListException {
+		int value = implement.getValue(nestedList, "TTHTHTHH");
+		assertEquals(90, value);
+	}
+	
+	@Test
+	public void testGetValue1() throws NestedListException {
+		int value = implement.getValue(nestedList, "TTHTTTTTHH");
+		assertEquals(80, value);
 	}
 }
