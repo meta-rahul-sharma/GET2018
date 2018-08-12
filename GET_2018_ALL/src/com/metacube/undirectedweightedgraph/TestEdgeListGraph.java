@@ -3,8 +3,10 @@ package com.metacube.undirectedweightedgraph;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,7 +32,7 @@ public class TestEdgeListGraph {
 
 	@Test
 	public void shortestPath() {
-		List<Integer> shortestPath = graph.shortestPath(2, 4);
+		List<Integer> shortestPath = graph.shortestPath(4, 1);
 
 		for (int i = 0; i < shortestPath.size(); i++) {
 			System.out.println(shortestPath.get(i));
@@ -51,6 +53,8 @@ public class TestEdgeListGraph {
 		graph.addEdge(1, 2, 8);
 		graph.addEdge(2, 3, 8);
 		graph.addEdge(2, 4, 8);
-		List<Integer> reachableVertices = graph.reachable(7);
+		List<Integer> reachableVertices = graph.reachable(1);
+		List<Integer> expected = Arrays.asList(1, 2, 3, 4);
+		Assert.assertEquals(expected, reachableVertices);
 	}
 }

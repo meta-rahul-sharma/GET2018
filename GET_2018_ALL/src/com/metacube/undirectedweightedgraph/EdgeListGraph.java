@@ -12,31 +12,29 @@ public class EdgeListGraph implements UndirectedWeightedGraph {
 	private int numberOfVertices;
 
 	public EdgeListGraph(int numberOfVertices) throws GraphException {
+		this.numberOfVertices = numberOfVertices;
 		if (numberOfVertices <= 0) {
-			throw new GraphException("Graph with 0 Vertex not possible");
+			throw new GraphException("Graph with Zero or Less Vertex not possible");
 		}
 		adjacencyList = new HashMap<Integer, Map<Integer, Integer>>();
 	}
 
 	public void addEdge(int firstVertex, int secondVertex, int edgeWeight) throws GraphException {
 
-		if (adjacencyList.containsKey(firstVertex)) {
-			if (adjacencyList.get(firstVertex).containsKey(secondVertex)) {
-				throw new GraphException("Can't add edge again");
-			} else if (adjacencyList.containsKey(secondVertex)) {
-				adjacencyList.get(secondVertex).put(firstVertex, edgeWeight);
-			} else {
-				adjacencyList.put(secondVertex, new HashMap<Integer, Integer>(firstVertex, edgeWeight));
-			}
-			adjacencyList.get(firstVertex).put(secondVertex, edgeWeight);
-		} else if (adjacencyList.containsKey(secondVertex)) {
-			if (adjacencyList.containsKey(firstVertex)) {
-				adjacencyList.get(firstVertex).put(secondVertex, edgeWeight);
-			} else {
-				adjacencyList.put(firstVertex, new HashMap<Integer, Integer>(secondVertex, edgeWeight));
-			}
-			adjacencyList.get(secondVertex).put(firstVertex, edgeWeight);
+		if(!adjacencyList.containsKey(firstVertex)) {
+			adjacencyList.put(firstVertex, new HashMap<Integer, Integer>());
 		}
+		
+		if(!adjacencyList.containsKey(secondVertex)) {
+			adjacencyList.put(secondVertex, new HashMap<Integer, Integer>());
+		}
+		
+		if(adjacencyList.get(firstVertex).containsKey(secondVertex)) {
+			throw new GraphException("");
+		}
+		
+		adjacencyList.get(firstVertex).put(secondVertex, edgeWeight);
+		adjacencyList.get(secondVertex).put(firstVertex, edgeWeight);	
 	}
 
 	@Override
@@ -112,8 +110,9 @@ public class EdgeListGraph implements UndirectedWeightedGraph {
 								+ adjacencyList.get(visitedVertex).get(visitingVertex));
 					}
 				}
+				System.out.print(distance.get(visitingVertex) + " ");
 			}
-			/* System.out.println(); */
+			System.out.println(); 
 		}
 		shortestPath.add(destination);
 		return shortestPath;
@@ -121,7 +120,6 @@ public class EdgeListGraph implements UndirectedWeightedGraph {
 
 	private void depthFirstSearch(int vertex, Set<Integer> visited) {
 		visited.add(vertex);
-
 		for (int secondVertex : adjacencyList.get(vertex).keySet()) {
 			if (!visited.contains(secondVertex)) {
 				depthFirstSearch(secondVertex, visited);
@@ -148,8 +146,7 @@ public class EdgeListGraph implements UndirectedWeightedGraph {
 
 		if (otherVertex == -1) {
 			return;
-		}
-		/* System.out.println(vertex + " " + (otherVertexIndex + 1)); */
+		} 
 		mst[fromVertex - 1][otherVertex - 1] = minimumEdgeWeightFromCurrentVertex;
 		mst[otherVertex - 1][fromVertex - 1] = minimumEdgeWeightFromCurrentVertex;
 

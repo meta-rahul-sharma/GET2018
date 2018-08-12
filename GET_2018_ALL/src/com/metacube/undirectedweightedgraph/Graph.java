@@ -10,7 +10,7 @@ public class Graph implements UndirectedWeightedGraph {
 
 	public Graph(int numberOfVertices) throws GraphException {
 		if (numberOfVertices <= 0) {
-			throw new GraphException("Graph with 0 Vertex not possible");
+			throw new GraphException("Graph with Zero or Less Vertex not possible");
 		}
 		this.numberOfVertices = numberOfVertices;
 		undirectedWeightedGraph = new int[numberOfVertices][numberOfVertices];
