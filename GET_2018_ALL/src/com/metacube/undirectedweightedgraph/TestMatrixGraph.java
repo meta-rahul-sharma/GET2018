@@ -1,8 +1,6 @@
 package com.metacube.undirectedweightedgraph;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,16 +10,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Used for Testing Purpose of Undirected Weighted Graph using adjacency List
+ * Used for Testing Purpose of Undirected Weighted Graph using adjacency matrix
  * @author Rahul Sharma
  * Creation Date: 13/08/2018
  */
-public class TestEdgeListGraph {
-	EdgeListGraph graph;
+public class TestMatrixGraph {
+
+	MatrixGraph graph;
 
 	@Before
 	public void initializeUndirectedWeightedGraph() throws GraphException {
-		graph = new EdgeListGraph(4);
+		graph = new MatrixGraph(4);
 		graph.addEdge(1, 4, 8);
 		graph.addEdge(1, 2, 9);
 		graph.addEdge(2, 3, 10);
@@ -38,8 +37,8 @@ public class TestEdgeListGraph {
 
 	@Test
 	public void shortestPath() throws GraphException {
-		int shortestPath = graph.shortestPath(4, 1);
-		assertEquals(8, shortestPath);
+		int shortestPath = graph.shortestPath(4, 2);
+		assertEquals(1, shortestPath);
 	}
 
 	@Test

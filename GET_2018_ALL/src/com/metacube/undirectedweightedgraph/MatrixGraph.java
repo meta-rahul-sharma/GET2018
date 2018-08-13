@@ -62,9 +62,13 @@ public class MatrixGraph implements UndirectedWeightedGraph {
 
 	/**
 	 * Give list of Vertex which are reachable from given vertex
+	 * @throws GraphException 
 	 */
 	@Override
-	public List<Integer> reachable(int vertex) {
+	public List<Integer> reachable(int vertex) throws GraphException {
+		if(vertex < 1 || vertex > numberOfVertices) {
+			throw new GraphException("Wrong Vertex value included");
+		}
 		List<Integer> reachable = new ArrayList<Integer>();
 		boolean[] visited = new boolean[numberOfVertices];
 
@@ -96,9 +100,13 @@ public class MatrixGraph implements UndirectedWeightedGraph {
 	/**
 	 * Given shortest path distance between 2 vertices named as:
 	 * source and destination
+	 * @throws GraphException 
 	 */
 	@Override
-	public int shortestPath(int source, int destination) {
+	public int shortestPath(int source, int destination) throws GraphException {
+		if(source < 1 || destination < 1 || source > numberOfVertices || destination > numberOfVertices) {
+			throw new GraphException("Wrong Vertex value included");
+		}
 		boolean[] visited = new boolean[numberOfVertices];
 		int[] distance = new int[numberOfVertices];
 		

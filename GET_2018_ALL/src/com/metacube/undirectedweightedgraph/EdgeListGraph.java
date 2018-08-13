@@ -72,10 +72,14 @@ public class EdgeListGraph implements UndirectedWeightedGraph {
 
 	/**
 	 * Give list of Vertex which are reachable from given vertex
+	 * @throws GraphException 
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Integer> reachable(int vertex) {
+	public List<Integer> reachable(int vertex) throws GraphException {
+		if(vertex < 1 || vertex > numberOfVertices) {
+			throw new GraphException("Wrong Vertex value included");
+		}
 		Set<Integer> visited = new HashSet<Integer>();
 
 		depthFirstSearch(vertex, visited);
@@ -101,9 +105,15 @@ public class EdgeListGraph implements UndirectedWeightedGraph {
 	/**
 	 * Given shortest path distance between 2 vertices named as:
 	 * source and destination
+	 * @throws GraphException 
 	 */
 	@Override
-	public int shortestPath(int source, int destination) {
+	public int shortestPath(int source, int destination) throws GraphException {
+		
+		if(source < 1 || destination < 1 || source > numberOfVertices || destination > numberOfVertices) {
+			throw new GraphException("Wrong Vertex value included");
+		}
+		
 		Set<Integer> visited = new HashSet<Integer>();
 		Map<Integer, Integer> distance = new HashMap<Integer, Integer>();
 		distance.put(source, 0);
