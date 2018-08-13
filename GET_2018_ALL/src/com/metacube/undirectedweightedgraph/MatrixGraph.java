@@ -116,9 +116,11 @@ public class MatrixGraph implements UndirectedWeightedGraph {
 
 		distance[source - 1] = 0;
 
+		//Iterating for numberOfVertices - 1 times to get distance's from source to every other vertex if reachable
 		for (int i = 0; i < numberOfVertices - 1; i++) {
 			int minDistance = Integer.MAX_VALUE;
 			int index = -1;
+			//Finding minimum distance vertex from current vertex
 			for (int j = 0; j < numberOfVertices; j++) {
 				if (!visited[j] && minDistance > distance[j]) {
 					minDistance = distance[j];
@@ -127,7 +129,7 @@ public class MatrixGraph implements UndirectedWeightedGraph {
 			}
 			
 			visited[index] = true;
-
+			//Checking other vertex from visitedVertex to get distance of source to other vertex via visitedVertex
 			for (int j = 0; j < numberOfVertices; j++) {
 				if (!visited[j] && undirectedWeightedGraph[index][j] != 0 
 						&& distance[index] != Integer.MAX_VALUE
@@ -178,6 +180,8 @@ public class MatrixGraph implements UndirectedWeightedGraph {
 			}
 		}
 
+		//OtherVertex contains -1 then all reachable vertex are visited so return 
+		//Base condition for recursion
 		if (otherVertexIndex == -1) {
 			return;
 		}

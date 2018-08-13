@@ -118,9 +118,11 @@ public class EdgeListGraph implements UndirectedWeightedGraph {
 		Map<Integer, Integer> distance = new HashMap<Integer, Integer>();
 		distance.put(source, 0);
 
+		//Iterating for numberOfVertices - 1 times to get distance's from source to every other vertex if reachable
 		for (int i = 1; i < numberOfVertices; i++) {
 			int minDistance = Integer.MAX_VALUE;
 			int visitedVertex = -1;
+			//Finding minimum distance vertex from current vertex
 			for (int distanceToVertex : distance.keySet()) {
 				if (!visited.contains(distanceToVertex) && minDistance > distance.get(distanceToVertex)) {
 					minDistance = distance.get(distanceToVertex);
@@ -128,9 +130,12 @@ public class EdgeListGraph implements UndirectedWeightedGraph {
 				}
 			}
 
+			//Checking other vertex from visitedVertex to get distance of source to other vertex via visitedVertex
 			for (int visitingVertex : adjacencyList.get(visitedVertex).keySet()) {
 				if (!visited.contains(visitingVertex)) {
 					if (distance.containsKey(visitingVertex)) {
+						//If current distance from source to visiting vertex is greater than source to visiting vertex via visited
+						//vertex than distance will be replaced by via visited route
 						if(distance.get(visitingVertex) > distance.get(visitedVertex) 
 								+ adjacencyList.get(visitedVertex).get(visitingVertex)) {
 							distance.put(visitingVertex, distance.get(visitedVertex)
@@ -183,6 +188,8 @@ public class EdgeListGraph implements UndirectedWeightedGraph {
 			}
 		}
 
+		//OtherVertex contains -1 then all reachable vertex are visited so return 
+		//Base condition for recursion
 		if (otherVertex == -1) {
 			return;
 		} 
