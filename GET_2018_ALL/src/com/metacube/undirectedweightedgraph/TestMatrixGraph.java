@@ -98,4 +98,16 @@ public class TestMatrixGraph {
 			assertEquals("Disconnected graph can'nt form Mst", e.getMessage());
 		}
 	}
+	
+	@Test
+	public void cannotAddEdgeAgainException () {
+		try {
+			graph.addEdge(1, 4, 7);
+			@SuppressWarnings("unused")
+			int[][] mst = graph.mst();
+			assertTrue(false);
+		} catch (GraphException e) {
+			assertEquals("Can't add edge again", e.getMessage());
+		}
+	}
 }

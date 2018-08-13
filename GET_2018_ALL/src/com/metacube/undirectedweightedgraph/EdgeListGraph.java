@@ -46,7 +46,7 @@ public class EdgeListGraph implements UndirectedWeightedGraph {
 		}
 		
 		if(adjacencyList.get(firstVertex).containsKey(secondVertex)) {
-			throw new GraphException("");
+			throw new GraphException("Can't add edge again");
 		}
 		
 		adjacencyList.get(firstVertex).put(secondVertex, edgeWeight);
