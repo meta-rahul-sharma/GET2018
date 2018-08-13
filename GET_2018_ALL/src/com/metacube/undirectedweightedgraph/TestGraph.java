@@ -2,18 +2,25 @@ package com.metacube.undirectedweightedgraph;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Used for Testing Purpose of Undirected Weighted Graph using adjacency matrix
+ * @author Rahul Sharma
+ * Creation Date: 13/08/2018
+ */
 public class TestGraph {
 
-	Graph graph;
+	MatrixGraph graph;
 
 	@Before
 	public void initializeUndirectedWeightedGraph() throws GraphException {
-		graph = new Graph(4);
+		graph = new MatrixGraph(4);
 		graph.addEdge(1, 4, 8);
 		graph.addEdge(1, 2, 9);
 		graph.addEdge(2, 3, 10);
@@ -30,11 +37,8 @@ public class TestGraph {
 
 	@Test
 	public void shortestPath() {
-		List<Integer> shortestPath = graph.shortestPath(2, 4);
-
-		for (int i = 0; i < shortestPath.size(); i++) {
-			System.out.println(shortestPath.get(i));
-		}
+		int shortestPath = graph.shortestPath(4, 2);
+		assertEquals(1, shortestPath);
 	}
 
 	@Test
@@ -46,11 +50,13 @@ public class TestGraph {
 
 	@Test
 	public void test1() throws GraphException {
-		Graph graph = new Graph(7);
+		MatrixGraph graph = new MatrixGraph(7);
 		graph.addEdge(1, 4, 8);
 		graph.addEdge(1, 2, 8);
 		graph.addEdge(2, 3, 8);
 		graph.addEdge(2, 4, 8);
-		List<Integer> reachableVertices = graph.reachable(7);
+		List<Integer> reachableVertices = graph.reachable(1);
+		List<Integer> expected = Arrays.asList(1, 2, 3, 4);
+		Assert.assertEquals(expected, reachableVertices);
 	}
 }

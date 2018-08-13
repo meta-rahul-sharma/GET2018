@@ -1,16 +1,25 @@
 package com.metacube.undirectedweightedgraph;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Used for Implementation of Graph Interface methods using adjacency matrix
+ * @author Rahul Sharma
+ * Creation Date: 13/08/2018
+ */
 public class EdgeListGraph implements UndirectedWeightedGraph {
 	private Map<Integer, Map<Integer, Integer>> adjacencyList;
 	private int numberOfVertices;
 
+	/**
+	 * Constructor of EdgeList Graph
+	 * @param numberOfVertices
+	 * @throws GraphException
+	 */
 	public EdgeListGraph(int numberOfVertices) throws GraphException {
 		this.numberOfVertices = numberOfVertices;
 		if (numberOfVertices <= 0) {
@@ -19,6 +28,13 @@ public class EdgeListGraph implements UndirectedWeightedGraph {
 		adjacencyList = new HashMap<Integer, Map<Integer, Integer>>();
 	}
 
+	/**
+	 * To insert Edge in the Graph
+	 * @param firstVertex
+	 * @param secondVertex
+	 * @param edgeWeight
+	 * @throws GraphException
+	 */
 	public void addEdge(int firstVertex, int secondVertex, int edgeWeight) throws GraphException {
 
 		if(!adjacencyList.containsKey(firstVertex)) {
@@ -37,6 +53,9 @@ public class EdgeListGraph implements UndirectedWeightedGraph {
 		adjacencyList.get(secondVertex).put(firstVertex, edgeWeight);	
 	}
 
+	/**
+	 * Given true if graph is a connected graph
+	 */
 	@Override
 	public boolean isConnected() {
 		boolean isConnected = false;
@@ -51,6 +70,9 @@ public class EdgeListGraph implements UndirectedWeightedGraph {
 		return isConnected;
 	}
 
+	/**
+	 * Give list of Vertex which are reachable from given vertex
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Integer> reachable(int vertex) {
@@ -61,6 +83,9 @@ public class EdgeListGraph implements UndirectedWeightedGraph {
 		return (List<Integer>) visited;
 	}
 
+	/**
+	 * Give Matrix representation of minimum spanning tree of a Graph
+	 */
 	@Override
 	public int[][] mst() throws GraphException {
 		int[][] mst = new int[numberOfVertices][numberOfVertices];
@@ -73,12 +98,14 @@ public class EdgeListGraph implements UndirectedWeightedGraph {
 		return mst;
 	}
 
+	/**
+	 * Given shortest path distance between 2 vertices named as:
+	 * source and destination
+	 */
 	@Override
-	public List<Integer> shortestPath(int source, int destination) {
-		List<Integer> shortestPath = new ArrayList<Integer>();
+	public int shortestPath(int source, int destination) {
 		Set<Integer> visited = new HashSet<Integer>();
 		Map<Integer, Integer> distance = new HashMap<Integer, Integer>();
-
 		distance.put(source, 0);
 
 		for (int i = 1; i < numberOfVertices; i++) {
@@ -89,12 +116,6 @@ public class EdgeListGraph implements UndirectedWeightedGraph {
 					minDistance = distance.get(distanceToVertex);
 					visitedVertex = distanceToVertex;
 				}
-			}
-
-			visited.add(visitedVertex);
-
-			if (!visited.contains(destination)) {
-				shortestPath.add(visitedVertex);
 			}
 
 			for (int visitingVertex : adjacencyList.get(visitedVertex).keySet()) {
@@ -110,14 +131,16 @@ public class EdgeListGraph implements UndirectedWeightedGraph {
 								+ adjacencyList.get(visitedVertex).get(visitingVertex));
 					}
 				}
-				System.out.print(distance.get(visitingVertex) + " ");
-			}
-			System.out.println(); 
+			} 
 		}
-		shortestPath.add(destination);
-		return shortestPath;
+		return distance.get(destination);
 	}
 
+	/**
+	 * Implementation of Depth First Search Algorithm
+	 * @param vertex
+	 * @param visited
+	 */
 	private void depthFirstSearch(int vertex, Set<Integer> visited) {
 		visited.add(vertex);
 		for (int secondVertex : adjacencyList.get(vertex).keySet()) {
@@ -127,6 +150,12 @@ public class EdgeListGraph implements UndirectedWeightedGraph {
 		}
 	}
 
+	/**
+	 * Implementation of Prims Algorithm
+	 * @param vertex
+	 * @param mst
+	 * @param visited
+	 */
 	private void prims(int vertex, int[][] mst, Set<Integer> visited) {
 		visited.add(vertex);
 
