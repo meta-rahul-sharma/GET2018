@@ -32,15 +32,4 @@ public class Zones {
 	public String getZoneCategory() {
 		return category;
 	}
-/*	public int totalCapacity(int zoneId) {
-		return totalAnimalInTheZoneId;
-	}
-	
-	public int spareCapacity() {
-		return numberOfDeadAnimals;
-	}
-	
-	public String specificSpareCapracity() {
-		
-	}*/
 }

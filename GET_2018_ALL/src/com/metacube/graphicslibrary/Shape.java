@@ -19,5 +19,5 @@ public interface Shape {
 	public Point getOrigin();
 	public boolean isPointEnclosed(Point enclosed);	
 	public ShapeType getShapeType();
-	public Date getTimeStamp();
+	public long getTimeStamp();
 }

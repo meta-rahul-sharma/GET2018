@@ -13,7 +13,8 @@ public class Circle implements Shape {
 	private Point origin;
 	private double radius;
 	private int representRadius = 0;
-	private Date timeStamp;
+	private Date date;
+	private long timeStamp;
 
 	/**
 	 * Construction of Circle Class initializing values
@@ -23,7 +24,8 @@ public class Circle implements Shape {
 	public Circle(Point center, List<Integer> parameters) {
 		this.center = center;
 		radius = parameters.get(representRadius);
-		timeStamp = new Date();
+		date = new Date();
+		timeStamp = date.getTime();
 		if (center.getX() + radius > 1920 || center.getY() + radius > 1080
 				|| center.getX() - radius < 0 || center.getY() - radius < 0) {
 			throw new RuntimeException("Circle out of Screen");
@@ -99,7 +101,7 @@ public class Circle implements Shape {
 	}
 
 	@Override
-	public Date getTimeStamp() {
+	public long getTimeStamp() {
 		return timeStamp;
 	}
 }
