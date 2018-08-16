@@ -1,0 +1,2 @@
+USE storefront;
+SHOW TABLES;
