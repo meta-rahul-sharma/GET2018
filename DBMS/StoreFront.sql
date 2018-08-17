@@ -62,3 +62,13 @@ CREATE TABLE items_ordered(order_id INT,
     PRIMARY KEY (order_id, product_id), 
     FOREIGN KEY (order_id) REFERENCES order_details(order_id) ON DELETE CASCADE ON UPDATE CASCADE, 
     FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE ON UPDATE CASCADE);
+
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE products;
+SET FOREIGN_KEY_CHECKS = 1;
+
+CREATE TABLE products(product_id INT PRIMARY KEY AUTO_INCREMENT, 
+    product_name VARCHAR(30) NOT NULL, 
+    quantity INT NOT NULL CHECK(quantity >= 0), 
+    price FLOAT NOT NULL, 
+    product_issue_date DATE NOT NULL); 
