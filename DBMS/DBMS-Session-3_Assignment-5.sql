@@ -19,13 +19,6 @@ Use the above view to display the Products(Items) which are in ‘shipped’ sta
 SELECT product_id, product_name
 FROM order_items_details
 WHERE order_status = 'Shipped';
-/*
-+------------+--------------------+
-| product_id | product_name       |
-+------------+--------------------+
-|         12 | Peter England Suit |
-+------------+--------------------+
-*/
 
 /*
 Use the above view to display the top 5 most selling products.
@@ -34,11 +27,3 @@ SELECT product_id, product_name
 FROM order_items_details
 GROUP BY product_id
 ORDER BY COUNT(product_id) DESC;
-/*
-+------------+--------------------+
-| product_id | product_name       |
-+------------+--------------------+
-|          9 | Timex Analog Watch |
-|         12 | Peter England Suit |
-+------------+--------------------+
-*/

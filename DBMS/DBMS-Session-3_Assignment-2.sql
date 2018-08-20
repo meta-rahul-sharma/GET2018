@@ -7,14 +7,6 @@ FROM products INNER JOIN categorylink ON
     products.product_id = categorylink.product_id
 GROUP BY categorylink.product_id
 HAVING COUNT(categorylink.category_id) > 1;
-/*
-+------------+----------------+---------------------+
-| product_id | product_name   | count_of_categories |
-+------------+----------------+---------------------+
-|          1 | Redmi 3s Prime |                   2 |
-|          2 | Redmi Note 4   |                   2 |
-+------------+----------------+---------------------+
-*/
 
 /*
 Display Count of products as per below price range 0-1000,1001-5000,Above 5000
@@ -27,15 +19,7 @@ FROM (SELECT CASE
             END as price_range
       FROM products) as count_of_products
 GROUP BY price_range;
-/*
-+-------------+----------------+
-| price_range | no_of_products |
-+-------------+----------------+
-| Above 5000  |              6 |
-| 0-1000      |              1 |
-| 1001-5000   |              5 |
-+-------------+----------------+
-*/
+
 
 /*
 Display the Categories along with number of products under each category.
@@ -44,7 +28,7 @@ SELECT *
 FROM categories;
 
 
-SELECT parent.category_id, parent.category_name, COUNT(link.product_id)
+SELECT parent.category_id, parent.category_name, COUNT(link.product_id) as number_of_product_in_category
 FROM categories child , categories parent, categorylink link
 WHERE (parent.category_id = child.parent_id OR parent.category_id = child.category_id)
 AND child.category_id = link.category_id

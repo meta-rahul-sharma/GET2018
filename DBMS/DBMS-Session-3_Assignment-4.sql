@@ -11,18 +11,3 @@ Create appropriate tables and relationships for the same and write a SQL
 SELECT pincode, city, state
 FROM address
 ORDER BY state AND city;
-/*
-+---------+-------------+--------------+
-| pincode | city        | state        |
-+---------+-------------+--------------+
-| 302039  | jaipur      | rajasthan    |
-| 342011  | JODHPUR     | rajasthan    |
-| 393231  | GOA         | GOA          |
-| 302031  | jaipur      | rajasthan    |
-| 302001  | jaipur      | rajasthan    |
-| 382001  | UDAIPUR     | rajasthan    |
-| 339401  | JAISALMAIR  | rajasthan    |
-| 339401  | HALDI GHATI | PRATAP NAGAR |
-| 302013  | JAIPUR      | rajasthan    |
-+---------+-------------+--------------+
-*/

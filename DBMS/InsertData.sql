@@ -1,4 +1,4 @@
-INSERT INTO users VALUES
+INSERT INTO users(email, user_name, phone_no, account_password, dob, type_of_user) VALUES
 ('rsbhatra98@gmail.com', 'rahul sharma', '8947804883', '1234', '1997-10-25', 'A'),
 ('rs98@gmail.com', 'rahul jangid', '8947804889', '123412', '1998-10-25', 'S'),
 ('chirag10march@gmail.com', 'chirag jain', '7737596610', '12342742', '1997-03-10', 'S'),
@@ -94,13 +94,6 @@ INSERT INTO categorylink(product_id, category_id) VALUES
    (12,18),
    (12,21);
     
-INSERT INTO shopping_cart VALUES
-	('rsbhatra98@gmail.com', 1, 'Redmi 3s Prime', 2),
-    ('tanumittal@gmail.com', 2, 'Redmi Note 4', 5),
-    ('rs98@gmail.com', 6, 'Kingston 16GB', 4),
-    ('rs98@gmail.com', 12, 'Peter England Suit', 8),
-    ('innovativemohit@gmail.com', 8, 'Fastrack Digital Watch 4hy7e', 3);
-    
 INSERT INTO order_details(email, total_price, date_of_order) VALUES
 	('rsbhatra98@gmail.com', 30000.00, '2018/08/15'),
     ('innovativemohit@gmail.com', 99400.00, '2017/08/15'),
@@ -128,7 +121,7 @@ INSERT INTO items_ordered(order_id, product_id, quantity, price, order_status) V
     (4, 4, 1, 90400.00, 'Cancelled');
 
 
-INSERT INTO images VALUES
+INSERT INTO images(product_id, image_url) VALUES
 	(1, 'Redmi3sPrime.jpg'),
     (1, 'Redmi3sPrime1.jpg'),
     (1, 'Redmi3sPrime2.jpg'),
