@@ -40,14 +40,6 @@ CREATE TABLE categorylink(product_id INT,
     FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE ON UPDATE CASCADE, 
     FOREIGN KEY (category_id) REFERENCES categories(category_id) ON DELETE CASCADE ON UPDATE CASCADE);
       
-CREATE TABLE shopping_cart(email VARCHAR(25), 
-    product_id INT, 
-    product_name VARCHAR(30) NOT NULL, 
-    quantity INT NOT NULL CHECK(quantity >= 0),
-    PRIMARY KEY (email, product_id), 
-    FOREIGN KEY (email) REFERENCES users(email) ON DELETE CASCADE ON UPDATE CASCADE, 
-    FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE ON UPDATE CASCADE);
-    
 CREATE TABLE order_details(order_id INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(25) NOT NULL,
     total_price FLOAT NOT NULL, 
