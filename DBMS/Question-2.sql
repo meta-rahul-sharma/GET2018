@@ -1,9 +1,10 @@
 /*
 Display Id, Title, Category Title, Price of the products which are Active and recently added products should be at top.
 */
-SELECT 	products.product_id, product_name, category_name, price 
+SELECT 	products.product_id as Id, product_name as Title, category_name as CategoryTitle, Price 
 FROM products, categories, categorylink 
-where products.product_id = categorylink.product_id 
+where quantity > 0 
+AND products.product_id = categorylink.product_id 
 AND categories.category_id = categorylink.category_id
 ORDER BY product_issue_date;
 
@@ -36,9 +37,10 @@ Display Id, Title, Parent Category Title of all the leaf Categories
 */
 SELECT leaf.category_id, leaf.category_name, parent.category_name as parent_category_name
 FROM categories leaf, categories parent
-WHERE parent.category_id = leaf.parent_id AND NOT EXISTS(SELECT * 
-														 FROM categories child 
-                                                         WHERE leaf.category_id = child.parent_id);
+WHERE parent.category_id = leaf.parent_id 
+AND NOT EXISTS(SELECT * 
+               FROM categories child 
+               WHERE leaf.category_id = child.parent_id);
 
 /*
 Display Product Title, Price & Description which falls into particular category Title (i.e. “Mobile”)

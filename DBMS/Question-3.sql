@@ -33,10 +33,11 @@ Display list of shoppers which haven't ordered anything since last month.
 SELECT user_name, email
 FROM users
 WHERE type_of_user = 'S'
-	AND email NOT IN (SELECT email
-					  FROM order_details
-                      WHERE MONTH(date_of_order) < MONTH(CURDATE()) AND
-							YEAR(date_of_order) <= YEAR(CURDATE()));
+AND email 
+NOT IN (SELECT email
+        FROM order_details
+        WHERE MONTH(date_of_order) < MONTH(CURDATE()) 
+        AND YEAR(date_of_order) <= YEAR(CURDATE()));
 
 /*
 Display list of shopper along with orders placed by them in last 15 days.
@@ -52,18 +53,18 @@ Display list of order items which are in “shipped” state for particular Orde
 SELECT product_name, product_id
 FROM products
 WHERE product_id IN (SELECT product_id
-					 FROM items_ordered i
-					 WHERE order_id = 2 AND
-						order_status = 'Shipped'); 
+                     FROM items_ordered i
+					           WHERE order_id = 2 
+                     AND order_status = 'Shipped'); 
  
 /*
 Display list of order items along with order placed date which fall between Rs 2000 to Rs 5000 price.
 */
 SELECT product_name, product_id, date_of_order, price
 FROM products, order_details
-WHERE price BETWEEN 2000 AND 5000 AND
-	(product_id, order_id) IN (SELECT product_id, order_id
-				   FROM items_ordered);
+WHERE price BETWEEN 2000 AND 5000 
+AND	(product_id, order_id) IN (SELECT product_id, order_id
+                               FROM items_ordered);
 
 /*
 Update first 20 Order items status to “Shipped” which are placed today.
@@ -71,7 +72,7 @@ Update first 20 Order items status to “Shipped” which are placed today.
 UPDATE items_ordered
 SET order_status = 'Shipped'
 WHERE order_id IN (SELECT order_id
-				   FROM order_details
+				           FROM order_details
                    WHERE date_of_order = CURDATE());
 SELECT * 
 FROM items_ordered;
