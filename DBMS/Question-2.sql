@@ -11,7 +11,7 @@ ORDER BY product_issue_date;
 /*
 Display the list of products which don't have any images.
 */
-SELECT DISTINCT products.product_id, product_name, quantity, price 
+SELECT product_id, product_name, quantity, price 
 FROM products 
 WHERE NOT EXISTS (SELECT images.product_id 
 				  FROM images 
