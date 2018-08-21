@@ -26,7 +26,7 @@ public class TestJdbc {
 		}
 	}
 	
-   /* @Test
+   @Test
 	public void test1() {
 		DbmsQueries queries = new DbmsQueries();
 		List<Image> images = new ArrayList<Image>();
@@ -37,12 +37,18 @@ public class TestJdbc {
 		images.add(new Image(2, "product2.image2"));
 		queries.insertImages(images);
 	}
-*/
+
 	@Test
 	public void test2() {
 		DbmsQueries queries = new DbmsQueries();
-		int updatedRows = queries.deleteProduct();
+		int updatedRows = queries.updateProduct();
 		System.out.println(updatedRows);
+	}
+	
+	@Test
+	public void test3() {
+		DbmsQueries queries = new DbmsQueries();
+		List<Category> categoryWithChildCount = queries.categoryWithChildCount();
 	}
 
 }

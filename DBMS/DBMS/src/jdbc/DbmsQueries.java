@@ -26,8 +26,7 @@ public class DbmsQueries {
 				+ "ORDER BY date_of_order;";
 		try (
 				Connection connection = DatabaseConnect.getConnection();
-				// In MySQL: "jdbc:mysql://hostname:port/databaseName", "username",
-				// "password"
+				// In MySQL: "jdbc:mysql://hostname:port/databaseName", "username", "password"
 
 				// Step 2: Allocate a 'Statement' object in the Connection
 				PreparedStatement stmt = connection.prepareStatement(query);) {
@@ -52,8 +51,7 @@ public class DbmsQueries {
 		String query = "INSERT INTO IMAGES(product_id, image_url) VALUES (?, ?);";
 		try (
 				Connection connection = DatabaseConnect.getConnection();
-				// In MySQL: "jdbc:mysql://hostname:port/databaseName", "username",
-				// "password"
+				// In MySQL: "jdbc:mysql://hostname:port/databaseName", "username", "password"
 
 				// Step 2: Allocate a 'Statement' object in the Connection
 				PreparedStatement stmt = connection.prepareStatement(query);) {
@@ -78,7 +76,7 @@ public class DbmsQueries {
 	 * Delete all those products which were not ordered by any Shopper in last 1 year. 
 	 * Return the number of products deleted.
 	 */
-	public int deleteProduct() {
+	public int updateProduct() {
 		int updatedProducts = 0;
 		String updateProduct = "UPDATE products " +
 					   "SET product_state = 'I' " +
@@ -90,8 +88,7 @@ public class DbmsQueries {
 					   "WHERE date_of_order BETWEEN DATE_SUB(NOW(), INTERVAL 1 YEAR) AND NOW()) temp);";
 		try (
 				Connection connection = DatabaseConnect.getConnection();
-				// In MySQL: "jdbc:mysql://hostname:port/databaseName", "username",
-				// "password"
+				// In MySQL: "jdbc:mysql://hostname:port/databaseName", "username", "password"
 
 				// Step 2: Allocate a 'Statement' object in the Connection
 				PreparedStatement stmt = connection.prepareStatement(updateProduct);) {
@@ -105,5 +102,36 @@ public class DbmsQueries {
 			e.printStackTrace();
 		}
 		return updatedProducts;
+	}
+	
+	/**
+	 * Select and display the category title of all top parent categories sorted
+	 * alphabetically and the count of their child categories.
+	 */
+	public List<Category> categoryWithChildCount() {
+		List<Category> categoryWithChildCount = new ArrayList<Category>();
+        
+        String getCategoryWithChildCount = "SELECT name, count_children(category_id) AS child_count "
+                + "FROM category "
+                + "WHERE parent_id IS NULL "
+                + "ORDER BY category_name ";
+        try
+        (
+            Connection con = DatabaseConnect.getConnection();
+            PreparedStatement stmt2 = con.prepareStatement(getCategoryWithChildCount);
+        )
+        {
+            ResultSet result = stmt2.executeQuery();
+            
+            while(result.next())
+            {                
+                categoryWithChildCount.add(new Category(result.getString("name"), result.getInt("child_count")));
+            }
+        }
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+        }
+        return categoryWithChildCount;
 	}
 }
