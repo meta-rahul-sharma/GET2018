@@ -4,13 +4,13 @@ USE StoreFront;
 
 CREATE TABLE users(email VARCHAR(30) PRIMARY KEY,
 	user_name VARCHAR(20) NOT NULL,
-    phone_no VARCHAR(10) NOT NULL,
+    phone_no VARCHAR(10),
     account_password VARCHAR(15) NOT NULL,
-    dob DATE NOT NULL,
-    type_of_user varchar(1) NOT NULL CHECK(type_of_user IN ('S', 'A')));
+    dob DATE,
+    type_of_user varchar(1) NOT NULL DEFAULT 'S' CHECK(type_of_user IN ('S', 'A')));
     
 CREATE TABLE address(address_id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-    street VARCHAR(25) NOT NULL,  
+    street VARCHAR(25),  
     city VARCHAR(20) NOT NULL, 
     state VARCHAR(20) NOT NULL, 
     country VARCHAR(15) NOT NULL, 
