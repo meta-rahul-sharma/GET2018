@@ -50,7 +50,7 @@ Mark the products as Inactive which are not ordered in last 90 days
 SELECT * FROM products;
 
 UPDATE products
-SET quantity = 0
+SET product_state = 'I'
 WHERE product_id
 NOT IN( SELECT * FROM(SELECT products.product_id 
 		FROM products

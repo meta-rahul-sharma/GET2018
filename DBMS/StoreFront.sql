@@ -20,9 +20,10 @@ CREATE TABLE address(address_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     
 CREATE TABLE products(product_id INT PRIMARY KEY AUTO_INCREMENT, 
     product_name VARCHAR(30) NOT NULL, 
-    quantity INT NOT NULL CHECK(quantity >= 0), 
+    quantity INT NOT NULL CHECK(quantity > 0), 
     price FLOAT NOT NULL, 
-    product_issue_date DATE NOT NULL); 
+    product_issue_date DATE NOT NULL,
+    product_state varchar(1) NOT NULL DEFAULT 'A' CHECK(product_state IN('A', 'I'))); 
     
 CREATE TABLE images(product_id INT,
     image_url VARCHAR(50), 
@@ -61,6 +62,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 CREATE TABLE products(product_id INT PRIMARY KEY AUTO_INCREMENT, 
     product_name VARCHAR(30) NOT NULL, 
-    quantity INT NOT NULL CHECK(quantity >= 0), 
+    quantity INT NOT NULL CHECK(quantity > 0), 
     price FLOAT NOT NULL, 
-    product_issue_date DATE NOT NULL); 
+    product_issue_date DATE NOT NULL,
+    product_state varchar(1) NOT NULL DEFAULT 'A' CHECK(product_state IN('A', 'I'))); 
