@@ -1,3 +1,4 @@
+USE storefront;
 DROP PROCEDURE IF EXISTS monthly_average_sales;
 DROP PROCEDURE IF EXISTS order_detail_with_status;
 DROP FUNCTION IF EXISTS get_total_sales;
@@ -33,7 +34,7 @@ CREATE PROCEDURE monthly_average_sales(IN month INT, IN year INT)
         INNER JOIN products ON products.product_id = items_ordered.product_id
         WHERE MONTH(date_of_order) = month
         AND YEAR(date_of_order) = year
-        GROUP BY products.product_id WITH ROLLUP;
+        GROUP BY products.product_id;
 	END |
     
 CALL monthly_average_sales(8, 2018);
@@ -48,12 +49,9 @@ If start date is greater than end date take first date of month as start date.
 DELIMITER |
 CREATE PROCEDURE order_detail_with_status(IN start_date DATE, IN end_date DATE)
 	BEGIN
-		DECLARE real_start_date DATE;
-		IF(start_date < end_date)
+		IF(start_date > end_date)
 			THEN
-				SET real_start_date = start_date;
-			ELSE
-				SET real_start_date = CONCAT(DATE_FORMAT(start_date, '%Y-%m-'), '01');
+				SET start_date = CONCAT(DATE_FORMAT(start_date, '%Y-%m-'), '01');
 		END IF;
         SELECT order_details.order_id, date_of_order, order_status
         FROM order_details
@@ -62,7 +60,3 @@ CREATE PROCEDURE order_detail_with_status(IN start_date DATE, IN end_date DATE)
 	END |
     
 CALL order_detail_with_status('2018-02-01', '2018-10-12');
-
-/*
-Identify the columns require indexing in order, product, category tables and create indexes.
-*/
