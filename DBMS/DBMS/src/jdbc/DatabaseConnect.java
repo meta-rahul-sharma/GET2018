@@ -3,6 +3,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * To connect to local database
+ * @author RAHUL SHARMA
+ * CREATION DATE: 21/08/2018
+ */
 public class DatabaseConnect {
 	public static Connection getConnection() {
 		Connection connection = null;

@@ -1,8 +1,13 @@
 package jdbc;
 
+/**
+ * POJO For Category title and number of child count of category
+ * @author RAHUL SHARMA
+ * CREATION DATE: 21/08/2018
+ */
 public class Category {
-	String title;
-	int numberOfChildCategories;
+	private String title;
+	private int numberOfChildCategories;
 	
 	public Category(String title, int numberOfChildCategories) {
 		this.title = title;

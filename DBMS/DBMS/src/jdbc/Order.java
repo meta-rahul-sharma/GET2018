@@ -2,6 +2,11 @@ package jdbc;
 
 import java.util.Date;
 
+/**
+ * Pojo to store order details
+ * @author RAHUL SHARMA
+ * CREATION DATE: 21/08/2018
+ */
 public class Order {
 	private int id;
 	private Date orderDate;

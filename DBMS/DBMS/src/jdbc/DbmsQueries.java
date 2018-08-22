@@ -7,6 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author RAHUL SHARMA
+ * CREATION DATE: 21/08/2018
+ */
 public class DbmsQueries {
 	
 	/**
@@ -73,8 +78,8 @@ public class DbmsQueries {
 	}
 	
 	/**
-	 * Delete all those products which were not ordered by any Shopper in last 1 year. 
-	 * Return the number of products deleted.
+	 * Update Inactive all those products which were not ordered by any Shopper in last 1 year. 
+	 * Return the number of products updated.
 	 */
 	public int updateProduct() {
 		int updatedProducts = 0;
@@ -111,10 +116,10 @@ public class DbmsQueries {
 	public List<Category> categoryWithChildCount() {
 		List<Category> categoryWithChildCount = new ArrayList<Category>();
         
-        String getCategoryWithChildCount = "SELECT name, count_children(category_id) AS child_count "
-                + "FROM category "
+        String getCategoryWithChildCount = "SELECT category_name AS name, count_children(category_id) AS child_count "
+                + "FROM categories "
                 + "WHERE parent_id IS NULL "
-                + "ORDER BY category_name ";
+                + "ORDER BY category_name;";
         try
         (
             Connection con = DatabaseConnect.getConnection();

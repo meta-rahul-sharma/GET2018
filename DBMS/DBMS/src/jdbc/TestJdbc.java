@@ -8,6 +8,11 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * To Test all DBMSQueries
+ * @author RAHUL SHARMA
+ * CREATION DATE: 21/08/2018
+ */
 public class TestJdbc {
 
 	DbmsQueries queries = null;
@@ -15,9 +20,9 @@ public class TestJdbc {
 	public void initialize() {
 		queries = new DbmsQueries();
 	}
-	
+
 	@Test
-	public void test() {
+	public void fechAllOrders_underGivenUserId_showOrders() {
 		List<Order> order = queries.fetchAllOrders("rsbhatra98@gmail.com");
 		for(Order iterator: order) {
 			System.out.println(iterator.getId() + " "
@@ -27,7 +32,7 @@ public class TestJdbc {
 	}
 	
    @Test
-	public void test1() {
+	public void insertImages_noDuplicates_insertInImageTable() {
 		DbmsQueries queries = new DbmsQueries();
 		List<Image> images = new ArrayList<Image>();
 		images.add(new Image(1, "product1.image"));
@@ -39,16 +44,18 @@ public class TestJdbc {
 	}
 
 	@Test
-	public void test2() {
+	public void updateProduct_inactiveNotOrderedFor1YearProduct_updateProductState() {
 		DbmsQueries queries = new DbmsQueries();
 		int updatedRows = queries.updateProduct();
-		System.out.println(updatedRows);
+		assertEquals(4, updatedRows);
 	}
 	
 	@Test
-	public void test3() {
+	public void categoryWithChildCount_categoryWhichAreParent_generateCountOfParentCategory() {
 		DbmsQueries queries = new DbmsQueries();
 		List<Category> categoryWithChildCount = queries.categoryWithChildCount();
+		for(Category category : categoryWithChildCount) {
+			System.out.println(category.getTitle() + " " + category.getNumberOfChildCategories());
+		}
 	}
-
 }

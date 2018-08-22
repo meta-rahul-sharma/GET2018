@@ -1,5 +1,11 @@
 package jdbc;
 
+/**
+ * POJO for Image database which holds
+ * productId and imageUrl
+ * @author RAHUL SHARMA
+ * CREATION DATE: 21/08/2018
+ */
 public class Image {
 	private int productId;
 	private String imageUrl;
