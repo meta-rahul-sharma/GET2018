@@ -65,8 +65,9 @@ public class DbmsQueries {
 				for(Image image: images) {
 					stmt.setInt(1, image.getProductId());
 					stmt.setString(2, image.getImageUrl());
-					stmt.executeUpdate();
+					stmt.addBatch();
 				}
+				stmt.executeBatch();
 				connection.commit();
 			} catch(SQLException e) {
 				connection.rollback();
