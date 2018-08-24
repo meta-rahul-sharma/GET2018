@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ * Used for different queries of dbms and execute them on database
  * @author RAHUL SHARMA
  * CREATION DATE: 21/08/2018
  */
@@ -33,7 +33,7 @@ public class DbmsQueries {
 				Connection connection = DatabaseConnect.getConnection();
 				// In MySQL: "jdbc:mysql://hostname:port/databaseName", "username", "password"
 
-				// Step 2: Allocate a 'Statement' object in the Connection
+				// Allocate a 'Statement' object in the Connection
 				PreparedStatement stmt = connection.prepareStatement(query);) {
 			stmt.setString(1, userId);
 			ResultSet resultset = stmt.executeQuery();
@@ -58,7 +58,7 @@ public class DbmsQueries {
 				Connection connection = DatabaseConnect.getConnection();
 				// In MySQL: "jdbc:mysql://hostname:port/databaseName", "username", "password"
 
-				// Step 2: Allocate a 'Statement' object in the Connection
+				// Allocate a 'Statement' object in the Connection
 				PreparedStatement stmt = connection.prepareStatement(query);) {
 			try{
 				connection.setAutoCommit(false);
@@ -95,7 +95,7 @@ public class DbmsQueries {
 				Connection connection = DatabaseConnect.getConnection();
 				// In MySQL: "jdbc:mysql://hostname:port/databaseName", "username", "password"
 
-				// Step 2: Allocate a 'Statement' object in the Connection
+				// Allocate a 'Statement' object in the Connection
 				PreparedStatement stmt = connection.prepareStatement(updateProduct);) {
 			try{
 				updatedProducts = stmt.executeUpdate();
@@ -122,7 +122,10 @@ public class DbmsQueries {
                 + "ORDER BY category_name;";
         try
         (
+        	// In MySQL: "jdbc:mysql://hostname:port/databaseName", "username", "password"
             Connection con = DatabaseConnect.getConnection();
+        		
+        	// Allocate a 'Statement' object in the Connection
             PreparedStatement stmt2 = con.prepareStatement(getCategoryWithChildCount);
         )
         {
