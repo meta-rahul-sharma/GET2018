@@ -3,7 +3,7 @@
 	<head>
 	<meta charset="ISO-8859-1">
 	<title>Login</title>
-	
+	<script src = "Validation.js"></script>
 	</head>
 	<body align = "center">
 		<table width = "100%">
@@ -13,7 +13,7 @@
 				</td>
 				
 				<td align = "right">
-					<a href = "#">Home</a>
+					<a href = "Home.html">Home</a>
 					<a href = "#">About</a>
 					<a href = "#">Product</a>
 					<a href = "#">Gallery</a>
@@ -23,19 +23,19 @@
 		</table>
 		<hr>
 		<h1 style = "color: blue">Login</h1>
-		<form>
+		<form action = "Profile.html" onsubmit = "return validateLoginForm()" method = "post">
 			<table align = "center" cellpadding = 5px cellspacing = 5px>
 				<tr align="left">
 					<td>Email</td>
 					<td>
-					<input type = "email" placeholder = "Email">
+					<input type = "text" placeholder = "Email" id = "loginEmail"/>
 					</td>
 				</tr>
 				
 				<tr align="left">
 					<td>Password</td>
 					<td>
-					<input type = "password" placeholder = "Password">
+					<input type = "password" placeholder = "Password" id = "loginPassword"/>
 					</td>
 				</tr>
 				

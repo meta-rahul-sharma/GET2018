@@ -67,3 +67,33 @@ function validateContact(contactId) {
 	}
 	return true;
 }
+
+function validateConfirmPassword(confirmPasswordId) {
+	var confirmPassword = document.getElementById(confirmPasswordId).value;
+	var result = true;
+	document.getElementById(confirmPasswordId).style.border = "2px solid red";
+	if(confirmPassword == document.getElementById("password").value) {
+		alert("Password Do not Matches");
+		document.getElementById(confirmPasswordId).style.border = "2px solid green";
+		result = false;
+	}
+	return result;
+}
+
+function validateSignUpForm() {
+	var result = false;
+	if(validateName("firstName") && validateName("lastName") && validateEmail("email") &&
+			validatePassword("password") && validateConfirmPassword("confirmPassword") && validateContact("contact")) {
+		result = true;
+	}
+	return result;
+}
+
+function validateLoginForm() {
+	var result = false;
+	
+	if(validateEmail("loginEmail") && validatePassword("loginPassword")) {
+		result = true;
+	}
+	return result;
+}
