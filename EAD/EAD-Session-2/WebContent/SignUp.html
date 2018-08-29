@@ -4,9 +4,10 @@
 		<meta charset="ISO-8859-1">
 		<title>SignUp</title>
 		<script src = "Validation.js"></script>
+		<link rel="stylesheet" href="Design.css">
 	</head>
 	<body align = "center">
-		<table width = "100%">
+		<table width = "100%" class = "header">
 			<tr> 
 				<td>
 					<img src = "html.png" height = 100px>
@@ -28,42 +29,50 @@
 				<tr align="left">
 					<td>FirstName</td>
 					<td>
-					<input type = "text" placeholder = "FirstName" id = "firstName"/>
+					<input type = "text" placeholder = "FirstName" id = "firstName" onblur = "validateName(id)"/>
+					<br>
+					<span id ="firstNameMessanger"></span>
 					</td>
 				</tr>
 				
 				<tr align="left">
 					<td>LastName</td>
 					<td>
-					<input type = "text" placeholder = "LastName" id = "lastName"/>
+					<input type = "text" placeholder = "LastName" id = "lastName" onblur = "validateName(id)"/>
 					</td>
 				</tr>
 				
 				<tr align="left">
 					<td>Email</td>
 					<td>
-					<input type = "text" placeholder = "Email" id = "email"/>
+					<input type = "text" placeholder = "Email" id = "email" onblur = "validateEmail(id)"/>
+					<br>
+					<span id ="emailMessanger"></span>
 					</td>
 				</tr>
 				
 				<tr align="left">
 					<td>Password</td>
 					<td>
-					<input type = "password" placeholder = "Password" id = "password"/>
+					<input type = "password" placeholder = "Password" id = "password" onblur = "validatePassword(id)"/>
+					<br>
+					<span id ="passwordMessanger"></span>
 					</td>
 				</tr>
 				
 				<tr align="left">
 					<td>ConfirmPassword</td>
 					<td>
-					<input type = "password" placeholder = "ConfirmPassword" id = "confirmPassword"/>
+					<input type = "password" placeholder = "ConfirmPassword" id = "confirmPassword" onblur= "validateConfirmPassword(id)"/>
+					<span id ="confirmMessanger"></span>
 					</td>
 				</tr>
 				
 				<tr align="left">
 					<td>Contact Number</td>
 					<td>
-					<input type = "text" placeholder="Contact" id = "contact"/>
+					<input type = "text" placeholder="Contact" id = "contact" onblur = "validateContact(id)"/>
+					<span id ="contactMessanger"></span>
 					</td>
 				</tr>
 				
