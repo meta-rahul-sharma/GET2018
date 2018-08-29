@@ -80,10 +80,10 @@ function validateConfirmPassword(confirmPasswordId) {
 	var confirmPassword = document.getElementById(confirmPasswordId).value;
 	var result = true;
 	document.getElementById("confirmMessanger").innerHTML = "";
-	document.getElementById(confirmPasswordId).style.border = "2px solid red";
-	if(confirmPassword == document.getElementById("password").value) {
+	document.getElementById(confirmPasswordId).style.border = "2px solid green";
+	if(confirmPassword != document.getElementById("password").value) {
 		document.getElementById("confirmMessanger").innerHTML = "Password Do not Matches";
-		document.getElementById(confirmPasswordId).style.border = "2px solid green";
+		document.getElementById(confirmPasswordId).style.border = "2px solid red";
 		result = false;
 	}
 	return result;
