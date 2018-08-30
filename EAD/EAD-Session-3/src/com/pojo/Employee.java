@@ -1,5 +1,10 @@
 package com.pojo;
 
+/**
+ * Pojo of employee_details table
+ * @author Rahul
+ * Creation Date: 30/08/2018
+ */
 public class Employee {
 	private String firstName;
 	private String lastName;

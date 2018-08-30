@@ -8,6 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Servlet to update employee in table employee_details of database employee and support UpdateEmployeeDetailsServlet in this process
+ * @author Rahul
+ * Creation Date: 30/08/2018
+ */
 @SuppressWarnings("serial")
 public class UpdateEmployeeServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res)

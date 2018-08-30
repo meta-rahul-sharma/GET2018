@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.databaseconnection.Dao;
 
+/**
+ * Servlet to update employee in table employee_details of database employee where email will be used to update info
+ * @author Rahul
+ * Creation Date: 30/08/2018
+ */
 @SuppressWarnings("serial")
 public class UpdateEmployeeDetailsServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res)

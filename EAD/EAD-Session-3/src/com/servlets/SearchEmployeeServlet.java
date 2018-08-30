@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.databaseconnection.Dao;
 import com.pojo.Employee;
 
+/**
+ * Servlet to seach employee in table employee_details of database employee and display them
+ * @author Rahul
+ * Creation Date: 30/08/2018
+ */
 @SuppressWarnings("serial")
 public class SearchEmployeeServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
