@@ -28,7 +28,7 @@
 		<form action = "Profile.html" onsubmit = "return validateLoginForm()" method = "post">
 			<table align = "center" cellpadding = 5px cellspacing = 5px>
 				<tr align="left">
-					<td>Email</td>
+					<td>Email<span style = "color : red">*</span></td>
 					<td>
 					<input type = "text" placeholder = "Email" id = "loginEmail" onblur = "validateEmail(id, 'loginEmailSpan')"/>
 					<br>
@@ -37,7 +37,7 @@
 				</tr>
 				
 				<tr align="left">
-					<td>Password</td>
+					<td>Password<span style = "color : red">*</span></td>
 					<td>
 					<input type = "password" placeholder = "Password" id = "loginPassword" onblur = "validatePassword(id, 'loginPasswordSpan')"/>
 					<br>
