@@ -19,60 +19,78 @@
 					<a href = "#">Product</a>
 					<a href = "#">Gallery</a>
 					<a href = "#">Contact</a>
+					<a href = "Login.html">Login</a>
 				</td>
 			</tr>
 		</table>
 		<hr>
-		<img src = "signup.png" width = "20%">
+		<img src = "signup.png" width = "10%">
 		<form name = "form" action = "Login.html" onsubmit = "return validateSignUpForm()" method = "post">
 			<table align = "center" cellpadding = 5px cellspacing = 5px>
 				<tr align="left">
 					<td>FirstName</td>
 					<td>
-					<input type = "text" placeholder = "FirstName" id = "firstName" onblur = "validateName(id)"/>
+					<input type = "text" placeholder = "FirstName" id = "firstName" onblur = "validateName(id, 'firstSpan')"/>
 					<br>
-					<span id ="firstNameMessanger"></span>
+					<span id ="firstSpan"></span>
 					</td>
 				</tr>
 				
 				<tr align="left">
 					<td>LastName</td>
 					<td>
-					<input type = "text" placeholder = "LastName" id = "lastName" onblur = "validateName(id)"/>
+					<input type = "text" placeholder = "LastName" id = "lastName" onblur = "validateName(id, 'lastSpan')"/>
+					<br>
+					<span id ="lastSpan"></span>
 					</td>
 				</tr>
 				
 				<tr align="left">
 					<td>Email</td>
 					<td>
-					<input type = "text" placeholder = "Email" id = "email" onblur = "validateEmail(id)"/>
+					<input type = "text" placeholder = "Email" id = "email" onblur = "validateEmail(id, 'emailSpan')"/>
 					<br>
-					<span id ="emailMessanger"></span>
+					<span id ="emailSpan"></span>
 					</td>
 				</tr>
 				
 				<tr align="left">
 					<td>Password</td>
-					<td>
-					<input type = "password" placeholder = "Password" id = "password" onblur = "validatePassword(id)"/>
+					<td align =  "left">
+					<input type = "password" placeholder = "Password" id = "password" onblur = "validatePassword(id, 'passwordSpan')"/>
 					<br>
-					<span id ="passwordMessanger"></span>
+					<span id ="passwordSpan"></span>
+					</td>
+				</tr>
+				
+				<tr align="left">
+					<td></td>
+					<td align =  "left">
+					<span>At least 8 characters</span>
+					<br>
+					<span>, at least one lowercase letter,</span>
+					<br>
+					<span> one uppercase letter, one digit</span>
+					<br>
+					<span> and one special character</span>
 					</td>
 				</tr>
 				
 				<tr align="left">
 					<td>ConfirmPassword</td>
 					<td>
-					<input type = "password" placeholder = "ConfirmPassword" id = "confirmPassword" onblur= "validateConfirmPassword(id)"/>
-					<span id ="confirmMessanger"></span>
+					<input type = "password" placeholder = "ConfirmPassword" id = "confirmPassword" onblur= "validateConfirmPassword(id, 'confirmSpan')"/>
+					<br>
+					<span id ="confirmSpan"></span>
 					</td>
 				</tr>
 				
 				<tr align="left">
 					<td>Contact Number</td>
 					<td>
-					<input type = "text" placeholder="Contact" id = "contact" onblur = "validateContact(id)"/>
-					<span id ="contactMessanger"></span>
+					<input type = "text" placeholder="Contact" id = "contact" onblur = "validateContact(id, 'contactSpan')"/>
+					<br>
+					<span id ="contactSpan"></span>
 					</td>
 				</tr>
 				
@@ -91,7 +109,7 @@
 				
 				<tr align="left">
 					<td>
-					<input type = "submit" value = "submit"/>
+					<input type = "submit" value = "Sign Up"/>
 					</td>
 				</tr>
 			</table>
@@ -102,3 +120,4 @@
 	  
 	</body>
 </html>
+
