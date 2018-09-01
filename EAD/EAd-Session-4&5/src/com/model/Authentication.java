@@ -1,19 +1,19 @@
 package com.model;
 
 public class Authentication {
-	private String email;
+	private int id;
 	private String password;
 	
-	public Authentication(String email, String password) {
-		this.email = email;
+	public Authentication(int id, String password) {
+		this.id = id;
 		this.password = password;
 	}
 	
-	public String getEmail() {
-		return email;
+	public int getId() {
+		return id;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setId( int id) {
+		this.id = id;
 	}
 	public String getPassword() {
 		return password;

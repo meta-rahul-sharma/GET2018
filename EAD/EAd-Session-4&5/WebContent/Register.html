@@ -25,12 +25,12 @@
 		</table>
 		<hr>
 		<img src = "signup.png" width = "10%">
-		<form name = "form" action = "Login.html" onsubmit = "return validateSignUpForm()" method = "post">
+		<form name = "form" action = "Register" onsubmit = "return validateSignUpForm()" method = "post">
 			<table align = "center" cellpadding = 5px cellspacing = 5px>
 				<tr align="left">
 					<td>FirstName<span style = "color : red">*</span></td>
 					<td>
-					<input type = "text" placeholder = "FirstName" id = "firstName" onblur = "validateName(id, 'firstSpan')"/>
+					<input type = "text" placeholder = "FirstName" id = "firstName" name = "regFirstName" onblur = "validateName(id, 'firstSpan')"/>
 					<br>
 					<span id ="firstSpan"></span>
 					</td>
@@ -39,7 +39,7 @@
 				<tr align="left">
 					<td>LastName<span style = "color : red">*</span></td>
 					<td>
-					<input type = "text" placeholder = "LastName" id = "lastName" onblur = "validateName(id, 'lastSpan')"/>
+					<input type = "text" placeholder = "LastName" id = "lastName" name = "regLastName" onblur = "validateName(id, 'lastSpan')"/>
 					<br>
 					<span id ="lastSpan"></span>
 					</td>
@@ -48,7 +48,7 @@
 				<tr align="left">
 					<td>DOB<span style = "color : red">*</span></td>
 					<td>
-					<input type = "date" placeholder = "LastName" id = "date" onblur = "validateDate(id, 'dateSpan')"/>
+					<input type = "date" placeholder = "LastName" id = "date" name = "dob" onblur = "validateDate(id, 'dateSpan')"/>
 					<br>
 					<span id ="dateSpan"></span>
 					</td>
@@ -57,7 +57,7 @@
 				<tr align="left">
 					<td>Email<span style = "color : red">*</span></td>
 					<td>
-					<input type = "text" placeholder = "Email" id = "email" onblur = "validateEmail(id, 'emailSpan')"/>
+					<input type = "text" placeholder = "Email" id = "email" name = "regEmail" onblur = "validateEmail(id, 'emailSpan')"/>
 					<br>
 					<span id ="emailSpan"></span>
 					</td>
@@ -66,7 +66,7 @@
 				<tr align="left">
 					<td>Password<span style = "color : red">*</span></td>
 					<td align =  "left">
-					<input type = "password" placeholder = "Password" id = "password" onblur = "validatePassword(id, 'passwordSpan')"/>
+					<input type = "password" placeholder = "Password" id = "password" name = "regPassword" onblur = "validatePassword(id, 'passwordSpan')"/>
 					<br>
 					<span id ="passwordSpan"></span>
 					</td>
@@ -97,16 +97,16 @@
 				<tr align="left">
 					<td>Contact Number<span style = "color : red">*</span></td>
 					<td>
-					<input type = "text" placeholder="Contact" id = "contact" onblur = "validateContact(id, 'contactSpan')"/>
+					<input type = "text" placeholder="Contact" id = "contact" name = "regContact" onblur = "validateContact(id, 'contactSpan')"/>
 					<br>
 					<span id ="contactSpan"></span>
 					</td>
 				</tr>
 				
 				<tr align="left">
-					<td>Company/Institution<span style = "color : red">*</span></td>
+					<td>Organization<span style = "color : red">*</span></td>
 					<td>
-					<select>
+					<select name = "organization">
 						<option>Metacube</option>
 						<option>Google</option>
 						<option>Microsoft</option>

@@ -1,50 +1,47 @@
 package com.facade;
 
 import java.sql.Connection;
-import java.util.List;
-
-import com.dao.JdbcConnection;
+import java.sql.SQLException;
+import java.util.Date;
 import com.dao.UserDao;
+import com.model.Authentication;
 import com.model.User;
+import com.model.UserFriend;
 
 public class UserFacade {
 
     private static UserFacade userFacade = new UserFacade();
+	private UserDao dao = UserDao.getInstance();
 
-    UserDao userDao = new UserDao();
-    
-    public static UserFacade getInstance() {
-        return userFacade;
-    }
+	public static UserFacade getInstance() {
+		return userFacade;
+	}
 
-    public List<User> getAllProdcts() {
-        return userDao.getAll();
-    }
+	public boolean authenticateUser(String email, String password) throws ClassNotFoundException, SQLException {
+		boolean authenticate = false;
+		Authentication authenticateUser = dao.authenticate(email);
+		if (authenticateUser.getPassword().equals(password)) {
+			authenticate = true;
+		}
+		return authenticate;
+	}
 
-    public Status create(User user) {
-        List<User> products = userDao.getAll();
-        for (User tempUser: products) {
-            if (tempUser.getCode().equals(user.getCode())) {
-                return Status.DUPLICATE;
-            }
-        }
-        userDao.create(product);
-        return Status.CREATED;
-    }
+	public boolean registerUser(String firstName, String lastName, Date dob, String contact, String email,
+			String password, String organization) throws ClassNotFoundException, SQLException {
+		boolean register = false;
+		if (dao.createUser(firstName, lastName, (java.sql.Date) dob, contact, email, password, organization)) {
+			register = true;
+		}
+		return register;
+	}
 
-    public Status update(User user) {
-    	userDao.update(product);
-        return Status.UPDATED;
-    }
+	public UserFriend getUserFriends(User user) throws ClassNotFoundException, SQLException {
+		return dao.getUserFriend(user);
+	}
 
-    public Status delete(Product product) {
-        List<Product> products = productDao.getAll();
-        for (Product tempProduct: products) {
-            if (tempProduct.getId() == product.getId()) {
-            	userDao.delete(product);
-                return Status.DELETED;
-            }
-        }
-        return Status.NOT_FOUND;
-    }
+	public boolean updateUserInfo(String firstName, String lastName, Date dob, String contact, User user)
+			throws ClassNotFoundException, SQLException {
+		dao.updateUser(firstName, lastName, (java.sql.Date) dob, contact, user);
+		return true;
+	}
 }

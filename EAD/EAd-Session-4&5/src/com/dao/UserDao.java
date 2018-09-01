@@ -1,93 +1,120 @@
 package com.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 import com.model.Authentication;
 import com.model.User;
+import com.model.UserFriend;
 
 public class UserDao {
-	
+
 	private static UserDao userDao = new UserDao();
 
 	public static UserDao getInstance() {
 		return userDao;
 	}
 
-	public Authentication getUser(String email) throws SQLException, ClassNotFoundException {
+	public Authentication authenticate(String email) throws SQLException,
+			ClassNotFoundException {
 		Authentication authenticate = null;
-		Connection connectionToDB = JdbcConnection.getConnection();
-		PreparedStatement statement = connectionToDB.prepareStatement(Queries.getUserDetail);
-		statement.setString(1, email);
-		ResultSet result = statement.executeQuery();
-		while (result.next()) {
-			authenticate = new Authentication(email, result.getString(1));
-		}
+		User user = getUser(email);
+		authenticate = new Authentication(user.getId(), user.getPassword());
 		return authenticate;
 	}
 
-	public boolean createUser(String firstName, String lastName, Date dob, int contact, String email,
-			String password, String organization) throws ClassNotFoundException, SQLException {
-		Connection connectionToDB = ConnectionToDB.getConnection();
-		PreparedStatement statement = connectionToDB.prepareStatement(EmployeeQueries.getQueryTwo());
+	public User getUser(String email) throws SQLException,
+			ClassNotFoundException {
+		User user = null;
+		try (Connection connectionToDB = JdbcConnection.getConnection();
+				PreparedStatement statement = connectionToDB
+						.prepareStatement(Queries.getUserDetail);) {
+			statement.setString(1, email);
+			ResultSet result = statement.executeQuery();
+
+			while (result.next()) {
+				user = new User(result.getInt(1), result.getString(2),
+						result.getString(3), result.getDate(4),
+						result.getString(5), result.getString(6),
+						result.getString(7), result.getString(8));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+
+	public boolean createUser(String firstName, String lastName, Date dob,
+			String contact, String email, String password, String organization)
+			throws ClassNotFoundException, SQLException {
+		boolean created = false;
+		try (Connection connectionToDB = JdbcConnection.getConnection();
+				PreparedStatement statement = connectionToDB
+						.prepareStatement(Queries.saveUserDetail);) {
+			try {
+
+				connectionToDB.setAutoCommit(false);
+				statement.setString(1, firstName);
+				statement.setString(2, lastName);
+				statement.setDate(3, (Date) dob);
+				statement.setString(4, contact);
+				statement.setString(5, email);
+				statement.setString(6, password);
+				statement.setString(7, organization);
+
+				if (statement.executeUpdate() > 0) {
+					created = true;
+				}
+
+				connectionToDB.commit();
+			} catch (SQLException e) {
+				connectionToDB.rollback();
+				e.printStackTrace();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return created;
+	}
+
+	public UserFriend getUserFriend(User user) throws ClassNotFoundException,
+			SQLException {
+		Connection connectionToDB = JdbcConnection.getConnection();
+		UserFriend userFriends = new UserFriend(user);
+		PreparedStatement statement = connectionToDB
+				.prepareStatement(Queries.getOrganization);
+		statement.setInt(1, user.getId());
+		ResultSet result = statement.executeQuery();
+		while (result.next()) {
+			User friend = new User(result.getInt(1), result.getString(2),
+					result.getString(3), result.getDate(4),
+					result.getString(5), result.getString(6),
+					result.getString(7), result.getString(8));
+			userFriends.addFriends(friend);
+		}
+		return userFriends;
+	}
+
+	public boolean updateUser(String firstName, String lastName, Date dob,
+			String contact, User user) throws ClassNotFoundException,
+			SQLException {
+		boolean updated = false;
+		Connection connectionToDB = JdbcConnection.getConnection();
+		PreparedStatement statement = connectionToDB
+				.prepareStatement(Queries.updateDetails);
 		statement.setString(1, firstName);
 		statement.setString(2, lastName);
 		statement.setDate(3, dob);
-		statement.setInt(4, contact);
-		statement.setString(5, email);
-		statement.setString(6, password);
-		statement.setString(7, organization);
-		int i = statement.executeUpdate();
-		if (i > 0) {
-			return true;
-		}
-		return false;
-	}
+		statement.setString(4, contact);
+		statement.setInt(5, user.getId());
 
-	public List<UserInfoPojo> getUser(int id) throws ClassNotFoundException, SQLException {
-		Connection connectionToDB = ConnectionToDB.getConnection();
-		List<UserInfoPojo> usersList = new ArrayList<UserInfoPojo>();
-		PreparedStatement statement = connectionToDB.prepareStatement(EmployeeQueries.getQueryThree());
-		statement.setInt(1, id);
-		ResultSet result = statement.executeQuery();
-		while (result.next()) {
-			usersList.add(new UserInfoPojo(result.getString(2), result.getString(3), result.getDate(4),
-					result.getInt(5), result.getString(6), result.getString(8)));
+		if (statement.executeUpdate() > 0) {
+			updated = true;
 		}
-		return usersList;
+		return updated;
 	}
-
-	public boolean updateUser(String firstName, String lastName, Date dateOfBirth, int contactNo, int id)
-			throws ClassNotFoundException, SQLException {
-		Connection connectionToDB = ConnectionToDB.getConnection();
-		PreparedStatement statement = connectionToDB.prepareStatement(EmployeeQueries.getQueryFour());
-		statement.setString(1, firstName);
-		statement.setString(2, lastName);
-		statement.setDate(3, dateOfBirth);
-		statement.setInt(4, contactNo);
-		statement.setInt(5, id);
-		int i = statement.executeUpdate();
-		if (i > 0) {
-			return true;
-		}
-		return false;
-	}
-
-	public List<FriendInfoPojo> getFriends(int id) throws SQLException, ClassNotFoundException {
-		Connection connectionToDB = ConnectionToDB.getConnection();
-		List<FriendInfoPojo> friendsList = new ArrayList<FriendInfoPojo>();
-		PreparedStatement statement = connectionToDB.prepareStatement(EmployeeQueries.getQueryFive());
-		statement.setInt(1, id);
-		ResultSet result = statement.executeQuery();
-		while (result.next()) {
-			if (result.getInt(1) != id) {
-				friendsList.add(new FriendInfoPojo(result.getInt(1), result.getString(2), result.getString(3)));
-			}
-		}
-		return friendsList;
-	}
-
 }

@@ -14,33 +14,29 @@ import javax.servlet.http.HttpServletResponse;
 import com.facade.UserFacade;
 
 /**
- * Servlet implementation class RegisterServlet
+ * Servlet implementation class LoginServlet
  */
-@WebServlet("/RegisterServlet")
-public class RegisterServlet extends HttpServlet {
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
+       
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserFacade userFacade = UserFacade.getInstance();
 		
 		try {
-			if (userFacade.registerUser(request.getParameter("regFirstName"), request.getParameter("regLastName"),
-					Date.valueOf(request.getParameter("dob")),
-					request.getParameter("regContact"), request.getParameter("regEmail"),
-					request.getParameter("regPassword"), request.getParameter("organization"))) {
+			if (userFacade.authenticateUser(request.getParameter("logEmail"), request.getParameter("logPassword"))) {
 				
-				request.setAttribute("email", request.getParameter("regEmail"));
+				request.setAttribute("email", request.getParameter("logEmail"));
 		        RequestDispatcher rd = request.getRequestDispatcher("/ProfileServlet");
 		        rd.forward(request, response);
 				
-				System.out.println("Entry Successfull");
+				System.out.println("Login Successfull");
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 }
