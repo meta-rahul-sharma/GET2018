@@ -5,8 +5,8 @@ public class Queries {
 
 	public static String getUserDetail = "SELECT * FROM user_details WHERE email = ?;";
 
-	public static String updateDetails = "UPDATE user_details SET first_name=?, last_name=?, dob=? contact_no=? WHERE id = ?;";
+	public static String updateDetails = "UPDATE user_details SET first_name=?, last_name=?, dob=?, contact=? WHERE id = ?;";
 
 	public static String getOrganization = "SELECT id, first_name, last_name, dob, contact, email, password, organization FROM user_details WHERE organization IN (SELECT organization "
-			+ "FROM user WHERE id = ?);";
+			+ "FROM user_details WHERE id = ?);";
 }

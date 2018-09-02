@@ -111,7 +111,6 @@ public class UserDao {
 		statement.setDate(3, dob);
 		statement.setString(4, contact);
 		statement.setInt(5, user.getId());
-
 		if (statement.executeUpdate() > 0) {
 			updated = true;
 		}

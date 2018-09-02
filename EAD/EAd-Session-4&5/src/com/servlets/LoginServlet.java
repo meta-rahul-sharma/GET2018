@@ -1,6 +1,7 @@
 package com.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.SQLException;
 
@@ -22,7 +23,7 @@ public class LoginServlet extends HttpServlet {
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserFacade userFacade = UserFacade.getInstance();
-		
+		PrintWriter out = response.getWriter();
 		try {
 			if (userFacade.authenticateUser(request.getParameter("logEmail"), request.getParameter("logPassword"))) {
 				
@@ -31,6 +32,9 @@ public class LoginServlet extends HttpServlet {
 		        rd.forward(request, response);
 				
 				System.out.println("Login Successfull");
+			} else {
+				 RequestDispatcher rd = request.getRequestDispatcher("/Login.html");
+			     rd.forward(request, response);
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

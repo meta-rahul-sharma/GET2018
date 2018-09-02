@@ -1,6 +1,5 @@
 package com.facade;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
 import com.dao.UserDao;
@@ -43,5 +42,10 @@ public class UserFacade {
 			throws ClassNotFoundException, SQLException {
 		dao.updateUser(firstName, lastName, (java.sql.Date) dob, contact, user);
 		return true;
+	}
+	
+	public User getUser(String email) throws ClassNotFoundException, SQLException {
+		return dao.getUser(email);
+		
 	}
 }

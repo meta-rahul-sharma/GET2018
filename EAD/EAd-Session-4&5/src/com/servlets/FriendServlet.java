@@ -2,6 +2,7 @@ package com.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,10 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dao.UserDao;
-import com.databaseconnection.Dao;
+import com.facade.UserFacade;
 import com.model.User;
 import com.model.UserFriend;
-import com.pojo.Employee;
 
 /**
  * Servlet implementation class FriendServlet
@@ -38,18 +38,32 @@ public class FriendServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
-		UserDao dao = UserDao.getInstance();
+		UserFacade facade = UserFacade.getInstance();
+		String email = request.getParameter("email");
+		User user = null;
+		try {
+			user = facade.getUser(email);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
-		User user = (User) request.getAttribute("user");
-		UserFriend userFriends = new UserFriend(user);
-
+		UserFriend userFriends = null;
+		try {
+			userFriends = facade.getUserFriends(user);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
 		out.println("<!DOCTYPE html>");
 		out.println("<html>");
 		out.println("<head>");
-		out.println("<title>Show All Employee</title>");
+		out.println("<title>Friends</title>");
+		out.print("<link href = 'Design.css' rel = 'stylesheet'>");
 		out.println("</head>");
 		out.println("<body>");
-		out.println("<h1 align='center'>Show All Employee</h1>");
+		out.println("<h1 align='center'>Friends</h1>");
 		out.println("<table align='center' cellspacing='30px'>");
 		out.println("<th>");
 		out.println("<td>First Name</td>");
@@ -58,18 +72,16 @@ public class FriendServlet extends HttpServlet {
 		out.println("<td>Age</td>");
 		out.println("</th>");
 		int rowCount = 1;
-		for (User user : userFriends) {
-			out.println("<tr>");
-			out.println("<td>" + rowCount + "</td>");
-			out.println("<td>" + employee.getFirstName() + "</td>");
-			out.println("<td>" + employee.getLastName() + "</td>");
-			out.println("<td>" + employee.getEmail() + "</td>");
-			out.println("<td>" + employee.getAge() + "</td>");
-			out.println("<td><a href='UpdateEmployee?email=" + employee.getEmail()
-					+ "&firstName=" + employee.getFirstName() + "&lastName="
-					+ employee.getLastName() + "&age=" + employee.getAge()
-					+ "'>Edit</a></td></tr>");
-			rowCount++;
+		for (User friends : userFriends.getFriends()) {
+			if(friends.getId() != user.getId()) {
+				out.println("<tr>");
+				out.println("<td>" + rowCount + "</td>");
+				out.println("<td>" + friends.getFirstName() + "</td>");
+				out.println("<td>" + friends.getLastName() + "</td>");
+				out.println("<td>" + friends.getEmail() + "</td>");
+				out.println("<td><a href='FriendInfo?email=" + friends.getEmail() +"'>View Profile</a></td></tr>");
+				rowCount++;
+			}
 		}
 		out.println("</table>");
 		out.println("</body>");

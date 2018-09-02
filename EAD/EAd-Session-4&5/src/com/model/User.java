@@ -15,7 +15,6 @@ public class User {
 	
 	public User(int id, String firstName, String lastName, Date dob,
 			String contact, String email, String password, String organization) {
-		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;

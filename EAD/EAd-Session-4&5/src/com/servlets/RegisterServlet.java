@@ -34,6 +34,8 @@ public class RegisterServlet extends HttpServlet {
 		        rd.forward(request, response);
 				
 				System.out.println("Entry Successfull");
+			} else {
+				
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
