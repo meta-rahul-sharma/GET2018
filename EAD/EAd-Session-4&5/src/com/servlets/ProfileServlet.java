@@ -70,7 +70,8 @@ public class ProfileServlet extends HttpServlet {
 			out.print("<tr><td><form action = 'Update' method = 'post'><input type='submit' value='Edit Details'>"
 					+ "<input type='hidden' name='hiddenEmail' value= '"
 					+ email + "'/></form></td></tr></table></td>");
-			out.print("<td><table width = '50%' align = 'center'><tr><td>");
+			out.print("<td><table width = '50%' align = 'center'>"
+					+ "<tr><td>");
 			out.print("<h1>Welcome</h1>");
 			out.print("</td></tr>");
 			out.println("<tr><td><form action = 'SetProfileImageServlet' method='post' enctype = 'multipart/form-data'>"
