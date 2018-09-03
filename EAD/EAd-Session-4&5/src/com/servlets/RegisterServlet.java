@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.facade.UserFacade;
 
@@ -28,8 +29,8 @@ public class RegisterServlet extends HttpServlet {
 					Date.valueOf(request.getParameter("dob")),
 					request.getParameter("regContact"), request.getParameter("regEmail"),
 					request.getParameter("regPassword"), request.getParameter("organization"))) {
-				
-				request.setAttribute("email", request.getParameter("regEmail"));
+				HttpSession session = request.getSession();
+				session.setAttribute("email", request.getParameter("regEmail"));
 		        RequestDispatcher rd = request.getRequestDispatcher("/ProfileServlet");
 		        rd.forward(request, response);
 				

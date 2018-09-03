@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dao.UserDao;
 import com.facade.UserFacade;
@@ -39,7 +40,7 @@ public class FriendServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		UserFacade facade = UserFacade.getInstance();
-		String email = request.getParameter("email");
+		String email = (String) request.getParameter("email");
 		User user = null;
 		try {
 			user = facade.getUser(email);
@@ -79,7 +80,7 @@ public class FriendServlet extends HttpServlet {
 				out.println("<td>" + friends.getFirstName() + "</td>");
 				out.println("<td>" + friends.getLastName() + "</td>");
 				out.println("<td>" + friends.getEmail() + "</td>");
-				out.println("<td><a href='FriendInfo?email=" + friends.getEmail() +"'>View Profile</a></td></tr>");
+				out.println("<td><a href='FriendInfo?friendEmail=" + friends.getEmail() +"'>View Profile</a></td></tr>");
 				rowCount++;
 			}
 		}

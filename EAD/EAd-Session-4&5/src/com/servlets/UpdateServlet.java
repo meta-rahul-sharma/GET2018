@@ -34,7 +34,7 @@ public class UpdateServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		out.print(
-				"<img name = 'imageOfUser'src=''><form action='Friend' method='post'><input type='hidden' name='hiddenEmail' value='"
+				"<img name = 'imageOfUser'src=''><form action='FriendServlet' method='get'><input type='hidden' name='email' value='"
 						+ email + "'/><input type='submit' value='Friends'></form><a href='LogoutServlet'>Logout</a> ");
 		out.print("<form action='UpdateHelper' method='post'>" + "<h1 align=''center>Profile</h1><br />"
 				+ "<table cellpadding='5'><tr>" + "<th align='left'>First Name :</th>"

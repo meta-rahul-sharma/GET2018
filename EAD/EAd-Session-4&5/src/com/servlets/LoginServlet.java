@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.facade.UserFacade;
 
@@ -26,8 +27,8 @@ public class LoginServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try {
 			if (userFacade.authenticateUser(request.getParameter("logEmail"), request.getParameter("logPassword"))) {
-				
-				request.setAttribute("email", request.getParameter("logEmail"));
+				HttpSession session = request.getSession();
+				session.setAttribute("email", request.getParameter("logEmail"));
 		        RequestDispatcher rd = request.getRequestDispatcher("/ProfileServlet");
 		        rd.forward(request, response);
 				

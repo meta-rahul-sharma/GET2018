@@ -41,7 +41,6 @@ public class UserDao {
 						result.getString(5), result.getString(6),
 						result.getString(7), result.getString(8));
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

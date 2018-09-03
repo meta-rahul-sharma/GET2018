@@ -1,5 +1,6 @@
 package com.servlets;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -9,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.facade.UserFacade;
 import com.model.User;
 
@@ -24,9 +27,11 @@ public class ProfileServlet extends HttpServlet {
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-
-		String email = (String) request.getAttribute("email");
+		HttpSession session = request.getSession();
+		String email = (String) session.getAttribute("email");
 		UserFacade facade = UserFacade.getInstance();
+		String filePath = getServletContext().getInitParameter("profileImage");
+		File profileImage = new File(filePath + "\\" + email + ".jpg");
 
 		try {
 
@@ -40,7 +45,7 @@ public class ProfileServlet extends HttpServlet {
 			out.print("<tr><td><img src='html.png' id='logo' height = 50px></td>");
 			out.print("<td align = 'right'><span style = 'color : white' id = 'username'>"
 					+ user.getFirstName() + " " + user.getLastName() + "  |  "
-					+ "</span><a href = 'FriendServlet?email=" + user.getEmail() + "'>Friends</a><span style = 'color : white'> | </span><a href = 'Login.html'>Logout</a></td>");
+					+ "</span><a href = 'FriendServlet?email=" + user.getEmail() + "'>Friends</a><span style = 'color : white'> | </span><a href = 'LogoutServlet'>Logout</a></td>");
 			out.print("</tr></table>");
 			out.print("<table width = '100%'><tr><td>");
 			out.print("<table width = '50%' align = 'center'><tr>");
@@ -62,7 +67,15 @@ public class ProfileServlet extends HttpServlet {
 			out.print("<td><table width = '50%' align = 'center'><tr><td>");
 			out.print("<h1>Welcome</h1>");
 			out.print("</td></tr>");
-			out.println("<tr><td><img src='signup.png' id='logo' height = 50px></td></tr>");
+			out.println("<tr><td><form action = 'SetProfileImageServlet' method='post' enctype = 'multipart/form-data'>"
+				+ "<input type='hidden' name='hiddenEmail' value='" + email + "'/>");
+			if (profileImage.exists()) {
+				out.print("<img src='" + profileImage + "' height = '30%'/><br>");
+			} else {
+				out.print("<img src='" + filePath + "\\signup.png' height = '30%'/><br>");
+			}
+			out.println(
+					"<input type = 'file' name = 'file' size = '20' /><br /><input type = 'submit' value = 'Upload File' /></form></td></tr>");
 			out.println("<tr><td>"+ user.getFirstName() +"</td></tr>");
 			out.print("</table></body></html>");
 			
