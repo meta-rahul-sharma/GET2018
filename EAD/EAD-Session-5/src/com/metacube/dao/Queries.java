@@ -1,5 +1,10 @@
 package com.metacube.dao;
 
+/**
+ * Queries needed for advertisement and category table data access
+ * @author RAHUL SHARMA
+ * Creation DATE: 02/08/2018
+ */
 public class Queries {
 
     public static final String CREATE_CATEGORY = "INSERT INTO category(category_name) "

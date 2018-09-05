@@ -9,14 +9,26 @@ import java.util.List;
 
 import com.metacube.entity.Category;
 
+/**
+ * 
+ * @author RAHUL SHARMA
+ * Creation DATE: 02/08/2018
+ */
 public class CategoryDao {
 	
 	private static CategoryDao categoryDao = new CategoryDao();
 	
+	/**
+	 * @return Singleton object of category
+	 */
 	public static CategoryDao getInstance() {
 		return categoryDao;
 	}
 
+	/**
+	 * To create category
+	 * @param category
+	 */
 	public boolean createCategory(Category category) {
         boolean created = false;
         try
@@ -37,6 +49,9 @@ public class CategoryDao {
         return created;
     }
 
+	/**
+	 * @return List of categories
+	 */
     public List<Category> getCategories() {
         
         List<Category> categories = new ArrayList<Category>();
@@ -63,6 +78,10 @@ public class CategoryDao {
         return categories;
     }
 
+    /**
+	 * To check if category with given id exist or not
+	 * @param advertisementId
+	 */
     public boolean isCategoryExist(int categoryId) {
         boolean exists = false;
         
@@ -87,6 +106,10 @@ public class CategoryDao {
         return exists;
     }
     
+    /**
+     * To update Category with new details
+     * @param category
+     */
     public boolean updateCategoryName(Category category) {
 		boolean updated = false;
 		try

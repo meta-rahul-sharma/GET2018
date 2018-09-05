@@ -4,6 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * 
+ * @author RAHUL SHARMA
+ * Creation DATE: 02/08/2018
+ */
 public class JdbcConnection {
 	public static Connection getConnection() {
 		Connection connection = null;

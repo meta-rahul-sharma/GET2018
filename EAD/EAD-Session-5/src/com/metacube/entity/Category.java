@@ -1,5 +1,10 @@
 package com.metacube.entity;
 
+/**
+ * Category pojo
+ * @author RAHUL SHARMA
+ * Creation DATE: 02/08/2018
+ */
 public class Category {
 	private int id;
 	private String name;

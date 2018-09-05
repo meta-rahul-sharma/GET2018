@@ -1,5 +1,10 @@
 package com.metacube.entity;
 
+/**
+ * Advertisement Pojo
+ * @author RAHUL SHARMA
+ * Creation DATE: 02/08/2018
+ */
 public class Advertisement {
 	private int id;
 	private String title;
