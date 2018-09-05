@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>SignUp</title>
+		<script src = "Validation.js"></script>
+		<link rel="stylesheet" href="Design.css">
+	</head>
+	<body align = "center">
+		<table width = "100%" class = "header">
+			<tr> 
+				<td>
+					<img src = "html.png" height = 100px>
+				</td>
+				
+				<td align = "right">
+					<a href = "Home.html">Home</a>
+					<a href = "#">About</a>
+					<a href = "#">Product</a>
+					<a href = "#">Gallery</a>
+					<a href = "#">Contact</a>
+					<a href = "Login.html">Login</a>
+				</td>
+			</tr>
+		</table>
+		<hr>
+		<img src = "signup.png" width = "10%">
+		<form name = "form" action = "Register" onsubmit = "return validateSignUpForm()" method = "post">
+			<table align = "center" cellpadding = 5px cellspacing = 5px>
+				<tr align="left">
+					<td>FirstName<span style = "color : red">*</span></td>
+					<td>
+					<input type = "text" placeholder = "FirstName" id = "firstName" name = "regFirstName" onblur = "validateName(id, 'firstSpan')"/>
+					<br>
+					<span id ="firstSpan"></span>
+					</td>
+				</tr>
+				
+				<tr align="left">
+					<td>LastName<span style = "color : red">*</span></td>
+					<td>
+					<input type = "text" placeholder = "LastName" id = "lastName" name = "regLastName" onblur = "validateName(id, 'lastSpan')"/>
+					<br>
+					<span id ="lastSpan"></span>
+					</td>
+				</tr>
+				
+				<tr align="left">
+					<td>DOB<span style = "color : red">*</span></td>
+					<td>
+					<input type = "date" id = "date" name = "dob" onblur = "validateDate(id, 'dateSpan')"/>
+					<br>
+					<span id ="dateSpan"></span>
+					</td>
+				</tr>
+				
+				<tr align="left">
+					<td>Email<span style = "color : red">*</span></td>
+					<td>
+					<input type = "text" placeholder = "Email" id = "email" name = "regEmail" onblur = "validateEmail(id, 'emailSpan')"/>
+					<br>
+					<span id ="emailSpan"></span>
+					</td>
+				</tr>
+				
+				<tr align="left">
+					<td>Password<span style = "color : red">*</span></td>
+					<td align =  "left">
+					<input type = "password" placeholder = "Password" id = "password" name = "regPassword" onblur = "validatePassword(id, 'passwordSpan')"/>
+					<br>
+					<span id ="passwordSpan"></span>
+					</td>
+				</tr>
+				
+				<tr align="left">
+					<td></td>
+					<td align =  "left">
+					<span>At least 8 characters</span>
+					<br>
+					<span>, at least one lowercase letter,</span>
+					<br>
+					<span> one uppercase letter, one digit</span>
+					<br>
+					<span> and one special character</span>
+					</td>
+				</tr>
+				
+				<tr align="left">
+					<td>ConfirmPassword<span style = "color : red">*</span></td>
+					<td>
+					<input type = "password" placeholder = "ConfirmPassword" id = "confirmPassword" onblur= "validateConfirmPassword(id, 'confirmSpan')"/>
+					<br>
+					<span id ="confirmSpan"></span>
+					</td>
+				</tr>
+				
+				<tr align="left">
+					<td>Contact Number<span style = "color : red">*</span></td>
+					<td>
+					<input type = "text" placeholder="Contact" id = "contact" name = "regContact" onblur = "validateContact(id, 'contactSpan')"/>
+					<br>
+					<span id ="contactSpan"></span>
+					</td>
+				</tr>
+				
+				<tr align="left">
+					<td>Organization<span style = "color : red">*</span></td>
+					<td>
+					<select name = "organization">
+						<option>Metacube</option>
+						<option>Google</option>
+						<option>Microsoft</option>
+						<option>AppPerfect</option>
+						<option>Adobe</option>
+					</select>
+					</td>
+				</tr>
+				
+				<tr align="left">
+					<td>
+					<input type = "submit" value = "Sign Up"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<hr>
+		
+		<p>Copyright 2018-19 | All Rights Reserved | Metacube Training</p>
+	  
+	</body>
+</html>
+
