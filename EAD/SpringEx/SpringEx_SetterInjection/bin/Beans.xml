@@ -5,6 +5,6 @@
 		<property name = "spellChecker" ref = "spellCheckerId" /> 
 	</bean>
 	<bean id = "spellCheckerId" class = "com.metacube.training.SpellChecker">
-		<property name = "word" value = "Happy" />
+		<property name = "word" value = "Happy Happy Rahul" />
 	</bean>
 </beans>
