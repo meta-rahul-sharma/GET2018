@@ -4,8 +4,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * This class Implements TextEditor
- * @author Rahul Sharma
+ * This class performs operations in Text Editor
+   @author Rahul Sharma
  * Creation DATE: 05/09/2018
  */
 public class MainApp {

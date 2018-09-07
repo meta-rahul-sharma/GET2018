@@ -2,6 +2,11 @@ package com.metacube.training;
 
 import java.util.*;
 
+/**
+ * This class Implements JavaCollection to use in spring example
+ * @author Rahul Sharma
+ * Creation DATE: 05/09/2018
+ */
 public class JavaCollection {
    List<String> addressList;
    Set<String>  addressSet;

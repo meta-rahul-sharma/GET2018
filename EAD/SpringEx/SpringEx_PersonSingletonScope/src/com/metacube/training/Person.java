@@ -1,5 +1,10 @@
 package com.metacube.training;
 
+/**
+ * User defined object person
+   @author Rahul Sharma
+ * Creation DATE: 05/09/2018
+ */
 public class Person {
     private String type;
 

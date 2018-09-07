@@ -1,5 +1,10 @@
 package com.metacube.training;
 
+/**
+ * This class Implements TextEditor
+ * @author Rahul Sharma
+ * Creation DATE: 05/09/2018
+ */
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
