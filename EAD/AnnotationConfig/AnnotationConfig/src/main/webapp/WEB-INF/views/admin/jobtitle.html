@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+    	<title>Admin Login</title>
+	</head>
+	<body>
+		<form th:action = "@{jobTitle}" method = "post">
+			<table>
+			<tr>
+				<td>Job Title:</td>
+				<td><input type="text" name="jobTitle"></td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Submit" /></td>
+			</tr>
+		</table>	
+		</form>
+	</body>
+</html>
