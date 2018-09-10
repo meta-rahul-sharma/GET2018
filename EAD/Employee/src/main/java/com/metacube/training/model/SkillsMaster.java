@@ -1,4 +1,4 @@
-package com.metacube.training.models;
+package com.metacube.training.model;
 
 public class SkillsMaster {
 	private int skillId;

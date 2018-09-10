@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:="http://www.ymeleaf.org">
 	<head>
 	    <title>Admin Login</title>
 	</head>
@@ -8,19 +8,19 @@
 	    <div class="row">
 	        <div class="col-md-6 col-md-offset-3">
 	            <h1>Admin Login page</h1>
-	            <form th:action="@{employee/login}" method="post">
-	                <div th:if="${param.error}">
+	            <form action="employee/login" method="post">
+	                <div if="${param.error}">
 	                    <div class="alert alert-danger">
 	                        Invalid username or password.
 	                    </div>
 	                </div>
-	                <div th:if="${param.logout}">
+	                <div if="${param.logout}">
 	                    <div class="alert alert-info">
 	                        You have been logged out.
 	                    </div>
 	                </div>
 	                <div class="form-group">
-	                    <label for="username">Username</label>:
+	                    <label for="username">Username</label>
 	                    <input type="text"
 	                           id="username"
 	                           name="username"
@@ -29,7 +29,7 @@
 	                           placeholder="Username"/>
 	                </div>
 	                <div class="form-group">
-	                    <label for="password">Password</label>:
+	                    <label for="password">Password</label>
 	                    <input type="password"
 	                           id="password"
 	                           name="password"

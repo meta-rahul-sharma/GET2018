@@ -2,18 +2,18 @@ package com.metacube.training.dao;
 
 import java.util.List;
 
-import com.metacube.training.model.Project;
+import com.metacube.training.model.ProjectMaster;
 
 public interface ProjectDAO {
 	
 	
-	Project getProjectById(Long id);
+	ProjectMaster getProjectById(Long id);
 
-	List<Project> getAllProjects();
+	List<ProjectMaster> getAllProjects();
 
-	boolean deleteProject(Project project);
+	boolean deleteProject(ProjectMaster project);
 
-	boolean updateProject(Project project);
+	boolean updateProject(ProjectMaster project);
 
-	boolean createProject(Project project);
+	boolean createProject(ProjectMaster project);
 }

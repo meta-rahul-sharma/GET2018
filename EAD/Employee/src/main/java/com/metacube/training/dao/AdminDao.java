@@ -6,9 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import com.metacube.training.Query.Queries;
-import com.metacube.training.Status.Status;
-import com.metacube.training.models.Employee;
+
+import com.metacube.training.model.Employee;
+import com.metacube.training.queries.Queries;
+import com.metacube.training.status.Status;
 
 public class AdminDao {
     private static AdminDao adminDao = new AdminDao();
