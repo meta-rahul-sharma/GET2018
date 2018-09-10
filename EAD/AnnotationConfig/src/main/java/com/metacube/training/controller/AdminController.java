@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.metacube.training.Status.Status;
-import com.metacube.training.models.Employee;
-import com.metacube.training.services.AdminService;
+import com.metacube.training.status.Status;
+import com.metacube.training.model.Employee;
+import com.metacube.training.service.AdminService;
 
 @Controller
 @RequestMapping(value = "/admin")

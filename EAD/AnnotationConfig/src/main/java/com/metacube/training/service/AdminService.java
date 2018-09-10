@@ -1,13 +1,13 @@
-package com.metacube.training.services;
+package com.metacube.training.service;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.metacube.training.Status.Status;
+import com.metacube.training.status.Status;
 import com.metacube.training.dao.AdminDao;
-import com.metacube.training.models.ProjectMaster;
-import com.metacube.training.models.Employee;
+import com.metacube.training.model.ProjectMaster;
+import com.metacube.training.model.Employee;
 
 
 public class AdminService {

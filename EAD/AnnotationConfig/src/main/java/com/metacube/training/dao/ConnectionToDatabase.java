@@ -1,9 +1,8 @@
 package com.metacube.training.dao;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-import com.mysql.jdbc.Connection;
 
 public class ConnectionToDatabase {
     private static final String url = "jdbc:mysql://localhost:3306/";

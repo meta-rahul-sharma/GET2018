@@ -1,4 +1,4 @@
-package com.metacube.training.Query;
+package com.metacube.training.queries;
 
 public class Queries {
     public static final String ADD_EMPLOYEE = "INSERT INTO Employee(first_name, middle_name, last_name, "

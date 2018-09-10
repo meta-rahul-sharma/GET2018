@@ -1,21 +1,21 @@
-package com.metacube.training.models;
+package com.metacube.training.model;
 
 import java.sql.Date;
 
 public class ProjectMaster {
-    private int projectId;
+    private Long projectId;
     private String description;
     private Date startDate;
     private Date endDate;
     private String projectLogo;
-    ProjectMaster(int projectId, String description, Date startDate, Date endDate, String projectLogo) {
+    public ProjectMaster(Long projectId, String description, Date startDate, Date endDate, String projectLogo) {
         this.projectId = projectId;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
         this.projectLogo = projectLogo;
     }
-    public int getProjectId() {
+    public Long getProjectId() {
         return projectId;
     }
     public String getDescription() {

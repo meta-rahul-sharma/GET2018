@@ -5,18 +5,13 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.metacube.training.model.Project;
+import com.metacube.training.model.ProjectMaster;
 
-public class ProjectMapper implements RowMapper<Project> {
+public class ProjectMapper implements RowMapper<ProjectMaster> {
 
-	public Project mapRow(ResultSet resultSet, int i) throws SQLException {
+	public ProjectMaster mapRow(ResultSet resultSet, int i) throws SQLException {
 
-		Project project = new Project();
-		project.setId(resultSet.getLong("id"));
-		project.setName(resultSet.getString("name"));
-		project.setDescription(resultSet.getString("description"));
-		project.setStartDate(resultSet.getDate("start_date"));
-		project.setEndDate(resultSet.getDate("end_date"));
+		ProjectMaster project = new ProjectMaster(resultSet.getLong("project_id"), resultSet.getString("description"), resultSet.getDate("start_date"), resultSet.getDate("end_date"), resultSet.getString("project_logo"));
 		return project;
 	}
 }

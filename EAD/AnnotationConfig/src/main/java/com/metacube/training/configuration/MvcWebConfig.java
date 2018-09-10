@@ -73,7 +73,9 @@ public class MvcWebConfig implements WebMvcConfigurer {
 	}
 
 
-
+	/**
+	 * To connecti database via properties file
+	 */
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();

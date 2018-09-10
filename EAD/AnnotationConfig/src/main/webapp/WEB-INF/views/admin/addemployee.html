@@ -4,7 +4,7 @@
     	<title>Admin Login</title>
 	</head>
 	<body>
-		<form action = "addDetailsEmployee" method = "post">
+		<form th:action = "@{addDetailsEmployee}" method = "post">
 				<span>First Name</span><input type = "text" name = "firstName"><br>
 				<span>Middle Name</span><input type = "text" name = "middleName"><br>
 				<span>Date Of Birth</span><input type = "text" name = "dob"><br>
