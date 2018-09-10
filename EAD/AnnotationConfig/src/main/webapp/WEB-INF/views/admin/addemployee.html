@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+    	<title>Admin Login</title>
+	</head>
+	<body>
+		<form th:action = "@{addDetailsEmployee}" method = "post">
+				<span>First Name</span><input type = "text" name = "firstName"><br>
+				<span>Middle Name</span><input type = "text" name = "middleName"><br>
+				<span>Date Of Birth</span><input type = "text" name = "dob"><br>
+				<span>Gender</span><br>
+				<input type="radio" name="gender" value="male"> Male
+  				<input type="radio" name="gender" value="female"> Female
+  				<input type="radio" name="gender" value="other"> Other<br>
+  				<span>Primary Contact</span><input type = "text" name = "primary"><br>
+				<span>Secondary Contact</span><input type = "text" name = "secondary"><br>
+				<span>Email Id</span><input type = "text" name = "email"><br>
+				<span>Skype Id</span><input type = "text" name = "skype"><br>
+				<span>Profile</span><input type = "text" name = "profile"><br>
+				<span>Password</span><input type = "text" name = "password">
+				<input type = "submit">
+			</form>
+	</body>
+</html>
