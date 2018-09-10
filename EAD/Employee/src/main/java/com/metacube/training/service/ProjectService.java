@@ -2,20 +2,15 @@ package com.metacube.training.service;
 
 import java.util.List;
 
-import com.metacube.training.model.ProjectMaster;
+import com.metacube.training.model.Project;
 
-
+/**
+ * @author Rahul Sharma
+ *
+ */
 public interface ProjectService {
 
+	public boolean addProject(Project project);
 	
-	ProjectMaster getProjectById(Long id);
-
-	List<ProjectMaster> getAllProjects();
-
-	boolean deleteProject(Long id);
-
-	boolean updateProject(ProjectMaster project);
-
-	boolean createProject(ProjectMaster project);
-
+	public List<Project> getAllProjects();
 }
