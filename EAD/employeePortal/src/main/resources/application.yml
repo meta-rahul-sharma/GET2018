@@ -1,0 +1,11 @@
+server:
+  servlet:
+    context-path: /employeePortal
+spring:
+  datasource: 
+    url: jdbc:postgresql://localhost:5432/employeePortal
+    username: postgres
+    password: postgres
+    driver-class-name : org.postgresql.Driver
+    type: org.apache.tomcat.jdbc.pool.DataSource
+
