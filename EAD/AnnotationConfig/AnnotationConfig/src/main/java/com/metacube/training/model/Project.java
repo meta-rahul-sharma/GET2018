@@ -1,7 +1,9 @@
 package com.metacube.training.model;
 
 import java.io.InputStream;
-import java.util.Date;
+import java.sql.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 /**
  * @author Rahul Sharma
  *
@@ -11,7 +13,7 @@ public class Project {
 	int projectId;
 	String description;
 	Date startDate, endDate;
-	InputStream projectLogo;
+	String projectLogo;
 	
 	
 	/**
@@ -81,7 +83,7 @@ public class Project {
 	/**
 	 * @return the projectLogo
 	 */
-	public InputStream getProjectLogo() {
+	public String getProjectLogo() {
 		return projectLogo;
 	}
 	
@@ -89,7 +91,7 @@ public class Project {
 	/**
 	 * @param projectLogo the projectLogo to set
 	 */
-	public void setProjectLogo(InputStream projectLogo) {
+	public void setProjectLogo(String projectLogo) {
 		this.projectLogo = projectLogo;
 	}
 	

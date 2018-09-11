@@ -13,7 +13,7 @@ CREATE TABLE Employee (
     secondary_contact_no CHAR(10),
     email VARCHAR(100) NOT NULL,
     skype_id VARCHAR(50),
-    profile_picture MEDIUMBLOB,#String in assignment
+    profile_picture VARCHAR(70),
     password VARCHAR(20) DEFAULT "123456",
     enabled BOOLEAN DEFAULT TRUE,
     CONSTRAINT PK_Employee PRIMARY KEY (emp_code)
@@ -52,7 +52,7 @@ CREATE TABLE Project(
     description VARCHAR(250) NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE,
-    project_logo MEDIUMBLOB,#was string in assignment
+    name VARCHAR(70),
     CONSTRAINT PK_Project PRIMARY KEY (project_id)
 );
 

@@ -5,11 +5,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form th:action="@{skills}" method="post">
+	<form th:object = "${skill}" th:action="@{skills}" method="post">
 		<table>
 			<tr>
 				<td>Skill Name:</td>
-				<td><input type="text" name="skillName"></td>
+				<td><input type="text" th:field="*{name}"></td>
 			</tr>
 			<tr>
 				<td></td>

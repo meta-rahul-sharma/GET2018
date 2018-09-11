@@ -4,28 +4,32 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.metacube.training.Enum.SearchBy;
 import com.metacube.training.dao.EmployeeDAO;
 import com.metacube.training.dao.EmployeeDAOImpl;
 import com.metacube.training.dto.PreSignupTO;
 import com.metacube.training.model.Employee;
 import com.metacube.training.model.Skill;
 
-/**
- * @author Rahul Sharma
- *
- */
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
 
 	private static EmployeeServiceImpl employeeServiceObject = new EmployeeServiceImpl();
-	private EmployeeDAO employeeDao = EmployeeDAOImpl.getInstance();
 	
-	public static EmployeeServiceImpl getInstance() {
-		
-		return employeeServiceObject;
-	}
+	@Autowired
+	private EmployeeDAO employeeDao;
+	
+	@Autowired
+	private PreSignupTO preSignupTO;
+	
+	@Autowired
+	private SkillService skillService;
 	
 	
-	@Override
+	
 	public boolean addEmployee(PreSignupTO preSignupTO) {
 		
 		Calendar calendar = Calendar.getInstance();
@@ -38,30 +42,28 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 
-	@Override
 	public List<Employee> getAllEmployees() {
 		
 		return employeeDao.getAllEmployees();
 	}
 
 
-	@Override
-	public List<Employee> searchEmployee(String criteria, String keyword) {
+	public List<Employee> searchEmployee(SearchBy searchBy, String keyword) {
 		
 		List<Employee> listOfEmployees = null;
 		
-		switch (criteria) {
+		switch (searchBy) {
 			
-			case "name" : listOfEmployees = employeeDao.searchByName(keyword);
+			case NAME : listOfEmployees = employeeDao.searchByName(keyword);
 						  break;
 						  
-			case "project" : listOfEmployees = employeeDao.searchByProject(Integer.parseInt(keyword));
+			case PROJECT : listOfEmployees = employeeDao.searchByProject(Integer.parseInt(keyword));
 							 break;
 							 
-			case "skill" : listOfEmployees = employeeDao.searchBySkills(keyword);
+			case SKILL : listOfEmployees = employeeDao.searchBySkills(keyword);
 						   break;
 						   
-			case "experience" : listOfEmployees = employeeDao.searchByExperience(Double.parseDouble(keyword));
+			case EXPERIENCE : listOfEmployees = employeeDao.searchByExperience(Double.parseDouble(keyword));
 								break;
 		}
 		
@@ -69,21 +71,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	
 
-	@Override
 	public Employee getEmployeeByCode(String employeeCode) {
 		
 		return employeeDao.getEmployeeByCode(employeeCode);
 	}
 	
 
-	@Override
 	public boolean updateEmployee(Employee employee) {
 		
 		return employeeDao.updateEmployee(employee);
 	}
 
 
-	@Override
 	public boolean isValidLogin(String username, String password) {
 		
 		boolean valid = false;
@@ -94,17 +93,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return valid;
 	}
 	
-	@Override
 	public Employee getEmployeeByEmail(String email) {
 		
 		return employeeDao.getEmployeeByEmail(email);
 	}
 
 	
-	@Override
 	public void addSkills(String[] skills, String employeeCode) {
-		
-		SkillService skillService = SkillServiceImpl.getInstance();
 		
 		for(String skill: skills)
 		{
@@ -119,20 +114,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	private String generateEmployeeCode(int year) {
 		
+	    String employeeCode;
 		List<Employee> listOfEmployee = getAllEmployees();
 		int size = listOfEmployee.size();
-		
-		if(size == 0) {
-			return "E" + year + "/" + 1;
+		if(size > 0)
+		{
+		    int[] codes = new int[size];
+	        
+	        for(int i = 0; i < size; i++)
+	            codes[i] = Integer.parseInt(listOfEmployee.get(i).getEmployeeCode().split("/")[1]);
+	            
+	        Arrays.sort(codes);
+	        employeeCode = "E" + year + "/" + (codes[size - 1] + 1);
+		}
+		else {
+		    employeeCode = "E" + year + "/" + 1;
 		}
 		
-		int[] codes = new int[size];
-		
-		for(int i = 0; i < size; i++)
-			codes[i] = Integer.parseInt(listOfEmployee.get(i).getEmployeeCode().split("/")[1]);
-			
-		Arrays.sort(codes);
-		return "E" + year + "/" + (codes[size - 1] + 1);
+		return employeeCode;
 	}
 
 }

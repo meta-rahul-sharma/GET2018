@@ -1,9 +1,12 @@
 package com.metacube.training.service;
 
+import org.springframework.stereotype.Service;
+
 /**
  * @author Rahul Sharma
  *
  */
+@Service
 public class AdminServiceImpl implements AdminService {
 
 	private static AdminServiceImpl adminServiceObject = new AdminServiceImpl();

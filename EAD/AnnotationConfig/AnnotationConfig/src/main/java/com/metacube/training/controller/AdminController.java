@@ -3,9 +3,11 @@ package com.metacube.training.controller;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.metacube.training.Enum.SearchBy;
 import com.metacube.training.dto.PreSignupTO;
 import com.metacube.training.model.Employee;
 import com.metacube.training.model.JobTitle;
@@ -39,14 +42,26 @@ import com.metacube.training.service.SkillServiceImpl;
 @RequestMapping("/admin")
 public class AdminController {
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@Autowired
+	private ProjectService projectService;
+	
+	@Autowired
+	private EmployeeService employeeService;
+	
+	@Autowired
+	private JobService jobService;
+	
+	@Autowired
+	private SkillService skillService;
+	
+	@RequestMapping(path = "/login", method = RequestMethod.GET)
 	public String login() {
 		
 		return "admin/login";
 	}
 	
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(path = "/login", method = RequestMethod.POST)
 	public ModelAndView login(@RequestParam("username") String username, 
 			@RequestParam("password") String password){
 		
@@ -63,65 +78,56 @@ public class AdminController {
 	}
 	
 	
-	@RequestMapping(value = "/project", method = RequestMethod.GET)
+	@RequestMapping(path = "/project", method = RequestMethod.GET)
 	public String addProject(Model model){
 		model.addAttribute("project", new Project());
 		return "admin/project";
 	}
 	
-	@RequestMapping(value = "/project", method = RequestMethod.POST)
-	public ModelAndView addProject(@ModelAttribute("project") Project project) throws IOException, ParseException{
-		
-		ProjectService projectService = ProjectServiceImpl.getInstance();
-		projectService.addProject(project);
-		
-		return new ModelAndView("admin/dashboard");
+	@RequestMapping(path = "/project", method = RequestMethod.POST)
+	public String addProject(@ModelAttribute("project") Project project) throws IOException, ParseException{
+		if(project!= null && project.getProjectId() == 0) {
+			projectService.createProject(project);	
+		}else {
+			projectService.updateProject(project);
+		}
+		return "admin/dashboard";
 	}
 	
 	
 	@RequestMapping(value = "/skills", method = RequestMethod.GET)
-	public String addSkill(){
-		
-		return "admin/skills";
+	public String addSkill(Model model){
+		model.addAttribute("skill", new Skill());
+		return "admin/skill";
 	}
 	
 	
 	@RequestMapping(value = "/skills", method = RequestMethod.POST)
-	public ModelAndView addSkill(@RequestParam("skillName") String skillName){
-		
-	    Skill skill = new Skill();
-	    skill.setName(skillName);
-	    
-	    SkillService skillService = SkillServiceImpl.getInstance();
-	    skillService.addSkill(skill);
-	    
+	public ModelAndView addSkill(@ModelAttribute("skill") Skill skill) {
+	    skillService.createSkill(skill);
 		return new ModelAndView("admin/dashboard");
 	}
 	
 	
 	@RequestMapping(value = "/jobTitle", method = RequestMethod.GET)
-	public String addJobTitle(){
-		
+	public String addJobTitle(Model model){
+		model.addAttribute("job", new JobTitle());
 		return "admin/jobtitle";
 	}
 	
 	
 	@RequestMapping(value = "/jobTitle", method = RequestMethod.POST)
-	public ModelAndView addJobTitle(@RequestParam("jobTitle") String jobTitle){
+	public ModelAndView addJobTitle(@ModelAttribute("job") JobTitle job){
 		
-	    JobTitle jobTitle2 = new JobTitle();
-	    jobTitle2.setJobTitle(jobTitle);
-	    
-	    JobService jobService = JobServiceImpl.getInstance();
-	    jobService.addJobTitle(jobTitle2);
+	    jobService.createJobTitle(job);
 	    
 		return new ModelAndView("admin/dashboard");
 	}
 	
 	
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
-	public String addEmployee(){
-		
+	public String addEmployee(Model model){
+		model.addAttribute("signup", new PreSignupTO());
 		return "admin/addEmployee";
 	}
 	
@@ -132,18 +138,19 @@ public class AdminController {
 			@RequestParam("gender") char gender, @RequestParam("doj") String doj, @RequestParam("reportingMgr") String reportingMgr, 
 			@RequestParam("teamLead") String teamLead, @RequestParam("projectId") Integer projectId) throws ParseException{
 		
-		if("N/A".equals(reportingMgr))
+		if("n/a".equals(reportingMgr))
 			reportingMgr = null;
 		
-		if("N/A".equals(teamLead))
+		if("n/a".equals(teamLead))
 			teamLead = null;
 		
 		if(projectId == 0)
 			projectId = null;
 		
+		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Date dateOfBirth = format.parse(dob);
-		Date dateOfJoining = format.parse(doj);
+		Date dateOfBirth = (Date) format.parse(dob);
+		Date dateOfJoining = (Date) format.parse(doj);
 		
 		PreSignupTO preSignupTO = new PreSignupTO();
 		preSignupTO.setFirstName(firstName);
@@ -157,7 +164,6 @@ public class AdminController {
 		preSignupTO.setTeamLead(teamLead);
 		preSignupTO.setProjectId(projectId);
 		
-		EmployeeService employeeService = EmployeeServiceImpl.getInstance();
 		employeeService.addEmployee(preSignupTO);
 		
 		return new ModelAndView("admin/dashboard");
@@ -172,9 +178,7 @@ public class AdminController {
 	
 	
 	@RequestMapping(value = "/searchEmployee", method = RequestMethod.POST)
-	public ModelAndView searchEmployee(@RequestParam("criteria") String criteria, @RequestParam("keyword") String keyword){
-		
-		EmployeeService employeeService = EmployeeServiceImpl.getInstance();
+	public ModelAndView searchEmployee(@RequestParam("criteria") SearchBy criteria, @RequestParam("keyword") String keyword){
 		List<Employee> searchResult = employeeService.searchEmployee(criteria, keyword);
 		
 		return new ModelAndView("admin/searchResults", "result", searchResult);
@@ -184,16 +188,12 @@ public class AdminController {
 	@RequestMapping(value = "/viewEmployee", method = RequestMethod.GET)
 	public ModelAndView viewEmployee(@RequestParam String employeeCode){
 		
-		EmployeeService employeeService = EmployeeServiceImpl.getInstance();
-		
 		return new ModelAndView("viewEmployee", "employee", employeeService.getEmployeeByCode(employeeCode));
 	}
 	
 	
 	@RequestMapping(value = "/editEmployee", method = RequestMethod.GET)
 	public ModelAndView editEmployee(@RequestParam String employeeCode){
-		
-		EmployeeService employeeService = EmployeeServiceImpl.getInstance();
 		
 		return new ModelAndView("admin/editEmployee", "employee", employeeService.getEmployeeByCode(employeeCode));
 	}
@@ -206,7 +206,7 @@ public class AdminController {
 			@RequestParam String skypeId, @RequestParam boolean enabled, @RequestParam String password) throws ParseException{
 		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Date dateOfBirth = format.parse(dob);
+		Date dateOfBirth = (Date) format.parse(dob);
 		
 		Employee employee = new Employee();
 		employee.setEmployeeCode(employeeCode);
@@ -222,7 +222,6 @@ public class AdminController {
 		employee.setEnabled(enabled);
 		employee.setPassword(password);
 		
-		EmployeeService employeeService = EmployeeServiceImpl.getInstance();
 		employeeService.updateEmployee(employee);
 		
 		return new ModelAndView("admin/dashboard");
