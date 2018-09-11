@@ -1,95 +1,56 @@
 package com.metacube.training.dao;
 
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.metacube.training.mapper.ProjectMapper;
 import com.metacube.training.model.Project;
 
 /**
  * @author Rahul Sharma
  *
  */
+@Repository
 public class ProjectDAOImpl implements ProjectDAO {
 
-	private static ProjectDAOImpl projectDAOObject = new ProjectDAOImpl();
-		
-	private static final String SQL_GET_ALL = "SELECT * FROM project";
-	
-	private static final String SQL_INSERT_PROJECT = "INSERT INTO project(description, start_date, end_date, project_logo) "
-									+ "VALUES(?,?,?,?)";
-	
-	public static ProjectDAOImpl getInstance() {
-		
-		return projectDAOObject;
-	}
-	
+	private JdbcTemplate jdbcTemplate;
 
-	@Override
+	@Autowired
+	public ProjectDAOImpl(DataSource dataSource) {
+		jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+
+	
+	private final String SQL_FIND_PROJECT = "select * from project where id = ?";
+	private final String SQL_DELETE_PROJECT = "delete from project where id = ?";
+	private final String SQL_UPDATE_PROJECT = "update project set name = ?, description = ?, start_date  = ?, end_date  = ? where id = ?";
+	private final String SQL_GET_ALL = "select * from project";
+	private final String SQL_INSERT_PROJECT = "insert into project(name, description, start_date, end_date) values(?,?,?,?)";
+
+	public Project getProjectById(int id) {
+		return jdbcTemplate.queryForObject(SQL_FIND_PROJECT, new Object[] { id }, new ProjectMapper());
+	}
+
 	public List<Project> getAllProjects() {
-		
-		List<Project> listOfProjects = new ArrayList<>();
-		
-		try
-        (
-            Connection connection = JdbcConnection.getConnection();
-            PreparedStatement stmt = connection.prepareStatement(SQL_GET_ALL);
-        ){
-			ResultSet result = stmt.executeQuery();
-			
-			while(result.next())
-			{
-				Project project = new Project();
-				project.setProjectId(result.getInt("project_id"));
-				project.setDescription(result.getString("description"));
-				project.setStartDate(new java.util.Date(result.getDate("start_date").getTime()));
-				project.setEndDate(new java.util.Date(result.getDate("end_date").getTime()));
-				Blob logo = result.getBlob("project_logo");
-				if(logo == null)
-					project.setProjectLogo(null);
-				else
-					project.setProjectLogo(logo.getBinaryStream());
-				
-				listOfProjects.add(project);
-			}
-        }
-        catch (SQLException exception) 
-        {
-            exception.printStackTrace();
-        }
-		return listOfProjects;
+		return jdbcTemplate.query(SQL_GET_ALL, new ProjectMapper());
 	}
 
-
-	@Override
-	public boolean createProject(Project project) {
-		boolean inserted = false;
-		
-		try
-        (
-            Connection connection = JdbcConnection.getConnection();
-            PreparedStatement stmt = connection.prepareStatement(SQL_INSERT_PROJECT);
-        ){
-            stmt.setString(1, project.getDescription());
-            stmt.setDate(2, new Date(project.getStartDate().getTime()));
-            stmt.setDate(3, new Date(project.getEndDate().getTime()));
-            stmt.setBlob(4, project.getProjectLogo());
-            
-            if(stmt.executeUpdate() > 0)
-            	inserted = true;
-
-        }
-        catch (SQLException exception) 
-        {
-            exception.printStackTrace();
-        }
-		
-		return inserted;
+	public boolean deleteProject(Project person) {
+		return jdbcTemplate.update(SQL_DELETE_PROJECT, person.getProjectId()) > 0;
 	}
 
+	public boolean updateProject(Project person) {
+		return jdbcTemplate.update(SQL_UPDATE_PROJECT, person.getProjectLogo(), person.getDescription(), person.getStartDate(),
+				person.getEndDate()) > 0;
+	}
+
+	public boolean createProject(Project person) {
+		return jdbcTemplate.update(SQL_INSERT_PROJECT, person.getProjectLogo(), person.getDescription(), person.getStartDate(),
+				person.getEndDate()) > 0;
+	}
 }

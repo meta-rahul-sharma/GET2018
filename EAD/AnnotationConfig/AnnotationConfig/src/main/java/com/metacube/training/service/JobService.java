@@ -1,5 +1,7 @@
 package com.metacube.training.service;
 
+import java.util.List;
+
 import com.metacube.training.model.JobTitle;
 
 /**
@@ -8,5 +10,13 @@ import com.metacube.training.model.JobTitle;
  */
 public interface JobService {
 
-    public boolean addJobTitle(JobTitle jobTitle);
+	JobTitle getJobByCode(int id);
+
+	List<JobTitle> getAllJobTitle();
+
+	boolean deleteJobTitle(JobTitle job);
+
+	boolean updateJobTitle(JobTitle job);
+
+	boolean createJobTitle(JobTitle job);
 }

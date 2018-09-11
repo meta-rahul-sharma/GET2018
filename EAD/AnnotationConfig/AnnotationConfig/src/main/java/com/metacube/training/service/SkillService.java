@@ -10,9 +10,15 @@ import com.metacube.training.model.Skill;
  */
 public interface SkillService {
 
-    public boolean addSkill(Skill skill);
-    
-    public List<Skill> getAllSkills();
-    
-    public Skill getSkillByName(String skill);
+	Skill getSkillById(int id);
+
+	List<Skill> getAllSkills();
+
+	boolean updateSkill(Skill skill);
+
+	boolean createSkill(Skill skill);
+	
+	boolean deleteSkill(Skill skill);
+
+	Skill getSkillByName(String skill);
 }

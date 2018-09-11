@@ -1,118 +1,65 @@
 package com.metacube.training.dao;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.metacube.training.mapper.SkillMapper;
+import com.metacube.training.model.Project;
 import com.metacube.training.model.Skill;
 
-/**
- * @author Rahul Sharma
- *
- */
-public class SkillDAOImpl implements SkillDAO {
 
-    private static SkillDAOImpl skillDaoObject = new SkillDAOImpl();
+@Repository
+public class SkillDAOImpl  implements SkillDAO{
+	
+	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	public SkillDAOImpl(DataSource dataSource)
+	{
+		jdbcTemplate=new JdbcTemplate(dataSource);
+	}
+	
+	private final String SQL_FIND_SKILL = "select * from Skills where skill_id = ?";
+	private final String SQL_FIND_SKILL_BY_NAME = "select * from Skills where skill_name = ?";
+	private final String SQL_DELETE_SKILL = "delete from Skills where skill_id = ?";
+	private final String SQL_UPDATE_SKILL = "update Skills set skill_name=? WHERE skill_id=?";
+	private final String SQL_GET_ALL = "select * from Skills";
+	private final String SQL_INSERT_SKILL = "insert into Skills(skill_name) values(?)";
     
-    private static final String SQL_FIND_SKILL = "SELECT * "
-            + "FROM skills "
-            + "WHERE skill_name = ?";
+	
+	public Skill getSkillById(int id) {
+		return jdbcTemplate.queryForObject(SQL_FIND_SKILL, new Object[] { id }, new SkillMapper());
+	}
 
-    private static final String SQL_GET_ALL = "SELECT * FROM skills";
+	public List<Skill> getAllSkills() {
+		return jdbcTemplate.query(SQL_GET_ALL, new SkillMapper());
+	}
 
-    private static final String SQL_INSERT_SKILL = "INSERT INTO skills(skill_name) "
-            + "VALUES(?)";
-    
-    
-    public static SkillDAOImpl getInstance() {
-        
-        return skillDaoObject;
+    public boolean createSkill(Skill skill)
+    {
+    	return jdbcTemplate.update(SQL_INSERT_SKILL, skill.getName())>0;
     }
-
     
-    @Override
-    public List<Skill> getAllSkills() {
-        
-    	List<Skill> listOfSkills = new ArrayList<>();
-    	
-    	try
-        (
-            Connection connection = JdbcConnection.getConnection();
-            PreparedStatement stmt = connection.prepareStatement(SQL_GET_ALL);
-        ){
-            ResultSet result = stmt.executeQuery();
-            
-            while(result.next())
-            {
-            	Skill skill = new Skill();
-            	skill.setId(result.getInt("skill_id"));
-            	skill.setName(result.getString("skill_name"));
-            	
-            	listOfSkills.add(skill);
-            }
-
-        }
-        catch (SQLException exception) 
-        {
-            exception.printStackTrace();
-        }
-    	
-        return listOfSkills;
-    }
-
-    
-    @Override
-    public boolean createSkill(Skill skill) {
-        
-        boolean inserted = false;
-        
-        try
-        (
-            Connection connection = JdbcConnection.getConnection();
-            PreparedStatement stmt = connection.prepareStatement(SQL_INSERT_SKILL);
-        ){
-            stmt.setString(1, skill.getName());
-            
-            if(stmt.executeUpdate() > 0)
-                inserted = true;
-
-        }
-        catch (SQLException exception) 
-        {
-            exception.printStackTrace();
-        }
-        
-        return inserted;
+    public boolean updateSkill(Skill skill)
+    {
+    	return jdbcTemplate.update(SQL_UPDATE_SKILL, skill.getName(), skill.getId())>0;
     }
 
 	@Override
-	public Skill getSkillByName(String skillName) {
-		
-		Skill skill = new Skill();
-		
-		try
-        (
-            Connection connection = JdbcConnection.getConnection();
-            PreparedStatement stmt = connection.prepareStatement(SQL_FIND_SKILL);
-        ){
-            stmt.setString(1, skillName);
-            
-            ResultSet result = stmt.executeQuery();
-            result.next();
-            
-            skill.setId(result.getInt("skill_id"));
-            skill.setName(skillName);
-
-        }
-        catch (SQLException exception) 
-        {
-            exception.printStackTrace();
-        }
-		
-		return skill;
+	public boolean deleteSkill(Skill skill) {
+		return jdbcTemplate.update(SQL_DELETE_SKILL, skill.getName(), skill.getId())>0;
 	}
+
+	@Override
+	public Skill getSkillByName(String skill) {
+		return jdbcTemplate.queryForObject(SQL_FIND_SKILL_BY_NAME, new Object[] { skill }, new SkillMapper());
+	}
+
+
+
 }

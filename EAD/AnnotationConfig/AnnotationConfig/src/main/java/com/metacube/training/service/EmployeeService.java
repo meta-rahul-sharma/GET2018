@@ -2,21 +2,18 @@ package com.metacube.training.service;
 
 import java.util.List;
 
+import com.metacube.training.Enum.SearchBy;
 import com.metacube.training.dto.PreSignupTO;
 import com.metacube.training.model.Employee;
-import com.metacube.training.model.Skill;
 
-/**
- * @author Rahul Sharma
- *
- */
+
 public interface EmployeeService {
 
 	public boolean addEmployee(PreSignupTO preSignupTO);
 	
 	public List<Employee> getAllEmployees();
 	
-	public List<Employee> searchEmployee(String criteria, String keyword);
+	public List<Employee> searchEmployee(SearchBy searchBy, String keyword);
 	
 	public Employee getEmployeeByCode(String employeeCode);
 	

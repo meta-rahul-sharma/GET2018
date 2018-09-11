@@ -3,11 +3,11 @@
     	<title>Admin Login</title>
 	</head>
 	<body>
-		<form th:action = "@{jobTitle}" method = "post">
+		<form th:object = "${job}" th:action = "@{jobTitle}" method = "post">
 			<table>
 			<tr>
 				<td>Job Title:</td>
-				<td><input type="text" name="jobTitle"></td>
+				<td><input type="text" th:field="*{jobTitle}"></td>
 			</tr>
 			
 			<tr>

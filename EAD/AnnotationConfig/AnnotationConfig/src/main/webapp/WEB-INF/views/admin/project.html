@@ -6,11 +6,11 @@
 </head>
 <body>
 	<div>
-		<form th:object="${project}" th:action="@{project}" method="post" enctype="multipart/form-data">
+		<form th:object="${project}" th:action="@{project}" method="post">
 			<input type="hidden"  th:field="*{projectId}" />
 			<br>
 			 <label>Name:</label> 
-			 <input type="file" th:field="*{projectLogo}" /> 
+			 <input type="text" th:field="*{projectLogo}" /> 
 				<br>
 			<label>Description:</label> 
 			<input type="text"  th:field="*{description}" /> 

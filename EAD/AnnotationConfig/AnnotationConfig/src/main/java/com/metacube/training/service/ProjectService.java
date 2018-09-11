@@ -4,13 +4,18 @@ import java.util.List;
 
 import com.metacube.training.model.Project;
 
-/**
- * @author Rahul Sharma
- *
- */
+
 public interface ProjectService {
 
-	public boolean addProject(Project project);
 	
-	public List<Project> getAllProjects();
+	Project getProjectById(int id);
+
+	List<Project> getAllProjects();
+
+	boolean deleteProject(int id);
+
+	boolean updateProject(Project project);
+
+	boolean createProject(Project project);
+
 }

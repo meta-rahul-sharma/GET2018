@@ -4,15 +4,18 @@ import java.util.List;
 
 import com.metacube.training.model.Skill;
 
-/**
- * @author Rahul Sharma
- *
- */
 public interface SkillDAO {
+	
+	Skill getSkillById(int id);
 
-    List<Skill> getAllSkills();
+	List<Skill> getAllSkills();
 
-    boolean createSkill(Skill project);
-    
-    Skill getSkillByName(String skillName);
+	boolean updateSkill(Skill skill);
+
+	boolean createSkill(Skill skill);
+	
+	boolean deleteSkill(Skill skill);
+	
+	Skill getSkillByName(String skill);
+
 }

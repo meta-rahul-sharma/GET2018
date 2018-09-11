@@ -1,7 +1,9 @@
 package com.metacube.training.model;
 
 import java.io.InputStream;
-import java.util.Date;
+import java.sql.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * @author Rahul Sharma
@@ -10,6 +12,7 @@ import java.util.Date;
 public class Employee {
 
 	private String employeeCode, firstName, middleName, lastName, primaryContact, secondaryContact, email, skypeId, password;
+
 	private Date dob;
 	private char gender;
 	private InputStream profilePicture;
