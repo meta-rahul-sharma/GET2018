@@ -7,23 +7,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.metacube.training.Enum.SearchBy;
 import com.metacube.training.dao.EmployeeDAO;
-import com.metacube.training.dao.EmployeeDAOImpl;
 import com.metacube.training.dto.PreSignupTO;
 import com.metacube.training.model.Employee;
-import com.metacube.training.model.Skill;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-
-	private static EmployeeServiceImpl employeeServiceObject = new EmployeeServiceImpl();
 	
 	@Autowired
 	private EmployeeDAO employeeDao;
-	
-	@Autowired
-	private PreSignupTO preSignupTO;
 	
 	@Autowired
 	private SkillService skillService;
@@ -45,29 +37,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<Employee> getAllEmployees() {
 		
 		return employeeDao.getAllEmployees();
-	}
-
-
-	public List<Employee> searchEmployee(SearchBy searchBy, String keyword) {
-		
-		List<Employee> listOfEmployees = null;
-		
-		switch (searchBy) {
-			
-			case NAME : listOfEmployees = employeeDao.searchByName(keyword);
-						  break;
-						  
-			case PROJECT : listOfEmployees = employeeDao.searchByProject(Integer.parseInt(keyword));
-							 break;
-							 
-			case SKILL : listOfEmployees = employeeDao.searchBySkills(keyword);
-						   break;
-						   
-			case EXPERIENCE : listOfEmployees = employeeDao.searchByExperience(Double.parseDouble(keyword));
-								break;
-		}
-		
-		return listOfEmployees;
 	}
 	
 
@@ -132,6 +101,28 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 		
 		return employeeCode;
+	}
+
+
+	public List<Employee> searchEmployee(String criteria, String keyword) {
+		List<Employee> listOfEmployees = null;
+		
+		switch (criteria) {
+			
+			case "NAME" : listOfEmployees = employeeDao.searchByName(keyword);
+						  break;
+						  
+			case "PROJECT" : listOfEmployees = employeeDao.searchByProject(Integer.parseInt(keyword));
+							 break;
+							 
+			case "SKILL" : listOfEmployees = employeeDao.searchBySkills(keyword);
+						   break;
+						   
+			case "EXPERIENCE" : listOfEmployees = employeeDao.searchByExperience(Double.parseDouble(keyword));
+								break;
+		}
+		
+		return listOfEmployees;
 	}
 
 }
