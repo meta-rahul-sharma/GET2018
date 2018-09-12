@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.metacube.training.model.Employee;
+import com.metacube.training.service.EmailService;
 import com.metacube.training.service.EmployeeService;
 import com.metacube.training.service.SkillService;
 
@@ -30,6 +31,9 @@ public class EmployeeController {
 	
 	@Autowired
 	SkillService skillService;
+	
+	@Autowired
+	EmailService emailService;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
@@ -113,5 +117,17 @@ public class EmployeeController {
 	public ModelAndView viewEmployee(@RequestParam String employeeCode){
 		
 		return new ModelAndView("viewEmployee", "employee", employeeService.getEmployeeByCode(employeeCode));
+	}
+	
+	@RequestMapping(value = "/forgotPassword", method = RequestMethod.GET)
+	public ModelAndView forgotPassword(){
+		return new ModelAndView("employee/forgotPassword");
+	}
+	
+	@RequestMapping(value = "/forgotPassword", method = RequestMethod.POST)
+	public ModelAndView forgotPassword(@RequestParam("username") String username){
+		Employee employee = employeeService.getEmployeeByEmail(username);
+		emailService.generateForgottenPassword(username, "forgot Password", "your password is: " + employee.getPassword());
+		return new ModelAndView("employee/login");
 	}
 }

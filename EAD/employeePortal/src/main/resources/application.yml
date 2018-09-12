@@ -8,3 +8,12 @@ spring:
     password: 12345
     driver-class-name : com.mysql.jdbc.Driver
     type: org.apache.tomcat.jdbc.pool.DataSource
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: employee.portal2018@gmail.com
+    password: vvxcdpmbypkbptgv
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+    

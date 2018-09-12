@@ -6,6 +6,8 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
 
 import com.metacube.training.dto.PreSignupTO;
@@ -124,4 +126,5 @@ public boolean preSignup(PreSignupTO preSignupTO) {
 	public boolean addSkill(Skill skill, String employeeCode) {
 		return jdbcTemplate.update(SQL_ADD_SKILL, employeeCode, skill.getId()) > 0;
 	}
+
 }
