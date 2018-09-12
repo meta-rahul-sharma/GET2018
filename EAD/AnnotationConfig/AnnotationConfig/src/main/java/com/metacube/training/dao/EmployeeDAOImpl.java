@@ -82,6 +82,7 @@ public boolean preSignup(PreSignupTO preSignupTO) {
 
 
 	public List<Employee> searchByName(String name) {
+		System.out.println("here");
 		return jdbcTemplate.query(SQL_SEARCH_BY_NAME, new Object[] { name }, new EmployeeMapper());
 	}
 

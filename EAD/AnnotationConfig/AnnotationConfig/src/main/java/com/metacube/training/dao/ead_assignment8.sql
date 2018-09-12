@@ -11,7 +11,7 @@ CREATE TABLE Employee (
     gender CHAR(1) NOT NULL,
     primary_contact_no CHAR(10),
     secondary_contact_no CHAR(10),
-    email VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
     skype_id VARCHAR(50),
     profile_picture VARCHAR(70),
     password VARCHAR(20) DEFAULT "123456",

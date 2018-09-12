@@ -8,8 +8,8 @@
 	
 	<h1>Pre-Signup</h1>
 	
-	<div th:if="${not #lists.isEmpty(listOfEmployees)}">
-		<form action="addEmployee" method="post">
+	<div>
+		<form th:action="addEmployee" method="post">
 			<table>
 				<tr>
 					<td>First Name:</td>

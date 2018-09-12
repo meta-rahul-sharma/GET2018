@@ -13,8 +13,6 @@ import com.metacube.training.model.Employee;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-
-	private static EmployeeServiceImpl employeeServiceObject = new EmployeeServiceImpl();
 	
 	@Autowired
 	private EmployeeDAO employeeDao;

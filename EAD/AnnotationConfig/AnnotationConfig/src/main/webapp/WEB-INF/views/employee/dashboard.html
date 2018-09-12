@@ -1,11 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Employee Dashboard</title>
+<meta charset="ISO-8859-1">
+<title>Dashboard</title>
 </head>
 <body>
-
-Welcome ${username}
+	<h1>Welcome</h1>
+	<a th:href="@{editProfile?(email=${email})}">Edit Profile</a>
+	<br />
+	<a th:href="@{searchEmployee}">Search Employee</a>
+	<br />
+	<a href="../logout">Logout</a>
 </body>
 </html>

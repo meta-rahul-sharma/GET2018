@@ -2,7 +2,6 @@ package com.metacube.training.service;
 
 import java.util.List;
 
-import com.metacube.training.Enum.SearchBy;
 import com.metacube.training.dto.PreSignupTO;
 import com.metacube.training.model.Employee;
 
@@ -24,5 +23,4 @@ public interface EmployeeService {
 	public Employee getEmployeeByEmail(String email);
 	
 	public void addSkills(String[] skills, String employeeCode);
-
 }
