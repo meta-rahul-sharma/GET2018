@@ -135,7 +135,7 @@ public class PreSignupTO {
 	
 	
 	/**
-	 * @param dob the dob to set
+	 * @param date of birth to set here
 	 */
 	public void setDob(Date dob) {
 		this.dob = dob;
@@ -143,7 +143,7 @@ public class PreSignupTO {
 	
 	
 	/**
-	 * @return the doj
+	 * @return the date of joining
 	 */
 	public Date getDoj() {
 		return doj;

@@ -13,7 +13,7 @@ public interface EmployeeService {
 	
 	public List<Employee> getAllEmployees();
 	
-	public List<Employee> searchEmployee(SearchBy searchBy, String keyword);
+	public List<Employee> searchEmployee(String criteria, String keyword);
 	
 	public Employee getEmployeeByCode(String employeeCode);
 	

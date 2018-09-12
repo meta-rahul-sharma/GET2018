@@ -1,17 +1,15 @@
 package com.metacube.training.dao;
 
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.metacube.training.dto.PreSignupTO;
+import com.metacube.training.mapper.EmployeeMapper;
 import com.metacube.training.model.Employee;
 import com.metacube.training.model.Skill;
 
@@ -23,7 +21,12 @@ import com.metacube.training.model.Skill;
 @Repository
 public class EmployeeDAOImpl implements EmployeeDAO {
 
+	private JdbcTemplate jdbcTemplate;
 	
+	@Autowired
+	public EmployeeDAOImpl(DataSource dataSource) {
+		jdbcTemplate = new JdbcTemplate(dataSource);
+	}
 	
 	private static final String SQL_INSERT_EMPLOYEE = "INSERT INTO employee(emp_code, first_name, middle_name, last_name, email, dob, gender) "
             + "VALUES(?, ?, ?, ?, ?, ?, ?)";    
@@ -62,64 +65,62 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	private static final String SQL_ADD_SKILL = "INSERT INTO Employee_Skills(emp_code, skill_code) "
 			+ "VALUES(?, ?)";
 
-	@Override
-	public boolean preSignup(PreSignupTO preSignupTO) {
-		return false;
+public boolean preSignup(PreSignupTO preSignupTO) {
+		
+		int result1 = jdbcTemplate.update(SQL_INSERT_EMPLOYEE, preSignupTO.getEmployeeCode(), preSignupTO.getFirstName(), preSignupTO.getMiddleName(), 
+				preSignupTO.getLastName(), preSignupTO.getEmail(), preSignupTO.getDob(), String.valueOf(preSignupTO.getGender()));
+		
+		int result2 = jdbcTemplate.update(SQL_INSERT_JOB_DETAILS, preSignupTO.getReportingMgr(), preSignupTO.getTeamLead(), 
+				preSignupTO.getDoj(), preSignupTO.getProjectId(), preSignupTO.getEmployeeCode());
+		return result1 > 0 && result2 > 0;
 	}
 
-	@Override
+
 	public List<Employee> getAllEmployees() {
-		// TODO Auto-generated method stub
-		return null;
+		return jdbcTemplate.query(SQL_GET_ALL, new EmployeeMapper());
 	}
 
-	@Override
+
 	public List<Employee> searchByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return jdbcTemplate.query(SQL_SEARCH_BY_NAME, new Object[] { name }, new EmployeeMapper());
 	}
 
-	@Override
+
 	public List<Employee> searchByProject(int projectId) {
-		// TODO Auto-generated method stub
-		return null;
+		return jdbcTemplate.query(SQL_SEARCH_BY_PROJECT, new Object[] { projectId }, new EmployeeMapper());
 	}
 
-	@Override
+
 	public List<Employee> searchBySkills(String skill) {
-		// TODO Auto-generated method stub
-		return null;
+		return jdbcTemplate.query(SQL_SEARCH_BY_SKILL, new Object[] { skill }, new EmployeeMapper());
 	}
 
-	@Override
+
 	public List<Employee> searchByExperience(double experience) {
-		// TODO Auto-generated method stub
-		return null;
+		return jdbcTemplate.query(SQL_SEARCH_BY_EXPERIENCE, new  Object[] { experience }, new EmployeeMapper());
 	}
 
-	@Override
+
 	public Employee getEmployeeByCode(String employeeCode) {
-		// TODO Auto-generated method stub
-		return null;
+		return jdbcTemplate.queryForObject(SQL_GET_BY_CODE, new Object[] { employeeCode }, new EmployeeMapper());
 	}
 
-	@Override
+
 	public boolean updateEmployee(Employee employee) {
-		// TODO Auto-generated method stub
-		return false;
+		int result = jdbcTemplate.update(SQL_UPDATE_EMPLOYEE, employee.getFirstName(), employee.getMiddleName(), employee.getLastName(),
+				employee.getEmail(), employee.getDob(), String.valueOf(employee.getGender()), employee.getPrimaryContact(), 
+				employee.getSecondaryContact(), employee.getSkypeId(), employee.isEnabled(), employee.getPassword(), employee.getEmployeeCode());
+		
+		return  result > 0;
 	}
 
-	@Override
+
 	public Employee getEmployeeByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		return jdbcTemplate.queryForObject(SQL_GET_BY_EMAIL, new Object[] { email }, new EmployeeMapper());
 	}
 
-	@Override
+
 	public boolean addSkill(Skill skill, String employeeCode) {
-		// TODO Auto-generated method stub
-		return false;
+		return jdbcTemplate.update(SQL_ADD_SKILL, employeeCode, skill.getId()) > 0;
 	}
-	
-
 }

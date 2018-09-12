@@ -127,6 +127,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
 	public String addEmployee(Model model){
+		model.addAttribute("listOfEmployees", employeeService.getAllEmployees());
 		model.addAttribute("signup", new PreSignupTO());
 		return "admin/addEmployee";
 	}
@@ -171,14 +172,14 @@ public class AdminController {
 	
 	
 	@RequestMapping(value = "/searchEmployee", method = RequestMethod.GET)
-	public String searchEmployee(){
-		
+	public String searchEmployee(Model model) {
+		model.addAttribute("criteria", SearchBy.values());
 		return "admin/searchEmployee";
 	}
 	
 	
 	@RequestMapping(value = "/searchEmployee", method = RequestMethod.POST)
-	public ModelAndView searchEmployee(@RequestParam("criteria") SearchBy criteria, @RequestParam("keyword") String keyword){
+	public ModelAndView searchEmployee(@RequestParam("criteria") String criteria, @RequestParam("keyword") String keyword){
 		List<Employee> searchResult = employeeService.searchEmployee(criteria, keyword);
 		
 		return new ModelAndView("admin/searchResults", "result", searchResult);
