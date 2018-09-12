@@ -7,7 +7,7 @@ import com.metacube.training.model.Project;
 public interface ProjectDAO {
 	
 	
-	Project getProjectById(Long id);
+	Project getProjectById(int id);
 
 	List<Project> getAllProjects();
 

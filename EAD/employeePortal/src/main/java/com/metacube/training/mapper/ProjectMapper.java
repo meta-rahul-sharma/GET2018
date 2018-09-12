@@ -1,4 +1,4 @@
-package com.metacube.training.mappers;
+package com.metacube.training.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,8 +12,8 @@ public class ProjectMapper implements RowMapper<Project> {
 	public Project mapRow(ResultSet resultSet, int i) throws SQLException {
 
 		Project project = new Project();
-		project.setId(resultSet.getLong("id"));
-		project.setName(resultSet.getString("name"));
+		project.setProjectId(resultSet.getInt("project_id"));
+		project.setProjectLogo(resultSet.getString("name"));
 		project.setDescription(resultSet.getString("description"));
 		project.setStartDate(resultSet.getDate("start_date"));
 		project.setEndDate(resultSet.getDate("end_date"));

@@ -1,4 +1,4 @@
-package com.metacube.training.employeePortal;
+package com.metacube.training.EmployeePortal;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
