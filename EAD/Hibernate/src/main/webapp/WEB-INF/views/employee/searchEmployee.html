@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head lang="en">
+    <title>Search Employee</title>
+</head>
+<body>
+	<form th:action="searchEmployee" method="post">
+		<table>
+			<tr>
+				<td>Search criteria:</td>
+				<td><select name="criteria">
+						<option value="name">Name</option>
+						<option value="project">Project id</option>
+						<option value="skill">Skill</option>
+						<option value="experience">Total Experience</option>
+					</select></td>
+			</tr>
+			<tr>
+				<td>Enter search keyword:</td>
+				<td><input type="text" name="keyword"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Search" /></td>
+			</tr>
+		</table>	
+	</form>
+</body>
+</html>
