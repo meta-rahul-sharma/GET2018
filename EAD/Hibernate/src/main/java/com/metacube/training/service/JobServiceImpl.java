@@ -31,18 +31,18 @@ public class JobServiceImpl implements JobService {
 	}
 
 	@Override
-	public boolean deleteJobTitle(JobTitle job) {
-		return jobDao.deleteJobTitle(job);
+	public void deleteJobTitle(JobTitle job) {
+		jobDao.deleteJobTitle(job);
 	}
 
 	@Override
-	public boolean updateJobTitle(JobTitle job) {
-		return jobDao.updateJobTitle(job);
+	public void updateJobTitle(JobTitle job) {
+		jobDao.updateJobTitle(job);
 	}
 
 	@Override
-	public boolean createJobTitle(JobTitle job) {
-		return jobDao.createJobTitle(job);
+	public void createJobTitle(JobTitle job) {
+		jobDao.createJobTitle(job);
 	}
 
 }

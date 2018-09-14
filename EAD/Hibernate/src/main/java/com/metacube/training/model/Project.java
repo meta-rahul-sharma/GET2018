@@ -1,13 +1,15 @@
 package com.metacube.training.model;
 
-import java.io.InputStream;
-import java.sql.Date;
+import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,6 +33,8 @@ public class Project {
 	String description;
 	
 	@Column(name = "start_date")
+	@DateTimeFormat(pattern= "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	Date startDate;
 	
 	@Column(name = "end_date")
@@ -39,9 +43,8 @@ public class Project {
 	Date endDate;
 	
 	@Column(name = "name")
-	@DateTimeFormat(pattern= "yyyy-MM-dd")
-	@Temporal(TemporalType.DATE)
 	String projectLogo;
+	
 	
 	
 	/**

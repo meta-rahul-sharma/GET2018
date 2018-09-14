@@ -1,13 +1,18 @@
 package com.metacube.training.model;
 
 import java.io.InputStream;
-import java.sql.Date;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,7 +29,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Employee {
 	
 	@Id
-	@Column(name = "job_code")
+	@Column(name = "emp_code")
 	private String employeeCode;
 	
 	@Column(name = "first_name")
@@ -60,11 +65,21 @@ public class Employee {
 	private char gender;
 	
 	@Column(name = "profile_picture")
-	private InputStream profilePicture;
+	private String profilePicture;
 	
 	@Column(name = "enabled")
 	private boolean enabled;
 	
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(
+	        name = "Employee_Skills", 
+	        joinColumns = { @JoinColumn(name = "emp_code") }, 
+	        inverseJoinColumns = { @JoinColumn(name = "skill_code") }
+	    )
+	Set<Skill> skills = new HashSet<>();
+	
+	@OneToMany(mappedBy="employeeCode", cascade = CascadeType.ALL)
+    private Set<JobDetails> items;
 	
 	/**
 	 * @return the employeeCode
@@ -245,7 +260,7 @@ public class Employee {
 	/**
 	 * @return the profilePicture
 	 */
-	public InputStream getProfilePicture() {
+	public String getProfilePicture() {
 		return profilePicture;
 	}
 	
@@ -253,7 +268,7 @@ public class Employee {
 	/**
 	 * @param profilePicture the profilePicture to set
 	 */
-	public void setProfilePicture(InputStream profilePicture) {
+	public void setProfilePicture(String profilePicture) {
 		this.profilePicture = profilePicture;
 	}
 	

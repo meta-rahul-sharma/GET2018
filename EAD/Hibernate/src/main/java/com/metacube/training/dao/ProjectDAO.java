@@ -15,5 +15,5 @@ public interface ProjectDAO {
 
 	void updateProject(Project project);
 
-	void createProject(Project project);
+	boolean createProject(Project project);
 }

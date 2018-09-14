@@ -16,9 +16,9 @@ public interface JobDAO {
 
 	List<JobTitle> getAllJobTitle();
 
-	void deleteJobTitle(JobTitle job);
+	void deleteJobTitle(JobTitle id);
 
 	void updateJobTitle(JobTitle job);
 
-	void createJobTitle(JobTitle job);
+	boolean createJobTitle(JobTitle job);
 }

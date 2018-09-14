@@ -14,9 +14,9 @@ public interface JobService {
 
 	List<JobTitle> getAllJobTitle();
 
-	boolean deleteJobTitle(JobTitle job);
+	void deleteJobTitle(JobTitle job);
 
-	boolean updateJobTitle(JobTitle job);
+	void updateJobTitle(JobTitle job);
 
-	boolean createJobTitle(JobTitle job);
+	void createJobTitle(JobTitle job);
 }

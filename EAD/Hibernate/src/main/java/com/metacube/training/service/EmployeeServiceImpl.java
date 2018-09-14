@@ -46,9 +46,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	
 
-	public boolean updateEmployee(Employee employee) {
+	public void updateEmployee(Employee employee) {
 		
-		return employeeDao.updateEmployee(employee);
+		employeeDao.updateEmployee(employee);
 	}
 
 

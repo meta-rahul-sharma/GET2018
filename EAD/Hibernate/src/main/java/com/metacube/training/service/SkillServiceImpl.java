@@ -29,17 +29,17 @@ public class SkillServiceImpl implements SkillService {
 	}
 
 	@Override
-	public boolean updateSkill(Skill skill) {
-		return skillDao.updateSkill(skill);
+	public void updateSkill(Skill skill) {
+		skillDao.updateSkill(skill);
 	}
 
 	@Override
-	public boolean createSkill(Skill skill) {
-		return skillDao.createSkill(skill);
+	public void createSkill(Skill skill) {
+		skillDao.createSkill(skill);
 	}
 
-	public boolean deleteSkill(Skill skill) {
-		return skillDao.deleteSkill(skill);
+	public void deleteSkill(Skill skill) {
+		skillDao.deleteSkill(skill);
 	}
 
 	public Skill getSkillByName(String skill) {

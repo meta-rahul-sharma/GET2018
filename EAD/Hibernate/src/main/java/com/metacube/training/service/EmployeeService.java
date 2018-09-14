@@ -16,7 +16,7 @@ public interface EmployeeService {
 	
 	public Employee getEmployeeByCode(String employeeCode);
 	
-	public boolean updateEmployee(Employee employee);
+	public void updateEmployee(Employee employee);
 	
 	public boolean isValidLogin(String username, String password);
 	

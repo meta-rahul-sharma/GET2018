@@ -38,9 +38,9 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public void createProject(Project project) {
+	public boolean createProject(Project project) {
 		
-		projectDAO.createProject(project);
+		return projectDAO.createProject(project);
 	}
 
 	@Override

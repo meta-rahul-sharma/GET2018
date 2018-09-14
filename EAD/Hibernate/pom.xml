@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
  <modelVersion>4.0.0</modelVersion>
 	<groupId>com.metacube.training</groupId>
-	<artifactId>Hibernate</artifactId>
+	<artifactId>AnnotationConfig</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Hibernate</name>
+	<name>AnnotationConfig</name>
 
 	<properties>
 		<springframework.version>5.0.2.RELEASE</springframework.version>
@@ -43,15 +43,15 @@
 		</dependency>
 		
 		<dependency>
-		    <groupId>org.thymeleaf</groupId>
-		    <artifactId>thymeleaf</artifactId>
-		    <version>3.0.9.RELEASE</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.thymeleaf</groupId>
-		    <artifactId>thymeleaf-spring5</artifactId>
-		    <version>3.0.9.RELEASE</version>
-		</dependency>
+    <groupId>org.thymeleaf</groupId>
+    <artifactId>thymeleaf</artifactId>
+    <version>3.0.9.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>org.thymeleaf</groupId>
+    <artifactId>thymeleaf-spring5</artifactId>
+    <version>3.0.9.RELEASE</version>
+</dependency>
 
 <!-- bootstrap and jquery -->
         <dependency>
@@ -65,23 +65,34 @@
             <version>3.2.1</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect -->
-		<dependency>
-		    <groupId>nz.net.ultraq.thymeleaf</groupId>
-		    <artifactId>thymeleaf-layout-dialect</artifactId>
-		    <version>2.3.0</version>
-		</dependency>
+<dependency>
+    <groupId>nz.net.ultraq.thymeleaf</groupId>
+    <artifactId>thymeleaf-layout-dialect</artifactId>
+    <version>2.3.0</version>
+</dependency>
 
-		<dependency>
-		    <groupId>mysql</groupId>
-		    <artifactId>mysql-connector-java</artifactId>
-		    <version>8.0.12</version>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
+<dependency>
+    <groupId>postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>9.1-901-1.jdbc4</version>
+</dependency>
 
-		<dependency>
-	    	<groupId>org.hibernate</groupId>
-	    	<artifactId>hibernate-core</artifactId>
-	    	<version>5.2.9.Final</version>
-		</dependency>
+<!-- Hibernate framework -->
+	<dependency>
+    	<groupId>org.hibernate</groupId>
+    	<artifactId>hibernate-core</artifactId>
+    	<version>5.2.9.Final</version>
+	</dependency>
+	
+	
+	<!-- Hibernate library dependecy end -->
+	
+	<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
 
 	</dependencies>
 
@@ -101,12 +112,12 @@
 					<version>2.4</version>
 					<configuration>
 						<warSourceDirectory>src/main/webapp</warSourceDirectory>
-						<warName>Hibernate</warName>
+						<warName>AnnotationConfig</warName>
 						<failOnMissingWebXml>false</failOnMissingWebXml>
 					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
-		<finalName>Hibernate</finalName>
+		<finalName>AnnotationConfig</finalName>
 	</build>
 </project>

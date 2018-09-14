@@ -1,12 +1,16 @@
 package com.metacube.training.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,14 +37,17 @@ public class JobDetails {
 	@Column(name = "total_exp")
 	private double experience;
 	
-	@Column(name = "job_code")
-	private int jobCode;
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	private JobTitle jobCode;
 	
-	@Column(name = "reporting_mgr")
-	private String reportingMgr;
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	private Employee reportingMgr;
 	
-	@Column(name = "team_lead")
-	private String teamLead;
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	private Employee teamLead;
 	
 	@Column(name = "curr_proj_id")
 	private int projectId;
@@ -104,42 +111,42 @@ public class JobDetails {
 	/**
 	 * @return the jobCode
 	 */
-	public int getJobCode() {
+	public JobTitle getJobCode() {
 		return jobCode;
 	}
 
 	/**
 	 * @param jobCode the jobCode to set
 	 */
-	public void setJobCode(int jobCode) {
+	public void setJobCode(JobTitle jobCode) {
 		this.jobCode = jobCode;
 	}
 
 	/**
 	 * @return the reportingMgr
 	 */
-	public String getReportingMgr() {
+	public Employee getReportingMgr() {
 		return reportingMgr;
 	}
 
 	/**
 	 * @param reportingMgr the reportingMgr to set
 	 */
-	public void setReportingMgr(String reportingMgr) {
+	public void setReportingMgr(Employee reportingMgr) {
 		this.reportingMgr = reportingMgr;
 	}
 
 	/**
 	 * @return the teamLead
 	 */
-	public String getTeamLead() {
+	public Employee getTeamLead() {
 		return teamLead;
 	}
 
 	/**
 	 * @param teamLead the teamLead to set
 	 */
-	public void setTeamLead(String teamLead) {
+	public void setTeamLead(Employee teamLead) {
 		this.teamLead = teamLead;
 	}
 

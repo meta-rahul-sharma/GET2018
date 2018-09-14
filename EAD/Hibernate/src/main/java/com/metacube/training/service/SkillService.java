@@ -14,11 +14,11 @@ public interface SkillService {
 
 	List<Skill> getAllSkills();
 
-	boolean updateSkill(Skill skill);
+	void updateSkill(Skill skill);
 
-	boolean createSkill(Skill skill);
+	void createSkill(Skill skill);
 	
-	boolean deleteSkill(Skill skill);
+	void deleteSkill(Skill skill);
 
 	Skill getSkillByName(String skill);
 }

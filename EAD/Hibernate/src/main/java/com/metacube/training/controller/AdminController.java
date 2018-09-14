@@ -62,7 +62,7 @@ public class AdminController {
 		
 		if(adminService.isValidLogin(username, password)) {
 			view = "admin/dashboard";
-		} else {
+		} else                                 {
 			view = "admin/login";
 		}
 		
@@ -79,7 +79,11 @@ public class AdminController {
 	@RequestMapping(path = "/project", method = RequestMethod.POST)
 	public String addProject(@ModelAttribute("project") Project project) throws IOException, ParseException{
 		if(project!= null && project.getProjectId() == 0) {
-			projectService.createProject(project);	
+			if(projectService.createProject(project)) {
+				return "admin/dashboard";
+			} else {
+				return "admin/project";
+			}
 		}else {
 			projectService.updateProject(project);
 		}

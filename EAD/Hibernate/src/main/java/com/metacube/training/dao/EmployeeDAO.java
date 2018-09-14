@@ -26,9 +26,11 @@ public interface EmployeeDAO {
 	
 	public Employee getEmployeeByCode(String employeeCode);
 	
-	public boolean updateEmployee(Employee employee);
+	public void updateEmployee(Employee employee);
+	
+	public void deleteEmployee(Employee employee);
 	
 	public Employee getEmployeeByEmail(String email);
 	
-	public boolean addSkill(Skill skill, String employeeCode);
+	public void addSkill(Skill skill, String employeeCode);
 }

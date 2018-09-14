@@ -4,15 +4,21 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 import javax.sql.DataSource;
+import javax.transaction.Transactional;
 
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.metacube.training.dto.PreSignupTO;
-import com.metacube.training.mapper.EmployeeMapper;
 import com.metacube.training.model.Employee;
+import com.metacube.training.model.JobDetails;
+import com.metacube.training.model.JobTitle;
 import com.metacube.training.model.Skill;
 
 /**
@@ -21,6 +27,7 @@ import com.metacube.training.model.Skill;
  */
 
 @Repository
+@Transactional
 public class EmployeeDAOImpl implements EmployeeDAO {
 
 	private JdbcTemplate jdbcTemplate;
@@ -40,9 +47,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			+ "VALUES(?, ?, ?, ?, ?)";
 	
 	private static final String SQL_GET_ALL = "SELECT * FROM employee";
-	
-	private static final String SQL_SEARCH_BY_NAME = "SELECT * FROM employee "
-			+ "WHERE concat(first_name, ' ', middle_name, ' ', last_name) LIKE concat('%', ?, '%')";
 	
 	private static final String SQL_SEARCH_BY_PROJECT = "SELECT * "
 			+ "FROM employee e INNER JOIN job_details j ON e.emp_code = j.emp_code "
@@ -71,63 +75,98 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			+ "VALUES(?, ?)";
 
 public boolean preSignup(PreSignupTO preSignupTO) {
-		
-		int result1 = jdbcTemplate.update(SQL_INSERT_EMPLOYEE, preSignupTO.getEmployeeCode(), preSignupTO.getFirstName(), preSignupTO.getMiddleName(), 
-				preSignupTO.getLastName(), preSignupTO.getEmail(), preSignupTO.getDob(), String.valueOf(preSignupTO.getGender()));
-		
-		int result2 = jdbcTemplate.update(SQL_INSERT_JOB_DETAILS, preSignupTO.getReportingMgr(), preSignupTO.getTeamLead(), 
-				preSignupTO.getDoj(), preSignupTO.getProjectId(), preSignupTO.getEmployeeCode());
-		return result1 > 0 && result2 > 0;
+	boolean created = false;
+	 Session session = sessionFactory.openSession();
+     Transaction tx = null;
+     Employee employee = new Employee();
+     employee.setEmployeeCode(preSignupTO.getEmployeeCode());
+     employee.setFirstName(preSignupTO.getFirstName());
+     employee.setLastName(preSignupTO.getLastName());
+     employee.setEmail(preSignupTO.getEmail());
+     employee.setDob(preSignupTO.getDob());
+     employee.setGender(preSignupTO.getGender());
+     
+     JobDetails jobDetail = new JobDetails();
+     jobDetail.setReportingMgr(preSignupTO.getReportingMgr());
+     jobDetail.setTeamLead(preSignupTO.getTeamLead());
+     jobDetail.setDoj(preSignupTO.getDoj());
+     jobDetail.setProjectId(preSignupTO.getProjectId());
+     jobDetail.setEmployeeCode(preSignupTO.getEmployeeCode());
+     try {
+        tx = (Transaction) session.beginTransaction();
+        session.save(employee);
+        session.save(jobDetail);
+       	created = true;
+         
+       	tx.commit();
+	 } catch (HibernateException e) {
+        if (tx!=null) tx.rollback();
+        e.printStackTrace(); 
+	 } finally {
+        session.close(); 
+     }
+     return created;
 	}
 
 
 	public List<Employee> getAllEmployees() {
-		TypedQuery<Employee> query = sessionFactory.getCurrentSession().createQuery("from Employee");
-		return query.getResultList();
+		Criteria criteria=sessionFactory.getCurrentSession().createCriteria(Employee.class);
+		return (List<Employee>)criteria.list();
 	}
 
 
 	public List<Employee> searchByName(String name) {
-		TypedQuery<Employee> query = sessionFactory.getCurrentSession().createQuery("from Employee where ");
+		TypedQuery<Employee> query = sessionFactory.getCurrentSession().createQuery("FROM Employee "
+			+ "WHERE concat(first_name, ' ', middle_name, ' ', last_name) LIKE concat('%', ?1, '%')");
+		query.setParameter(1, name);
 		return query.getResultList();
 	}
 
 
 	public List<Employee> searchByProject(int projectId) {
-		return jdbcTemplate.query(SQL_SEARCH_BY_PROJECT, new Object[] { projectId }, new EmployeeMapper());
+		TypedQuery<Employee> query = sessionFactory.getCurrentSession().createQuery("from Employee where ");
+		return query.getResultList();
 	}
 
 
 	public List<Employee> searchBySkills(String skill) {
-		return jdbcTemplate.query(SQL_SEARCH_BY_SKILL, new Object[] { skill }, new EmployeeMapper());
+		TypedQuery<Employee> query = sessionFactory.getCurrentSession().createQuery("from Employee where ");
+		return query.getResultList();
 	}
 
 
 	public List<Employee> searchByExperience(double experience) {
-		return jdbcTemplate.query(SQL_SEARCH_BY_EXPERIENCE, new  Object[] { experience }, new EmployeeMapper());
+		TypedQuery<Employee> query = sessionFactory.getCurrentSession().createQuery("from Employee where ");
+		return query.getResultList();
 	}
 
 
 	public Employee getEmployeeByCode(String employeeCode) {
-		return jdbcTemplate.queryForObject(SQL_GET_BY_CODE, new Object[] { employeeCode }, new EmployeeMapper());
+		TypedQuery<Employee> query = sessionFactory.getCurrentSession().createQuery("from Employee where emp_code = : employeeCode");
+		query.setParameter("employeeCode", employeeCode);
+		return query.getSingleResult();
 	}
 
 
-	public boolean updateEmployee(Employee employee) {
-		int result = jdbcTemplate.update(SQL_UPDATE_EMPLOYEE, employee.getFirstName(), employee.getMiddleName(), employee.getLastName(),
-				employee.getEmail(), employee.getDob(), String.valueOf(employee.getGender()), employee.getPrimaryContact(), 
-				employee.getSecondaryContact(), employee.getSkypeId(), employee.isEnabled(), employee.getPassword(), employee.getEmployeeCode());
-		
-		return  result > 0;
+	public void updateEmployee(Employee employee) {
+		sessionFactory.getCurrentSession().update(employee);
 	}
 
 
-	public Employee getEmployeeByEmail(String email) {
-		return jdbcTemplate.queryForObject(SQL_GET_BY_EMAIL, new Object[] { email }, new EmployeeMapper());
+	public Employee getEmployeeByEmail(String employeeEmail) {
+		TypedQuery<Employee> query = sessionFactory.getCurrentSession().createQuery("from Employee where email = : employeeEmail");
+		query.setParameter("employeeEmail", employeeEmail);
+		return query.getSingleResult();
 	}
 
 
-	public boolean addSkill(Skill skill, String employeeCode) {
-		return jdbcTemplate.update(SQL_ADD_SKILL, employeeCode, skill.getId()) > 0;
+	public void addSkill(Skill skill, String employeeCode) {
+		/*sessionFactory.getCurrentSession().save(employee);*/
+	}
+
+
+	@Override
+	public void deleteEmployee(Employee employee) {
+		sessionFactory.getCurrentSession().delete(employee);
 	}
 }

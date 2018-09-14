@@ -12,7 +12,7 @@ public interface SkillDAO {
 
 	void updateSkill(Skill skill);
 
-	void createSkill(Skill skill);
+	boolean createSkill(Skill skill);
 	
 	void deleteSkill(Skill skill);
 	
