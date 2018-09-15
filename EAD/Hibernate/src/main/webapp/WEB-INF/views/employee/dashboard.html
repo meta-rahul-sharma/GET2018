@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Dashboard</title>
+</head>
+<body>
+	<h1>Welcome</h1>
+	<a th:href="@{addProfile?(email=${email})}">Edit Profile</a>
+	<br />
+	<a th:href="@{searchEmployee}">Search Employee</a>
+	<br />
+	<a href="../logout">Logout</a>
+</body>
+</html>
