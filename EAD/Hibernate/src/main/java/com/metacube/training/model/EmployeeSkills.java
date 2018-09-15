@@ -1,12 +1,21 @@
 package com.metacube.training.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author Rahul Sharma
+ * Pojo for Employee Services
+ *
+ */
 @Entity
 @Table(name = "Employee_Skills")
 public class EmployeeSkills {
@@ -16,11 +25,11 @@ public class EmployeeSkills {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "skill_code")
-	private int skillCode;
-	
-	@Column(name = "emp_code")
-	private String empCode;
+    @Column(name = "emp_code")
+    private String employeeCode;
+    
+    @Column(name = "skill_code")
+    private int skillCode;
 
 	/**
 	 * @return the id
@@ -37,6 +46,20 @@ public class EmployeeSkills {
 	}
 
 	/**
+	 * @return the employeeCode
+	 */
+	public String getEmployeeCode() {
+		return employeeCode;
+	}
+
+	/**
+	 * @param employeeCode the employeeCode to set
+	 */
+	public void setEmployeeCode(String employeeCode) {
+		this.employeeCode = employeeCode;
+	}
+
+	/**
 	 * @return the skillCode
 	 */
 	public int getSkillCode() {
@@ -48,19 +71,5 @@ public class EmployeeSkills {
 	 */
 	public void setSkillCode(int skillCode) {
 		this.skillCode = skillCode;
-	}
-
-	/**
-	 * @return the empCode
-	 */
-	public String getEmpCode() {
-		return empCode;
-	}
-
-	/**
-	 * @param empCode the empCode to set
-	 */
-	public void setEmpCode(String empCode) {
-		this.empCode = empCode;
 	}
 }

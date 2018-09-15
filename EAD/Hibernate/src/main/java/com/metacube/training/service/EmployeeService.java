@@ -8,7 +8,7 @@ import com.metacube.training.model.Employee;
 
 public interface EmployeeService {
 
-	public boolean addEmployee(PreSignupTO preSignupTO);
+	public void addEmployee(PreSignupTO preSignupTO);
 	
 	public List<Employee> getAllEmployees();
 	

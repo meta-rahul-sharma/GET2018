@@ -34,11 +34,6 @@ public class JobDAOImpl implements JobDAO{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	private final String SQL_FIND_JOB = "select * from job_title where job_code = ?";
-	private final String SQL_DELETE_JOB = "delete from job_title where job_code = ?";
-	private final String SQL_UPDATE_JOB = "update job_title set job_title = ? where job_code = ?";
-	private final String SQL_GET_ALL = "select * from Job_Title";
-	private final String SQL_INSERT_JOB = "insert into Job_Title(job_title) values(?)";
 
 	@Override
 	public JobTitle getJobByCode(int code) {

@@ -31,17 +31,29 @@ public class EmployeeController {
 	@Autowired
 	SkillService skillService;
 	
+	/**
+	 * @return login page of employee
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		
 		return "employee/login";
 	}
 	
+	/**
+	 * @param username
+	 * @param password
+	 * @return dashboard of employee if true else login page
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(@RequestParam("username") String username, 
 			@RequestParam("password") String password){
 		
 		String view;
+		
+		if(username == "") {
+			return new ModelAndView("employee/login");
+		}
 		
 		if(employeeService.isValidLogin(username, password)) {
 			view = "employee/dashboard";
@@ -53,14 +65,38 @@ public class EmployeeController {
 		return new ModelAndView(view, "email", username);
 	}
 
-	@RequestMapping(value = "/editProfile", method = RequestMethod.GET)
+	/**
+	 * @param email
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/addProfile", method = RequestMethod.GET)
 	public ModelAndView addEmployee(@RequestParam String email, Model model){
 		
 		model.addAttribute("listOfSkills", skillService.getAllSkills());
 		return new ModelAndView("employee/editProfile", "employee", employeeService.getEmployeeByEmail(email));
 	}
 	
-	@RequestMapping(value = "/editProfile", method = RequestMethod.POST)
+	/**
+	 * @param employeeCode
+	 * @param firstName
+	 * @param middleName
+	 * @param lastName
+	 * @param email
+	 * @param dob
+	 * @param gender
+	 * @param primaryContact
+	 * @param secondaryContact
+	 * @param skypeId
+	 * @param skills
+	 * @param oldPassword
+	 * @param password
+	 * @param confirmPassword
+	 * @param enabled
+	 * @return
+	 * @throws ParseException
+	 */
+	@RequestMapping(value = "/addProfile", method = RequestMethod.POST)
 	public ModelAndView addEmployee(@RequestParam("employeeCode") String employeeCode, @RequestParam("firstName") String firstName, @RequestParam("middleName") String middleName, 
 			@RequestParam("lastName") String lastName, @RequestParam("email") String email, @RequestParam("dob") java.sql.Date dob, 
 			@RequestParam("gender") char gender, @RequestParam("primaryContact") String primaryContact, @RequestParam("secondaryContact") String secondaryContact,
@@ -93,12 +129,20 @@ public class EmployeeController {
 		return new ModelAndView("employee/dashboard", "email", email);
 	}
 	
+	/**
+	 * @return to search employee page
+	 */
 	@RequestMapping(value = "/searchEmployee", method = RequestMethod.GET)
 	public ModelAndView searchEmployee(){
 		
 		return new ModelAndView("employee/searchEmployee");
 	}
 	
+	/**
+	 * @param criteria
+	 * @param keyword
+	 * @return to searchedEmployee page
+	 */
 	@RequestMapping(value = "/searchEmployee", method = RequestMethod.POST)
 	public ModelAndView searchEmployee(@RequestParam("criteria") String criteria, @RequestParam("keyword") String keyword){
 		if(!keyword.isEmpty() && keyword != null) {
@@ -109,6 +153,10 @@ public class EmployeeController {
 		}
 	}
 	
+	/**
+	 * @param employeeCode
+	 * @return to viewEmployee page
+	 */
 	@RequestMapping(value = "/viewEmployee", method = RequestMethod.GET)
 	public ModelAndView viewEmployee(@RequestParam String employeeCode){
 		

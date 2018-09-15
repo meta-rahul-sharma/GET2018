@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 /**
  * @author Rahul Sharma
- *
+ * Pojo for skills in database
  */
 @Entity
 @Table(name = "Skills")

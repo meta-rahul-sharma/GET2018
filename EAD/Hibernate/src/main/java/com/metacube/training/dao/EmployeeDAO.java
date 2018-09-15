@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.metacube.training.dto.PreSignupTO;
 import com.metacube.training.model.Employee;
+import com.metacube.training.model.EmployeeSkills;
+import com.metacube.training.model.JobDetails;
 import com.metacube.training.model.Skill;
 
 /**
@@ -12,7 +14,7 @@ import com.metacube.training.model.Skill;
  */
 public interface EmployeeDAO {
 
-	public boolean preSignup(PreSignupTO preSignupTO);
+	public void preSignup(Employee employee, JobDetails jobDetails);
 	
 	public List<Employee> getAllEmployees();
 	
@@ -32,5 +34,5 @@ public interface EmployeeDAO {
 	
 	public Employee getEmployeeByEmail(String email);
 	
-	public void addSkill(Skill skill, String employeeCode);
+	public void addSkills(EmployeeSkills skill);
 }

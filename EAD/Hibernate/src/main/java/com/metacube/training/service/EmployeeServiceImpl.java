@@ -8,8 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.metacube.training.dao.EmployeeDAO;
+import com.metacube.training.dao.ProjectDAO;
+import com.metacube.training.dao.SkillDAO;
 import com.metacube.training.dto.PreSignupTO;
 import com.metacube.training.model.Employee;
+import com.metacube.training.model.EmployeeSkills;
+import com.metacube.training.model.JobDetails;
+import com.metacube.training.model.Skill;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -18,25 +23,87 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private EmployeeDAO employeeDao;
 	
 	@Autowired
+	private SkillDAO skillDao;
+	
+	@Autowired
+	private ProjectDAO projectDao;
+	
+	@Autowired
 	private SkillService skillService;
 	
 	
 	
-	public boolean addEmployee(PreSignupTO preSignupTO) {
+public void addEmployee(PreSignupTO preSignupTO) {
 		
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(preSignupTO.getDoj());
 		int year = calendar.get(Calendar.YEAR);
 		
 		preSignupTO.setEmployeeCode(generateEmployeeCode(year));
+		System.out.println("EmployeeService "+ preSignupTO.getEmployeeCode());
+		Employee employee = new Employee();
+		employee.setEmployeeCode(preSignupTO.getEmployeeCode());
+		employee.setFirstName(preSignupTO.getFirstName());
+		employee.setMiddleName(preSignupTO.getMiddleName());
+		employee.setLastName(preSignupTO.getLastName());
+		employee.setEmail(preSignupTO.getEmail());
+		employee.setDob(preSignupTO.getDob());
+		employee.setGender(preSignupTO.getGender());
 		
-		return employeeDao.preSignup(preSignupTO);
+		JobDetails jobDetails = new JobDetails();
+		
+		if(preSignupTO.getReportingMgr() != null) {
+		jobDetails.setReportingMgr(employeeDao.getEmployeeByCode(preSignupTO.getReportingMgr()));
+		} else {
+			jobDetails.setReportingMgr(null);
+		}
+		
+		if(preSignupTO.getTeamLead() != null) {
+			jobDetails.setTeamLead(employeeDao.getEmployeeByCode(preSignupTO.getTeamLead()));
+		} else {
+				jobDetails.setTeamLead(null);
+		}
+		
+		jobDetails.setDateOfJoining(preSignupTO.getDoj());
+		
+		if(preSignupTO.getProjectId() != 0) {
+			jobDetails.setProjectId(projectDao.getProjectById(preSignupTO.getProjectId()));
+		} else {
+			jobDetails.setProjectId(null);
+		}
+		
+		jobDetails.setEmployeeCode(employee);
+        
+		employeeDao.preSignup(employee, jobDetails);
 	}
 
 
 	public List<Employee> getAllEmployees() {
 		
 		return employeeDao.getAllEmployees();
+	}
+
+
+	public List<Employee> searchEmployee(String criteria, String keyword) {
+		
+		List<Employee> listOfEmployees = null;
+		
+		switch (criteria) {
+			
+			case "NAME" : listOfEmployees = employeeDao.searchByName(keyword);
+						  break;
+						  
+			case "PROJECT" : listOfEmployees = employeeDao.searchByProject((int)Integer.parseInt(keyword));
+							 break;
+							 
+			case "SKILL" : listOfEmployees = employeeDao.searchBySkills(keyword);
+						   break;
+						   
+			case "EXPERIENCE" : listOfEmployees = employeeDao.searchByExperience(Double.parseDouble(keyword));
+								break;
+		}
+		
+		return listOfEmployees;
 	}
 	
 
@@ -69,12 +136,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	
 	public void addSkills(String[] skills, String employeeCode) {
-		
-		for(String skill: skills)
+				
+		for(String skillName: skills)
 		{
-			if(!"n/a".equals(skill))
+			if(!"n/a".equals(skillName))
 			{
-				employeeDao.addSkill(skillService.getSkillByName(skill), employeeCode);
+			    Skill skill = skillService.getSkillByName(skillName);
+			    EmployeeSkills employeeSkill = new EmployeeSkills();
+			    employeeSkill.setEmployeeCode(employeeCode);
+			    employeeSkill.setSkillCode(skill.getId());
+				employeeDao.addSkills(employeeSkill);
 			}
 				
 		}
@@ -96,33 +167,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	        Arrays.sort(codes);
 	        employeeCode = "E" + year + "/" + (codes[size - 1] + 1);
 		}
-		else {
+		else
 		    employeeCode = "E" + year + "/" + 1;
-		}
-		
+		System.out.println(employeeCode);
 		return employeeCode;
 	}
-
-
-	public List<Employee> searchEmployee(String criteria, String keyword) {
-		List<Employee> listOfEmployees = null;
-		
-		switch (criteria) {
-			
-			case "NAME" : listOfEmployees = employeeDao.searchByName(keyword);
-						  break;
-						  
-			case "PROJECT" : listOfEmployees = employeeDao.searchByProject(Integer.parseInt(keyword));
-							 break;
-							 
-			case "SKILL" : listOfEmployees = employeeDao.searchBySkills(keyword);
-						   break;
-						   
-			case "EXPERIENCE" : listOfEmployees = employeeDao.searchByExperience(Double.parseDouble(keyword));
-								break;
-		}
-		
-		return listOfEmployees;
-	}
-
 }

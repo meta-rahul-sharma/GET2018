@@ -17,7 +17,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 /**
  * @author Rahul Sharma
- *
+ * Pojo for project in database
  */
 
 @Entity

@@ -4,12 +4,13 @@ import java.util.Date;
 
 /**
  * @author Rahul Sharma
- *
+ * Used as data transfer object
  */
 public class PreSignupTO {
 
 	private String employeeCode, firstName, middleName, lastName, email, reportingMgr, TeamLead;
 	private Date dob, doj;
+	
 	private char gender;
 	private Integer projectId;
 	

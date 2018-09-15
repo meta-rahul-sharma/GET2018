@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 /**
  * @author Rahul Sharma
- *
+ * Pojo for job title in database
  */
 @Entity
 @Table(name = "Job_Title")

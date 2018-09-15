@@ -22,7 +22,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * @author Rahul Sharma
- *
+ * Pojo for Employee in database
  */
 @Entity
 @Table(name = "Employee")
@@ -78,8 +78,6 @@ public class Employee {
 	    )
 	Set<Skill> skills = new HashSet<>();
 	
-	@OneToMany(mappedBy="employeeCode", cascade = CascadeType.ALL)
-    private Set<JobDetails> items;
 	
 	/**
 	 * @return the employeeCode

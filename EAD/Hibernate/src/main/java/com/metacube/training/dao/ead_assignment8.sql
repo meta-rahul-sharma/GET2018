@@ -9,8 +9,8 @@ CREATE TABLE Employee (
     last_name VARCHAR(25),#not mentioned
     dob DATE NOT NULL,
     gender CHAR(1) NOT NULL,
-    primary_contact_no CHAR(10),
-    secondary_contact_no CHAR(10),
+    primary_contact_no VARCHAR(10),
+    secondary_contact_no VARCHAR(10),
     email VARCHAR(100) NOT NULL UNIQUE,
     skype_id VARCHAR(50),
     profile_picture VARCHAR(70),

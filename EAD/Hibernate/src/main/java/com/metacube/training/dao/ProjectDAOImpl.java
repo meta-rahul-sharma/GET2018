@@ -30,21 +30,8 @@ import com.metacube.training.model.Skill;
 @Transactional
 public class ProjectDAOImpl implements ProjectDAO {
 
-	private JdbcTemplate jdbcTemplate;
-
-	/*@Autowired
-	public ProjectDAOImpl(DataSource dataSource) {
-		jdbcTemplate = new JdbcTemplate(dataSource);
-	}*/
-
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	private final String SQL_FIND_PROJECT = "select * from project where id = ?";
-	private final String SQL_DELETE_PROJECT = "delete from project where id = ?";
-	private final String SQL_UPDATE_PROJECT = "update project set name = ?, description = ?, start_date  = ?, end_date  = ? where id = ?";
-	private final String SQL_GET_ALL = "select * from project";
-	private final String SQL_INSERT_PROJECT = "insert into project(name, description, start_date, end_date) values(?,?,?,?)";
 
 	public Project getProjectById(int id) {
 		@SuppressWarnings("deprecation")

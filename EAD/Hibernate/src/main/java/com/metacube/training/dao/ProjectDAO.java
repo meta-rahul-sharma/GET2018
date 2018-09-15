@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.metacube.training.model.Project;
 
+/**
+ * 
+ * @author Rahul Sharma
+ *
+ */
 public interface ProjectDAO {
 	
 	
