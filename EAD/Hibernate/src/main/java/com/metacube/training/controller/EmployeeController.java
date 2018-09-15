@@ -114,7 +114,7 @@ public class EmployeeController {
 		employee.setPrimaryContact(primaryContact);
 		employee.setSecondaryContact(secondaryContact);
 		employee.setSkypeId(skypeId);
-		employee.setEnabled(enabled);
+		employee.setEnabled(true);
 		
 		if(!"".equals(password) && password.equals(confirmPassword)) {
 			employee.setPassword(password);
@@ -122,10 +122,9 @@ public class EmployeeController {
 		else {
 			employee.setPassword(oldPassword);
 		}
-		
-		employeeService.addSkills(skills, employeeCode);
+	
 		employeeService.updateEmployee(employee);
-		
+		employeeService.addSkills(skills, employee);
 		return new ModelAndView("employee/dashboard", "email", email);
 	}
 	

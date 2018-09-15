@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -25,11 +26,13 @@ public class EmployeeSkills {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-    @Column(name = "emp_code")
-    private String employeeCode;
+	@ManyToOne(cascade = { CascadeType.ALL })
+    @JoinColumn(name = "emp_code")
+    private Employee employeeCode;
     
-    @Column(name = "skill_code")
-    private int skillCode;
+	@ManyToOne(cascade = { CascadeType.ALL })
+    @JoinColumn(name = "skill_code")
+    private Skill skillCode;
 
 	/**
 	 * @return the id
@@ -48,28 +51,28 @@ public class EmployeeSkills {
 	/**
 	 * @return the employeeCode
 	 */
-	public String getEmployeeCode() {
+	public Employee getEmployeeCode() {
 		return employeeCode;
 	}
 
 	/**
 	 * @param employeeCode the employeeCode to set
 	 */
-	public void setEmployeeCode(String employeeCode) {
+	public void setEmployeeCode(Employee employeeCode) {
 		this.employeeCode = employeeCode;
 	}
 
 	/**
 	 * @return the skillCode
 	 */
-	public int getSkillCode() {
+	public Skill getSkillCode() {
 		return skillCode;
 	}
 
 	/**
 	 * @param skillCode the skillCode to set
 	 */
-	public void setSkillCode(int skillCode) {
+	public void setSkillCode(Skill skillCode) {
 		this.skillCode = skillCode;
 	}
 }

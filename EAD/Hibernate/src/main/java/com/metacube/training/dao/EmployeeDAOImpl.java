@@ -56,39 +56,56 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 
 	public List<Employee> searchByName(String name) {
-		TypedQuery<Employee> query = sessionFactory.getCurrentSession().createQuery("FROM Employee "
-			+ "WHERE concat(first_name, ' ', middle_name, ' ', last_name) LIKE concat('%', ?1, '%')");
-		query.setParameter(1, name);
+		System.out.println(name);
+		TypedQuery<Employee> query = sessionFactory.getCurrentSession().createQuery("from Employee "
+		           + "where concat(firstName, ' ', middleName, ' ', lastName) like concat('%', :name, '%')");
+		       query.setParameter("name", name);
 		return query.getResultList();
 	}
 
 
 	public List<Employee> searchByProject(int projectId) {
-		List<Employee> listOfEmployee = new ArrayList<Employee>();
-	    Criteria c = sessionFactory.getCurrentSession().createCriteria(JobDetails.class, "jobDetail");
-	    c.createAlias("jobDetail.employeeCode", "employee");
-	    c.add(Restrictions.eq("jobDetail.projectId", projectDao.getProjectById(projectId)));
-	    c = c.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
-	    for(Object jobDetail: c.list())
-	    {
-	        JobDetails j = (JobDetails)jobDetail;
-	        listOfEmployee.add(j.getEmployeeCode());
-	    }
-	    return listOfEmployee;
+		   List<Employee> listOfEmployee = new ArrayList<Employee>();
+		   Criteria c = sessionFactory.getCurrentSession().createCriteria(JobDetails.class, "jobDetail");
+		   c.createAlias("jobDetail.employeeCode", "employee");
+		   c.add(Restrictions.eq("jobDetail.projectId", projectDao.getProjectById(projectId)));
+		   c = c.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+		   for(Object jobDetail: c.list())
+		   {
+		       JobDetails j = (JobDetails)jobDetail;
+		       listOfEmployee.add(j.getEmployeeCode());
+		   }
+		   return listOfEmployee;
 	}
 
 
 	public List<Employee> searchBySkills(String skill) {
-		TypedQuery<Employee> query = sessionFactory.getCurrentSession().createQuery("from Employee e join EmployeeSkill es join Skill s "
-                + "where s.skill_name LIKE concat('%', :skill, '%')");
-        query.setParameter("skill", skill);
-        return query.getResultList();
+	  List<Employee> listOfEmployee = new ArrayList<Employee>();
+       Criteria c = sessionFactory.getCurrentSession().createCriteria(EmployeeSkills.class, "employee");
+       c.createAlias("employee.skillCode", "skill");
+       c.add(Restrictions.like("skill.name", skill + "%"));
+
+       for(Object empSkill: c.list())
+       {
+           EmployeeSkills es = (EmployeeSkills) empSkill;
+           listOfEmployee.add(es.getEmployeeCode());
+       }
+       return listOfEmployee;
 	}
 
 
 	public List<Employee> searchByExperience(double experience) {
-		TypedQuery<Employee> query = sessionFactory.getCurrentSession().createQuery("from Employee where ");
-		return query.getResultList();
+		List<Employee> listOfEmployee = new ArrayList<Employee>();
+        Criteria c = sessionFactory.getCurrentSession().createCriteria(JobDetails.class, "jobDetail");
+        c.createAlias("jobDetail.employeeCode", "employee");
+        c.add(Restrictions.eq("jobDetail.totalExperience", experience));
+        c = c.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+        for(Object jobDetail: c.list())
+        {
+            JobDetails j = (JobDetails)jobDetail;
+            listOfEmployee.add(j.getEmployeeCode());
+        }
+       return listOfEmployee;
 	}
 
 

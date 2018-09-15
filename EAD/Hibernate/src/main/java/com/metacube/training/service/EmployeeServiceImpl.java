@@ -40,7 +40,6 @@ public void addEmployee(PreSignupTO preSignupTO) {
 		int year = calendar.get(Calendar.YEAR);
 		
 		preSignupTO.setEmployeeCode(generateEmployeeCode(year));
-		System.out.println("EmployeeService "+ preSignupTO.getEmployeeCode());
 		Employee employee = new Employee();
 		employee.setEmployeeCode(preSignupTO.getEmployeeCode());
 		employee.setFirstName(preSignupTO.getFirstName());
@@ -49,6 +48,7 @@ public void addEmployee(PreSignupTO preSignupTO) {
 		employee.setEmail(preSignupTO.getEmail());
 		employee.setDob(preSignupTO.getDob());
 		employee.setGender(preSignupTO.getGender());
+		employee.setPassword("12345");
 		
 		JobDetails jobDetails = new JobDetails();
 		
@@ -135,7 +135,7 @@ public void addEmployee(PreSignupTO preSignupTO) {
 	}
 
 	
-	public void addSkills(String[] skills, String employeeCode) {
+	public void addSkills(String[] skills, Employee employeeCode) {
 				
 		for(String skillName: skills)
 		{
@@ -144,8 +144,8 @@ public void addEmployee(PreSignupTO preSignupTO) {
 			    Skill skill = skillService.getSkillByName(skillName);
 			    EmployeeSkills employeeSkill = new EmployeeSkills();
 			    employeeSkill.setEmployeeCode(employeeCode);
-			    employeeSkill.setSkillCode(skill.getId());
-				employeeDao.addSkills(employeeSkill);
+			    employeeSkill.setSkillCode(skillService.getSkillById(skill.getId()));
+				/*employeeDao.addSkills(employeeSkill);*/
 			}
 				
 		}
@@ -172,4 +172,5 @@ public void addEmployee(PreSignupTO preSignupTO) {
 		System.out.println(employeeCode);
 		return employeeCode;
 	}
+
 }

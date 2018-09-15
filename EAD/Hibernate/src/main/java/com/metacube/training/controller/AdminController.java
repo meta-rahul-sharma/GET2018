@@ -309,6 +309,11 @@ public class AdminController {
 		return new ModelAndView("admin/dashboard");
 	}
 	
+	/**
+	 * To get all projects
+	 * @param model
+	 * @return projects page
+	 */
 	@RequestMapping(value = "/allProjects", method = RequestMethod.GET)
 	public ModelAndView allProjects(Model model){
 		List<Project> projects = projectService.getAllProjects();
@@ -316,6 +321,11 @@ public class AdminController {
 		return new ModelAndView("admin/projects");
 	}
 	
+	/**
+	 * To get all skills
+	 * @param model
+	 * @return skills page
+	 */
 	@RequestMapping(value = "/allSkills", method = RequestMethod.GET)
 	public ModelAndView allSkills(Model model){
 		List<Skill> skills = skillService.getAllSkills();
@@ -323,6 +333,11 @@ public class AdminController {
 		return new ModelAndView("admin/skills");
 	}
 	
+	/**
+	 * to get all jobs
+	 * @param model
+	 * @return jobs page
+	 */
 	@RequestMapping(value = "/allJobs", method = RequestMethod.GET)
 	public ModelAndView allJobs(Model model){
 		List<JobTitle> jobs = jobService.getAllJobTitle();

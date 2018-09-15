@@ -8,11 +8,11 @@
 	
 	<h1>Edit Profile</h1>
 
-	<form th:action="@{editProfile}" method="post">
+	<form th:action="@{addProfile}" method="post">
 		<table>
 			<tr>
 				<td>Employee Code :</td>
-				<td><input type="text" name="employeeCode" th:value="${employee.employeeCode}"></td>
+				<td><input type="hidden" name="employeeCode" th:value="${employee.employeeCode}"></td>
 			</tr>
 			<tr>
 				<td>First Name:</td>
@@ -32,7 +32,7 @@
 			</tr>
 			<tr>
 				<td>Gender:</td>
-				<td><input type="radio" name="gender" value="m"> Male</td>
+				<td><input type="radio" name="gender" value="m" checked> Male</td>
   				<td><input type="radio" name="gender" value="f"> Female</td>
   				<td><input type="radio" name="gender" value="o"> Other</td>
 			</tr>

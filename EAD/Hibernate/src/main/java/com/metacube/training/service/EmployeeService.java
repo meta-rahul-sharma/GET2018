@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.metacube.training.dto.PreSignupTO;
 import com.metacube.training.model.Employee;
+import com.metacube.training.model.Skill;
 
 
 public interface EmployeeService {
@@ -22,5 +23,5 @@ public interface EmployeeService {
 	
 	public Employee getEmployeeByEmail(String email);
 	
-	public void addSkills(String[] skills, String employeeCode);
+	public void addSkills(String[] skills, Employee employee);
 }
