@@ -4,11 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.metacube.training.dao.JobDAO;
-import com.metacube.training.dao.JobDAOImpl;
-import com.metacube.training.dao.ProjectDAO;
 import com.metacube.training.model.JobTitle;
+import com.metacube.training.repository.JobDetailsRepository;
+import com.metacube.training.repository.JobTitleRepository;
 
 /**
  * @author Rahul Sharma
@@ -18,31 +16,31 @@ import com.metacube.training.model.JobTitle;
 public class JobServiceImpl implements JobService {
 
 	@Autowired
-	private JobDAO jobDao;
+	private JobTitleRepository<JobTitle> jobRepository;
 
 	@Override
 	public JobTitle getJobByCode(int id) {
-		return jobDao.getJobByCode(id);
+		return jobRepository.findByJobCode(id);
 	}
 
 	@Override
 	public List<JobTitle> getAllJobTitle() {
-		return jobDao.getAllJobTitle();
+		return jobRepository.findAll();
 	}
 
 	@Override
 	public void deleteJobTitle(JobTitle job) {
-		jobDao.deleteJobTitle(job);
+		jobRepository.delete(job);
 	}
 
 	@Override
 	public void updateJobTitle(JobTitle job) {
-		jobDao.updateJobTitle(job);
+		jobRepository.save(job);
 	}
 
 	@Override
 	public void createJobTitle(JobTitle job) {
-		jobDao.createJobTitle(job);
+		jobRepository.save(job);
 	}
 
 }

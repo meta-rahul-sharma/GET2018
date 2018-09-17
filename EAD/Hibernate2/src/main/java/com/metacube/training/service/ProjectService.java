@@ -16,7 +16,7 @@ public interface ProjectService {
 
 	void updateProject(Project project);
 
-	boolean createProject(Project project);
+	void createProject(Project project);
 
 	void deleteProject(int id);
 

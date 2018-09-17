@@ -4,47 +4,46 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.metacube.training.dao.ProjectDAO;
 import com.metacube.training.model.Project;
+import com.metacube.training.repository.ProjectRepository;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
 
 	@Autowired
-	private ProjectDAO projectDAO;
+	private ProjectRepository<Project> projectRepository;
 	
 	
 	@Override
 	public Project getProjectById(int id) {
 		
-		return projectDAO.getProjectById(id);
+		return projectRepository.findByProjectId(id);
 	}
 
 	@Override
 	public List<Project> getAllProjects() {
-		return projectDAO.getAllProjects();
+		return projectRepository.findAll();
 	}
 
 	@Override
 	public void deleteProject(int id) {
-		Project project = projectDAO.getProjectById(id);
-		projectDAO.deleteProject(project);
+		Project project = projectRepository.findByProjectId(id);
+		projectRepository.delete(project);
 	}
 
 	@Override
 	public void updateProject(Project project) {
-		projectDAO.updateProject(project);
+		projectRepository.save(project);
 	}
 
 	@Override
-	public boolean createProject(Project project) {
+	public void createProject(Project project) {
 		
-		return projectDAO.createProject(project);
+		projectRepository.save(project);
 	}
 
 	@Override
 	public void deleteProject(Project project) {
-		projectDAO.deleteProject(project);
+		projectRepository.delete(project);
 	}
 }

@@ -4,9 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.metacube.training.dao.SkillDAO;
 import com.metacube.training.model.Skill;
+import com.metacube.training.repository.SkillRepository;
 
 /**
  * @author Rahul Sharma
@@ -16,34 +15,34 @@ import com.metacube.training.model.Skill;
 public class SkillServiceImpl implements SkillService {
 
 	@Autowired
-	private SkillDAO skillDao;
+	private SkillRepository<Skill> skillRepository;
 	
 	@Override
 	public Skill getSkillById(int id) {
-		return skillDao.getSkillById(id);
+		return skillRepository.findById(id);
 	}
 
 	@Override
 	public List<Skill> getAllSkills() {
-		return skillDao.getAllSkills();
+		return skillRepository.findAll();
 	}
 
 	@Override
 	public void updateSkill(Skill skill) {
-		skillDao.updateSkill(skill);
+		skillRepository.save(skill);
 	}
 
 	@Override
 	public void createSkill(Skill skill) {
-		skillDao.createSkill(skill);
+		skillRepository.save(skill);
 	}
 
 	public void deleteSkill(Skill skill) {
-		skillDao.deleteSkill(skill);
+		skillRepository.delete(skill);
 	}
 
 	public Skill getSkillByName(String skill) {
-		return skillDao.getSkillByName(skill);
+		return skillRepository.findByName(skill);
 	}
 
 }

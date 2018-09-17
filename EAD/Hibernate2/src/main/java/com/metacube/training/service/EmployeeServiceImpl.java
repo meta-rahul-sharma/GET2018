@@ -7,32 +7,44 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.metacube.training.dao.EmployeeDAO;
-import com.metacube.training.dao.ProjectDAO;
-import com.metacube.training.dao.SkillDAO;
 import com.metacube.training.dto.PreSignupTO;
 import com.metacube.training.model.Employee;
 import com.metacube.training.model.EmployeeSkills;
 import com.metacube.training.model.JobDetails;
+import com.metacube.training.model.JobTitle;
+import com.metacube.training.model.Project;
 import com.metacube.training.model.Skill;
+import com.metacube.training.repository.EmployeeRepository;
+import com.metacube.training.repository.EmployeeSkillsRepository;
+import com.metacube.training.repository.JobDetailsRepository;
+import com.metacube.training.repository.ProjectRepository;
+import com.metacube.training.repository.SkillRepository;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Autowired
-	private EmployeeDAO employeeDao;
+	private EmployeeRepository<Employee> employeeRepository;
 	
 	@Autowired
-	private SkillDAO skillDao;
+	private SkillRepository<Skill> skillRepository;
 	
 	@Autowired
-	private ProjectDAO projectDao;
+	private ProjectRepository<Project> projectRepository;
 	
 	@Autowired
 	private SkillService skillService;
 	
+	@Autowired
+	private JobDetailsRepository<JobTitle> jobDetailsRepository;
+	
+	@Autowired
+	private EmployeeSkillsRepository<EmployeeSkills> employeeSkillsRepository;
 	
 	
+/**
+ * To add a employee	
+ */
 public void addEmployee(PreSignupTO preSignupTO) {
 		
 		Calendar calendar = Calendar.getInstance();
@@ -49,17 +61,18 @@ public void addEmployee(PreSignupTO preSignupTO) {
 		employee.setDob(preSignupTO.getDob());
 		employee.setGender(preSignupTO.getGender());
 		employee.setPassword("12345");
+		employee.setEnabled(true);
 		
 		JobDetails jobDetails = new JobDetails();
 		
 		if(preSignupTO.getReportingMgr() != null) {
-		jobDetails.setReportingMgr(employeeDao.getEmployeeByCode(preSignupTO.getReportingMgr()));
+		jobDetails.setReportingMgr(employeeRepository.findByEmployeeCode(preSignupTO.getReportingMgr()));
 		} else {
 			jobDetails.setReportingMgr(null);
 		}
 		
 		if(preSignupTO.getTeamLead() != null) {
-			jobDetails.setTeamLead(employeeDao.getEmployeeByCode(preSignupTO.getTeamLead()));
+			jobDetails.setTeamLead(employeeRepository.findByEmployeeCode(preSignupTO.getTeamLead()));
 		} else {
 				jobDetails.setTeamLead(null);
 		}
@@ -67,39 +80,49 @@ public void addEmployee(PreSignupTO preSignupTO) {
 		jobDetails.setDateOfJoining(preSignupTO.getDoj());
 		
 		if(preSignupTO.getProjectId() != 0) {
-			jobDetails.setProjectId(projectDao.getProjectById(preSignupTO.getProjectId()));
+			jobDetails.setProjectId(projectRepository.findByProjectId(preSignupTO.getProjectId()));
 		} else {
 			jobDetails.setProjectId(null);
 		}
 		
 		jobDetails.setEmployeeCode(employee);
         
-		employeeDao.preSignup(employee, jobDetails);
+		employeeRepository.save(employee);
+		jobDetailsRepository.save(jobDetails);
 	}
 
-
+	/**
+	 * To get all employees in the table
+	 */
 	public List<Employee> getAllEmployees() {
 		
-		return employeeDao.getAllEmployees();
+		return employeeRepository.findAll();
 	}
 
 
+	/**
+	 * To search employee by different criteria like:
+	 * 1. name
+	 * 2. skill
+	 * 3. project
+	 * 4. experience 
+	 */
 	public List<Employee> searchEmployee(String criteria, String keyword) {
 		
 		List<Employee> listOfEmployees = null;
 		
 		switch (criteria) {
 			
-			case "NAME" : listOfEmployees = employeeDao.searchByName(keyword);
+			case "NAME" : listOfEmployees = employeeRepository.searchByName(keyword);
 						  break;
 						  
-			case "PROJECT" : listOfEmployees = employeeDao.searchByProject((int)Integer.parseInt(keyword));
+			case "PROJECT" : listOfEmployees = employeeRepository.searchByProjectId((int)Integer.parseInt(keyword));
 							 break;
 							 
-			case "SKILL" : listOfEmployees = employeeDao.searchBySkills(keyword);
+			case "SKILL" : listOfEmployees = employeeRepository.searchBySkills(keyword);
 						   break;
 						   
-			case "EXPERIENCE" : listOfEmployees = employeeDao.searchByExperience(Double.parseDouble(keyword));
+			case "EXPERIENCE" : listOfEmployees = employeeRepository.searchByExperience(Double.parseDouble(keyword));
 								break;
 		}
 		
@@ -107,18 +130,27 @@ public void addEmployee(PreSignupTO preSignupTO) {
 	}
 	
 
+	/**
+	 * To get employee of it's code
+	 */
 	public Employee getEmployeeByCode(String employeeCode) {
 		
-		return employeeDao.getEmployeeByCode(employeeCode);
+		return employeeRepository.findByEmployeeCode(employeeCode);
 	}
 	
 
+	/**
+	 * To update Employee Details
+	 */
 	public void updateEmployee(Employee employee) {
 		
-		employeeDao.updateEmployee(employee);
+		employeeRepository.save(employee);
 	}
 
 
+	/**
+	 * To check if login is valid or not
+	 */
 	public boolean isValidLogin(String username, String password) {
 		
 		boolean valid = false;
@@ -129,12 +161,17 @@ public void addEmployee(PreSignupTO preSignupTO) {
 		return valid;
 	}
 	
+	/**
+	 * To get employee details by it's email address
+	 */
 	public Employee getEmployeeByEmail(String email) {
 		
-		return employeeDao.getEmployeeByEmail(email);
+		return employeeRepository.findByEmail(email);
 	}
 
-	
+	/**
+	 * To add multiple skills of a employee
+	 */
 	public void addSkills(String[] skills, Employee employeeCode) {
 				
 		for(String skillName: skills)
@@ -145,13 +182,18 @@ public void addEmployee(PreSignupTO preSignupTO) {
 			    EmployeeSkills employeeSkill = new EmployeeSkills();
 			    employeeSkill.setEmployeeCode(employeeCode);
 			    employeeSkill.setSkillCode(skillService.getSkillById(skill.getId()));
-				/*employeeDao.addSkills(employeeSkill);*/
+				employeeSkillsRepository.save(employeeSkill);
 			}
 				
 		}
 		
 	}
 	
+	/**
+	 * To generate employee code
+	 * @param year
+	 * @return employee code
+	 */
 	private String generateEmployeeCode(int year) {
 		
 	    String employeeCode;
@@ -169,7 +211,6 @@ public void addEmployee(PreSignupTO preSignupTO) {
 		}
 		else
 		    employeeCode = "E" + year + "/" + 1;
-		System.out.println(employeeCode);
 		return employeeCode;
 	}
 
