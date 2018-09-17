@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Search Results</title>
+</head>
+<body>
+	<h1>Search Results</h1>
+	
+	<table th:if="${not #lists.isEmpty(result)}">
+		<tr>
+			<th>Name</th>
+			<th></th>
+		</tr>
+    	<tr th:each="employee : ${result}">
+    		<td th:if="${employee.enabled} &eq; 'true'">${employee.firstName} ${employee.middleName} ${employee.lastName}</td>
+    		<td></td>
+    		<td th:if="${employee.enabled} &eq; 'true'"><a href="viewEmployee?employeeCode=${employee.employeeCode}">View</a></td>
+    	</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Search Results</title>
+</head>
+<body>
+	<h1>Search Results</h1>
+	
+	<table th:if="${not #lists.isEmpty(result)}">
+		<tr>
+			<th>Name</th>
+			<th></th>
+		</tr>
+    	<tr th:each="employee : ${result}">
+    		<td th:text="${employee.firstName} + ' ' + ${employee.middleName} + ' ' + ${employee.lastName}">Name</td>
+    		<td></td>
+    		<td><a th:href="@{viewEmployee?(employeeCode=${employee.employeeCode})}">View</a></td>
+    		<td><a th:href="@{editEmployee?(employeeCode=${employee.employeeCode})}">Edit</a></td>
+    	</tr>
+	</table>
+</body>
+</html>
