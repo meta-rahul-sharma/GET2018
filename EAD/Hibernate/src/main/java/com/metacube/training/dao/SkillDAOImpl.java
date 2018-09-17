@@ -87,6 +87,9 @@ public class SkillDAOImpl  implements SkillDAO{
 		sessionFactory.getCurrentSession().delete(skill);
 	}
 
+	/**
+	 * To get skil by it's name
+	 */
 	public Skill getSkillByName(String skill) {
 		@SuppressWarnings("unchecked")
 		TypedQuery<Skill> query = sessionFactory.getCurrentSession().createQuery("from Skill where skill_name = :skill");

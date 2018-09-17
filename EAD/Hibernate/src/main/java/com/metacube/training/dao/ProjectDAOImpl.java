@@ -32,7 +32,10 @@ public class ProjectDAOImpl implements ProjectDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-
+	
+	/**
+	 * To get project by id
+	 */
 	public Project getProjectById(int id) {
 		@SuppressWarnings("deprecation")
 		Criteria criteria=sessionFactory.getCurrentSession().createCriteria(Project.class);
@@ -40,6 +43,9 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return (Project) criteria.uniqueResult();
 	}
 
+	/**
+	 * To get all projects
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Project> getAllProjects() {
 		@SuppressWarnings("deprecation")
@@ -47,14 +53,23 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return (List<Project>)criteria.list();
 	}
 
+	/**
+	 * to delete a project
+	 */
 	public void deleteProject(Project person) {
 		sessionFactory.getCurrentSession().delete(person);
 	}
 
+	/**
+	 * to update a project
+	 */
 	public void updateProject(Project person) {
 		sessionFactory.getCurrentSession().update(person);
 	}
 
+	/**
+	 * to create a project
+	 */
 	public boolean createProject(Project person) {
 		boolean created = false;
 		 Session session = sessionFactory.openSession();

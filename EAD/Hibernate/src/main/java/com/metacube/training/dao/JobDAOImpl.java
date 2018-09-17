@@ -35,6 +35,9 @@ public class JobDAOImpl implements JobDAO{
 	private SessionFactory sessionFactory;
 	
 
+	/**
+	 * To get jobtitle by job code
+	 */
 	@Override
 	public JobTitle getJobByCode(int code) {
 		Criteria criteria=sessionFactory.getCurrentSession().createCriteria(JobTitle.class);
@@ -42,6 +45,9 @@ public class JobDAOImpl implements JobDAO{
 		return (JobTitle) criteria.uniqueResult();
 	}
 
+	/**
+	 * To delete job title by it's id
+	 */
 	@Override
 	public void deleteJobTitle(JobTitle id) {
 		 JobTitle jobTitle = (JobTitle ) sessionFactory.getCurrentSession().createCriteria(JobTitle.class)
@@ -49,6 +55,9 @@ public class JobDAOImpl implements JobDAO{
 		 sessionFactory.getCurrentSession().delete(jobTitle);
 	}
 
+	/**
+	 * To update job title
+	 */
 	@Override
 	public void updateJobTitle(JobTitle job) {
 		CriteriaBuilder cb=sessionFactory.getCurrentSession().getCriteriaBuilder();
@@ -59,6 +68,9 @@ public class JobDAOImpl implements JobDAO{
 		sessionFactory.getCurrentSession().createQuery(update);
 	}
 
+	/**
+	 * to create job title
+	 */
 	@Override
 	public boolean createJobTitle(JobTitle job) {
 		boolean created = false;
@@ -80,6 +92,9 @@ public class JobDAOImpl implements JobDAO{
 	      return created;
 	}
 
+	/**
+	 * To get all job titles
+	 */
 	@Override
 	public List<JobTitle> getAllJobTitle() {
 		Criteria criteria=sessionFactory.getCurrentSession().createCriteria(JobTitle.class);

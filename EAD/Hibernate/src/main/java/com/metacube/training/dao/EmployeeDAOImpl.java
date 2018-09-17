@@ -27,7 +27,7 @@ import com.metacube.training.model.Skill;
 
 /**
  * @author Rahul Sharma
- *
+ * Employee dao
  */
 
 @Repository
@@ -42,21 +42,28 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	@Autowired
 	private ProjectDAO projectDao;
 
+	/**
+	 * To get data in employee and jobDetails table
+	 */
 	public void preSignup(Employee employee, JobDetails jobDetails) {
 		 sessionFactory.getCurrentSession().save(employee);
-		 System.out.println("employee added"+jobDetails);
 		 sessionFactory.getCurrentSession().save(jobDetails);
 	}
 
 
+	/**
+	 * To get all employees
+	 */
 	public List<Employee> getAllEmployees() {
 		Criteria criteria=sessionFactory.getCurrentSession().createCriteria(Employee.class);
 		return (List<Employee>)criteria.list();
 	}
 
 
+	/**
+	 * to search employees by name
+	 */
 	public List<Employee> searchByName(String name) {
-		System.out.println(name);
 		TypedQuery<Employee> query = sessionFactory.getCurrentSession().createQuery("from Employee "
 		           + "where concat(firstName, ' ', middleName, ' ', lastName) like concat('%', :name, '%')");
 		       query.setParameter("name", name);
@@ -64,6 +71,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 
+	/**
+	 * To get employee by project id
+	 */
 	public List<Employee> searchByProject(int projectId) {
 		   List<Employee> listOfEmployee = new ArrayList<Employee>();
 		   Criteria c = sessionFactory.getCurrentSession().createCriteria(JobDetails.class, "jobDetail");
@@ -79,6 +89,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 
+	/**
+	 * To get employee by skill name
+	 */
 	public List<Employee> searchBySkills(String skill) {
 	  List<Employee> listOfEmployee = new ArrayList<Employee>();
        Criteria c = sessionFactory.getCurrentSession().createCriteria(EmployeeSkills.class, "employee");
@@ -94,6 +107,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 
+	/**
+	 * To get employee by experience
+	 */
 	public List<Employee> searchByExperience(double experience) {
 		List<Employee> listOfEmployee = new ArrayList<Employee>();
         Criteria c = sessionFactory.getCurrentSession().createCriteria(JobDetails.class, "jobDetail");
@@ -109,6 +125,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 
+	/**
+	 * To get employee by employee code
+	 */
 	public Employee getEmployeeByCode(String employeeCode) {
 		TypedQuery<Employee> query = sessionFactory.getCurrentSession().createQuery("from Employee where emp_code = :employeeCode");
 		query.setParameter("employeeCode", employeeCode);
@@ -116,29 +135,34 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 
+	/**
+	 * to update employee details
+	 */
 	public void updateEmployee(Employee employee) {
 		sessionFactory.getCurrentSession().update(employee);
 	}
 
 
+	/**
+	 * To get employee by email
+	 */
 	public Employee getEmployeeByEmail(String employeeEmail) {
 		TypedQuery<Employee> query = sessionFactory.getCurrentSession().createQuery("from Employee where email = :employeeEmail");
 		query.setParameter("employeeEmail", employeeEmail);
 		return query.getSingleResult();
 	}
 
-
-	public void addSkill(Skill skill, String employeeCode) {
-		sessionFactory.getCurrentSession().save(skill);
-	}
-
-
-	@Override
+	/**
+	 * To add employee skills
+	 */
 	public void addSkills(EmployeeSkills skill) {
 		sessionFactory.getCurrentSession().save(skill);
 	}
 
 
+	/**
+	 * to delete employee
+	 */
 	@Override
 	public void deleteEmployee(Employee employee) {
 		sessionFactory.getCurrentSession().delete(employee);

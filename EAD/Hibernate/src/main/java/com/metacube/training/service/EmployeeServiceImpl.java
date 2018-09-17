@@ -32,7 +32,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private SkillService skillService;
 	
 	
-	
+/**
+ * To add a employee	
+ */
 public void addEmployee(PreSignupTO preSignupTO) {
 		
 		Calendar calendar = Calendar.getInstance();
@@ -49,6 +51,7 @@ public void addEmployee(PreSignupTO preSignupTO) {
 		employee.setDob(preSignupTO.getDob());
 		employee.setGender(preSignupTO.getGender());
 		employee.setPassword("12345");
+		employee.setEnabled(true);
 		
 		JobDetails jobDetails = new JobDetails();
 		
@@ -77,13 +80,22 @@ public void addEmployee(PreSignupTO preSignupTO) {
 		employeeDao.preSignup(employee, jobDetails);
 	}
 
-
+	/**
+	 * To get all employees in the table
+	 */
 	public List<Employee> getAllEmployees() {
 		
 		return employeeDao.getAllEmployees();
 	}
 
 
+	/**
+	 * To search employee by different criteria like:
+	 * 1. name
+	 * 2. skill
+	 * 3. project
+	 * 4. experience 
+	 */
 	public List<Employee> searchEmployee(String criteria, String keyword) {
 		
 		List<Employee> listOfEmployees = null;
@@ -107,18 +119,27 @@ public void addEmployee(PreSignupTO preSignupTO) {
 	}
 	
 
+	/**
+	 * To get employee of it's code
+	 */
 	public Employee getEmployeeByCode(String employeeCode) {
 		
 		return employeeDao.getEmployeeByCode(employeeCode);
 	}
 	
 
+	/**
+	 * To update Employee Details
+	 */
 	public void updateEmployee(Employee employee) {
 		
 		employeeDao.updateEmployee(employee);
 	}
 
 
+	/**
+	 * To check if login is valid or not
+	 */
 	public boolean isValidLogin(String username, String password) {
 		
 		boolean valid = false;
@@ -129,12 +150,17 @@ public void addEmployee(PreSignupTO preSignupTO) {
 		return valid;
 	}
 	
+	/**
+	 * To get employee details by it's email address
+	 */
 	public Employee getEmployeeByEmail(String email) {
 		
 		return employeeDao.getEmployeeByEmail(email);
 	}
 
-	
+	/**
+	 * To add multiple skills of a employee
+	 */
 	public void addSkills(String[] skills, Employee employeeCode) {
 				
 		for(String skillName: skills)
@@ -145,13 +171,18 @@ public void addEmployee(PreSignupTO preSignupTO) {
 			    EmployeeSkills employeeSkill = new EmployeeSkills();
 			    employeeSkill.setEmployeeCode(employeeCode);
 			    employeeSkill.setSkillCode(skillService.getSkillById(skill.getId()));
-				/*employeeDao.addSkills(employeeSkill);*/
+				employeeDao.addSkills(employeeSkill);
 			}
 				
 		}
 		
 	}
 	
+	/**
+	 * To generate employee code
+	 * @param year
+	 * @return employee code
+	 */
 	private String generateEmployeeCode(int year) {
 		
 	    String employeeCode;
@@ -169,7 +200,6 @@ public void addEmployee(PreSignupTO preSignupTO) {
 		}
 		else
 		    employeeCode = "E" + year + "/" + 1;
-		System.out.println(employeeCode);
 		return employeeCode;
 	}
 
