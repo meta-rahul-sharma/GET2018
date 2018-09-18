@@ -181,7 +181,7 @@ public void addEmployee(PreSignupTO preSignupTO) {
 			    Skill skill = skillService.getSkillByName(skillName);
 			    EmployeeSkills employeeSkill = new EmployeeSkills();
 			    employeeSkill.setEmployeeCode(employeeCode);
-			    employeeSkill.setSkillCode(skillService.getSkillById(skill.getId()));
+			    employeeSkill.setSkillCode(skill);
 				employeeSkillsRepository.save(employeeSkill);
 			}
 				

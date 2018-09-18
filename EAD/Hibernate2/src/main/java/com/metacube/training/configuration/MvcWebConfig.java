@@ -12,6 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -29,6 +30,7 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 @ComponentScan(basePackages = "com.metacube.training")
 @EnableTransactionManagement
 @PropertySource("classpath:database.properties")
+@EnableJpaRepositories("com.metacube.training.repository")
 public class MvcWebConfig implements WebMvcConfigurer {
 
 	@Autowired
@@ -121,5 +123,4 @@ public class MvcWebConfig implements WebMvcConfigurer {
 	    multipartResolver.setMaxUploadSize(100000);
 	    return multipartResolver;
 	}
-
 }

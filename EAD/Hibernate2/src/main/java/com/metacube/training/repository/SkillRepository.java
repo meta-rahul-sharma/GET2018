@@ -7,8 +7,5 @@ import com.metacube.training.model.Skill;
 
 @Repository
 public interface SkillRepository<S> extends JpaRepository<Skill, Integer> {
-
-	public Skill findById(int id);
-	
 	public Skill findByName(String name);
 }

@@ -10,6 +10,10 @@ import org.springframework.stereotype.Repository;
 import com.metacube.training.model.Employee;
 import com.metacube.training.model.Project;
 
+/**
+ * @author Rahul Sharma
+ * @param <E>
+ */
 @Repository
 public interface EmployeeRepository<E> extends JpaRepository<Employee, String> {
 
@@ -23,7 +27,7 @@ public interface EmployeeRepository<E> extends JpaRepository<Employee, String> {
 	@Query("SELECT e "
 			+ "FROM JobDetails j INNER JOIN j.employeeCode e "
 			+ "WHERE j.projectId = :project")
-	public List<Employee> searchByProjectId(@Param("project") Project project);
+	public List<Employee> searchByProjectId(@Param("project") int project);
 	
 	@Query("SELECT e "
 			+ "FROM EmployeeSkills es INNER JOIN es.employeeCode e "

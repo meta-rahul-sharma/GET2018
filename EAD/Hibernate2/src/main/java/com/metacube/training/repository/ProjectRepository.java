@@ -8,5 +8,5 @@ import com.metacube.training.model.Project;
 @Repository
 public interface ProjectRepository<P> extends JpaRepository<Project, Integer> {
 
-	public Project findByProjectId(Integer projectId);
+	public Project findByProjectId(int projectId);
 }

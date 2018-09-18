@@ -27,8 +27,8 @@ public class Skill {
 	@Column(name = "skill_name")
     private String name;
     
-	@ManyToMany(mappedBy = "skills")
-    private Set<Employee> employees = new HashSet<>();
+	/*@ManyToMany(mappedBy = "skills")
+    private Set<Employee> employees = new HashSet<>();*/
     
     /**
      * @return the id

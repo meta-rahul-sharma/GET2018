@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.metacube.training.model.Skill;
 import com.metacube.training.repository.SkillRepository;
 
@@ -16,11 +18,6 @@ public class SkillServiceImpl implements SkillService {
 
 	@Autowired
 	private SkillRepository<Skill> skillRepository;
-	
-	@Override
-	public Skill getSkillById(int id) {
-		return skillRepository.findById(id);
-	}
 
 	@Override
 	public List<Skill> getAllSkills() {
@@ -40,7 +37,7 @@ public class SkillServiceImpl implements SkillService {
 	public void deleteSkill(Skill skill) {
 		skillRepository.delete(skill);
 	}
-
+	
 	public Skill getSkillByName(String skill) {
 		return skillRepository.findByName(skill);
 	}
