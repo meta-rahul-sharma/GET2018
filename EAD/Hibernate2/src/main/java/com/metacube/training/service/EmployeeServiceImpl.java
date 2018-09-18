@@ -116,7 +116,7 @@ public void addEmployee(PreSignupTO preSignupTO) {
 			case "NAME" : listOfEmployees = employeeRepository.searchByName(keyword);
 						  break;
 						  
-			case "PROJECT" : listOfEmployees = employeeRepository.searchByProjectId((int)Integer.parseInt(keyword));
+			case "PROJECT" : listOfEmployees = employeeRepository.searchByProjectId(projectRepository.findByProjectId((int)Integer.parseInt(keyword)));
 							 break;
 							 
 			case "SKILL" : listOfEmployees = employeeRepository.searchBySkills(keyword);

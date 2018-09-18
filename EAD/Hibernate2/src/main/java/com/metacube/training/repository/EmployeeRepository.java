@@ -27,7 +27,7 @@ public interface EmployeeRepository<E> extends JpaRepository<Employee, String> {
 	@Query("SELECT e "
 			+ "FROM JobDetails j INNER JOIN j.employeeCode e "
 			+ "WHERE j.projectId = :project")
-	public List<Employee> searchByProjectId(@Param("project") int project);
+	public List<Employee> searchByProjectId(@Param("project") Project project);
 	
 	@Query("SELECT e "
 			+ "FROM EmployeeSkills es INNER JOIN es.employeeCode e "
