@@ -2,68 +2,79 @@
 <html>
     <head>
         <title>UI-First-Assignment</title>
+        <link rel = "stylesheet" href = "styleUI.css"/>
     </head>
     <body>
-        <div id = "header">
-            <div id = "headerBlock1">
-                <img src = "images/logo.png"/>
+        <div id = "headerContainer">
+            <div id = "header" class = "header">
+                <div id = "headerLogo">
+                    <img src = "images/logo.png"/>
+                </div>
+                <div id = "headerAnchors">
+                    <a href = "">Home</a>
+                    <a href = "#features">Features</a>
+                    <a href = "#reviews">Reviews</a>
+                    <a href = "#downloads">Downloads</a>
+                </div>
+                <div id = "headerSocial">
+                    <a class = "headerSocial" href = "https://www.facebook.com/"><img src = "images/facebook.png"/></a>
+                    <a class = "headerSocial" href = "https://www.instagram.com/"><img src = "images/insta.png"/></a>
+                    <a class = "headerSocial" href = "https://plus.google.com/"><img src = "images/google-plus.png"/></a>
+                </div>
             </div>
-            <div id = "headerBlock2">
-                <a href = "">Home</a>
-                <a href = "">Features</a>
-                <a href = "">Reviews</a>
-                <a href = "">Downloads</a>
-            </div>
-            <div id = "headerBlock3">
-                
+        
+            <div id = "funApp">
+                <div id = "funAppButtons">
+                    <h1>Get the most fun weather app</h1>
+                    <a id = "downloadButton" href = "#downloads">Download</a>
+                    <a id = "featureButton" href = "#features">Features</a>
+                </div>
+                <div id = "funAppImage">
+                    <img src = "images/phone1.png"/>
+                </div>
             </div>
         </div>
         
-        <div>
-            <div>
-                <h1>Get the most fun weather app</h1>
-                <a href = "">Download</a>
-                <a href = "">Features</a>
-            </div>
-            <div>
-                <img src = "images/phone1.png"/>
-            </div>
-            <div></div>
-        </div>
         
-        <div>
-            <div>
+        <div id = "features" class = "features">
+            <div class = "heading">
                 <h2>Perfect Features</h2>
                 <p>only necessary</p>
             </div>
             
-            <div>
-                <div>
-                    <div></div>
-                    <div>
-                        <h2>Usability</h2>
-                    </div>
+            <div class = "featuresInlineDiv">
+                <div class = "featureImageDiv">
+                    <img src= "images/usability.png"/>
                 </div>
-                <div>
-                    <div></div>
-                    <div>
-                        <h2>Parallel Effect</h2>
-                    </div>
-                </div>
-                <div>
-                    <div></div>
-                    <div>
-                        <h2>Unlimited Colors</h2>
-                    </div>
+                <div class = "featureContentDiv">
+                    <h2>Usability</h2>
+                    <p>Sometimes the simplest things are the hardest to find. So we created a new line for everyday life.</p>
                 </div>
             </div>
-            
+            <div class = "featuresInlineDiv">
+                <div class = "featureImageDiv">
+                    <img src= "images/parallex.png"/>
+                </div>
+                <div class = "featureContentDiv">
+                    <h2>Parallel Effect</h2>
+                    <p>Sometimes the simplest things are the hardest to find. So we created a new line for everyday life.</p>
+                </div>
+            </div>
+            <div class = "featuresInlineDiv">
+                <div class = "featureImageDiv">
+                    <img src= "images/colors.png"/>
+                </div>
+                <div class = "featureContentDiv">
+                    <h2>Unlimited Colors</h2>
+                    <p>Sometimes the simplest things are the hardest to find. So we created a new line for everyday life.</p>
+                </div>
+            </div>
             <div>
                 <img src = "images/test1.png"/>
             </div>
         </div>
         
-        <div>
+        <div id = "screenshots" class = "screenshots">
             <div>
                 <h2>Screenshots</h2>
                 <p>The brightest images</p>
@@ -103,8 +114,8 @@
             </div>
         </div>
         
-        <div>
-              <div>
+        <div id = "reviews" class = "reviews">
+            <div>
                 <h2>What reviews are saying</h2>
                 <p>Reviews</p>
             </div>
@@ -131,7 +142,7 @@
             </div>
         </div>
         
-        <div>
+        <div id = "downloads" class = "downloads">
             <div>
                 <h2>How Download the app?</h2>
                 <p>just download the app from the store. Simple, nice and user-friendly application of the weather. Only relavant and useful information.</p>
@@ -154,13 +165,15 @@
                 <div>
                     <img src = "images/footer-logo.png"/>
                 </div>
-                <div>
+                <div id = "headerAnchors">
                     <a href = "">Home</a>
-                    <a href = "">Features</a>
-                    <a href = "">Reviews</a>
-                    <a href = "">Downloads</a>
+                    <a href = "#features">Features</a>
+                    <a href = "#reviews">Reviews</a>
+                    <a href = "#downloads">Downloads</a>
                 </div>
-                <div></div>
+                <div>
+                    
+                </div>
                 <hr>
             </div>
             <div>

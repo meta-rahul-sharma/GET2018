@@ -1,0 +1,75 @@
+#headerContainer {
+    background-image: url(images/homebg.png);
+    background-size: cover;
+}
+
+.header > div {
+    display: inline-block;
+    width: 33%;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.headerSocial > img {
+    height: 20px;
+}
+
+body {
+    margin: 0;
+}
+
+#funApp > div {
+    display: inline-block;
+    padding-top: 150px;
+    width = 40%;
+    text-align: left;
+    vertical-align: top;
+    color: white;
+    box-sizing: border-box;
+}
+
+#downloadButton {
+    background-color: #FC6A45;
+}
+
+#featureButton {
+    background-color: #4563C5; 
+}
+
+#headerAnchors > a {
+    text-decoration: none;
+    color : white;
+    margin: 0px 5px;
+    font-family: verdana;
+}
+
+#funAppButtons > a {
+    color: white;
+    text-decoration: none;
+    padding: 13px 20px;
+    border-radius: 5px;
+}
+
+#funAppButtons {
+    padding-left: 40px;
+}
+
+#funAppImage > img {
+    width: 60%;
+}
+
+.featuresInlineDiv {
+    display: inline-block;
+    text-align: center;
+    width: 30%;
+}
+
+.featureContentDiv {
+    display: inline-block;
+    width: 30%;
+}
+
+.featureImageDiv {
+    display: inline-block;
+    width: 70%;
+}
