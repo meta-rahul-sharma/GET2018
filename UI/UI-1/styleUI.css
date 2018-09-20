@@ -128,7 +128,7 @@ body {
 }
 
 .downloadInlineDiv > img {
-    width: 70%;
+    width: 80%;
 }
 
 .featureContentDiv p {
@@ -146,4 +146,12 @@ body {
     color: black;
     font-family: verdana;
     font-weight: bold;
+}
+
+.setWidth60 {
+    width: 60%;
+}
+
+.setWidth100 {
+    width: 100%;
 }
