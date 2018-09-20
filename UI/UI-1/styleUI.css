@@ -64,12 +64,71 @@ body {
     width: 30%;
 }
 
-.featureContentDiv {
+.featuresInlineDiv > div {
     display: inline-block;
-    width: 30%;
+    width: 49%;
+    vertical-align: top;
 }
 
-.featureImageDiv {
+#footerContainer {
+    background-color: #383a53;
+    text-align: center;
+    padding-top: 30px;
+    color: white;
+}
+
+#footerContainer  a {
+    color: white;
+    text-decoration: none;
+    font-family: verdana;
+}
+
+#footer > div{
     display: inline-block;
+    text-align:center;
+    width: 33%;
+    height: 160px;
+}
+
+.heading {
+    text-align: center;
+}
+
+.screenShotInlineDiv {
+    display: inline-block;
+    width: 49%;
+    vertical-align: middle;
+}
+
+.reviewInlineDiv {
+    display: inline-block;
+    width: 49%;
+}
+
+.siteContent {
+    margin: 0 80px;
+    background-image: url(images/bodybg.png);
+}
+
+.siteContent h2 {
+    color: #6388fb;
+    padding-top: 70px;
+}
+
+.siteContent p {
+    color: #a09eaa;
+}
+
+.downloadInlineDiv {
+    display: inline-block;
+    width: 49%;
+}
+
+.downloadInlineDiv > img {
     width: 70%;
+}
+
+.featureContentDiv p {
+    text-align: left;
+    font-size: 13px;
 }
