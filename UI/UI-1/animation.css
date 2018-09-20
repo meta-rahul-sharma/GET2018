@@ -1,29 +1,25 @@
 #blue {
     background-color: blue;
-    left: 0px;
-    top: 0px;
     position: relative;
-    animation: blueAnimate 5s infinite;
+    animation: blueAnimate 3s infinite;
 }
 
 #skyblue {
     background-color: skyblue;
-    left: 0px;
-    top: 0px;
     position: relative;
-    animation: skyblueAnimate 5s infinite;
+    animation: skyblueAnimate 3s infinite;
 }
 
 #red {
     background-color: red;
     position: relative;
-    animation: redAnimate 5s infinite;
+    animation: redAnimate 3s infinite;
 }
 
 #yellow {
     background-color: yellow;
     position: relative;
-    animation: yellowAnimate 5s infinite;
+    animation: yellowAnimate 3s infinite;
 }
 
 .properties {
