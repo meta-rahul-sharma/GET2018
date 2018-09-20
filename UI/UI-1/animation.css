@@ -1,0 +1,66 @@
+#blue {
+    background-color: blue;
+    left: 0px;
+    top: 0px;
+    position: relative;
+    animation: blueAnimate 5s infinite;
+}
+
+#skyblue {
+    background-color: skyblue;
+    left: 0px;
+    top: 0px;
+    position: relative;
+    animation: skyblueAnimate 5s infinite;
+}
+
+#red {
+    background-color: red;
+    position: relative;
+    animation: redAnimate 5s infinite;
+}
+
+#yellow {
+    background-color: yellow;
+    position: relative;
+    animation: yellowAnimate 5s infinite;
+}
+
+.properties {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+@keyframes blueAnimate {
+    0%   {left:0px; top:0px;}
+    25%  {left:100px; top:0px;}
+    50%  {left:100px; top:100px;}
+    75%  {left:0px; top:100px;}
+    100% {left:0px; top:0px;}
+}
+
+@keyframes skyblueAnimate {
+    0%   {left:0px; top:0px;}
+    25%  {left:0px; top:100px;}
+    50%  {left:-100px; top:100px;}
+    75%  {left:-100px; top:0px;}
+    100% {left:0px; top:0px;}
+}
+
+@keyframes redAnimate {
+    0%   {left:0px; top:0px;}
+    25%  {left:0px; top:-100px;}
+    50%  {left:100px; top:-100px;}
+    75%  {left:100px; top:0px;}
+    100% {left:0px; top:0px;}
+}
+
+@keyframes yellowAnimate {
+    0%   {left:0px; top:0px;}
+    25%  {left:-100px; top:0px;}
+    50%  {left:-100px; top:-100px;}
+    75%  {left:0px; top:-100px;}
+    100% {left:0px; top:0px;}
+}
