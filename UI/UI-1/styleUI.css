@@ -92,6 +92,7 @@ body {
 
 .heading {
     text-align: center;
+    margin-bottom: 70px;
 }
 
 .screenShotInlineDiv {
@@ -103,6 +104,8 @@ body {
 .reviewInlineDiv {
     display: inline-block;
     width: 49%;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .siteContent {
@@ -131,4 +134,16 @@ body {
 .featureContentDiv p {
     text-align: left;
     font-size: 13px;
+}
+
+#downloads {
+    padding: 70px 70px 0px 70px;
+    color: white;
+    background-image: url(images/homebg.png);
+}
+
+.reviewInlineDiv p:first-child {
+    color: black;
+    font-family: verdana;
+    font-weight: bold;
 }
