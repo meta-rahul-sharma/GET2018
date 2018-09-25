@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+    	<title>Admin Login</title>
+	</head>
+	<body>
+		<form th:object = "${job}" th:action = "@{jobTitle}" method = "post">
+			<table>
+			<tr>
+				<td>Job Title:</td>
+				<td><input type="text" th:field="*{jobTitle}" required></td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Submit" /></td>
+			</tr>
+		</table>	
+		</form>
+		<a th:href= "@{dashboard}">Back To DashBoard</a>
+	</body>
+</html>
