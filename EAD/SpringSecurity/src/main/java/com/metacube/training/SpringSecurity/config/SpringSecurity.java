@@ -14,9 +14,18 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+/**
+ * used for spring security in memory form based
+ * custom authentication
+ * @author RAHUL SHARMA
+ *
+ */
 @Configuration
 @EnableWebSecurity
 public class SpringSecurity extends WebSecurityConfigurerAdapter {
+	/**
+	 * To provide in memory different user's with different roles
+	 */
 	protected void configure(AuthenticationManagerBuilder auth)
 			throws Exception {
 		auth.inMemoryAuthentication().withUser("admin").password("{noop}adm")
@@ -25,8 +34,10 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
 				.roles("EMPLOYEE");
 	}
 
+	/**
+	 * To authenticate admin and employee by roles
+	 */
 	protected void configure(HttpSecurity http) throws Exception {
-		System.out.println("here");
 		http.authorizeRequests()
 				.antMatchers("/admin/*")
 				.access("hasRole('ROLE_ADMIN')")
@@ -50,8 +61,8 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
 							response.sendRedirect("admin/dashboard");
 						}
 					}
-				}).and().logout().logoutUrl("/logout")
-				.logoutSuccessUrl("/login?logout");
+				}).and().logout().logoutUrl("/../logout")
+				.logoutSuccessUrl("/../logout");
 		http.csrf().disable();
 
 	}

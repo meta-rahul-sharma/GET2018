@@ -62,14 +62,6 @@ public class AdminController {
 		return "admin/login";
 	}
 	
-	 /**
-     * @return login page
-     */
-	/*@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout() {
-		return "redirect:admin/login?logout";
-	}
-	*/
 	/**
 	 * @param username
 	 * @param password
@@ -282,7 +274,7 @@ public class AdminController {
 	public ModelAndView editEmployee(@RequestParam String employeeCode){
 		
 		
-		return new ModelAndView("admin/editEmployee", "employee", employeeService.getEmployeeByCode(employeeCode));
+		return new ModelAndView("admin/editEmployee", "employee", employeeService.getEmployeeByCode("E2018/1"));
 	}
 	
 	

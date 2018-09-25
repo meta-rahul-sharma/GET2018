@@ -19,4 +19,25 @@ public class HomeController {
 	public ModelAndView test(HttpServletResponse response) throws IOException{
 		return new ModelAndView("login");
 	}
+	
+	/**
+	 * To show that user or admin logout from the account
+     * @return login page
+     */
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(Model model) {
+		model.addAttribute("logout", "logout");
+		return "login";
+	}
+	
+	/**
+	 * To show error in the page that username and password is wrong
+     * @return login page
+     */
+	@RequestMapping(value = "/error", method = RequestMethod.GET)
+	public String errorLoginPage(Model model) {
+		model.addAttribute("error", "error");
+		return "login";
+	}
 }
+

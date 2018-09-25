@@ -85,7 +85,7 @@ public class EmployeeController {
 	public ModelAndView addEmployee(@RequestParam String email, Model model){
 		
 		model.addAttribute("listOfSkills", skillService.getAllSkills());
-		return new ModelAndView("employee/editProfile", "employee", employeeService.getEmployeeByEmail(email));
+		return new ModelAndView("employee/editProfile", "employee", employeeService.getEmployeeByEmail("rsbhatra@gmail.com"));
 	}
 	
 	/**
