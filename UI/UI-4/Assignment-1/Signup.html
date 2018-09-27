@@ -2,120 +2,143 @@
 <html>
     <head>
         <title>SignUp</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel = "stylesheet" href = "SignUpStyle.css">
     </head>
     <body>
-        <div>
-        </div>
+        <h1 id = "contactUsHeading">Contact Us Today!</h1>
         <form>
-            <div>
-                <div>
-                    First Name
+            <div class = "signUpFormRow">
+                <div class = "signUpTag">
+                    <span>First Name</span>
                 </div>
-                <div>
-                    <i></i>
-                    <input type = "text"/>
+                <div class = "signUpIconAndContent">
+                    <i class="fa fa-user singUpIcon"></i>
+                    <input type = "text" placeholder="First Name" pattern = "^[A-Za-z]+$" required/>
                 </div>
             </div>
             
-            <div>
-                <div>
+            <div class = "signUpFormRow">
+                <div class = "signUpTag">
                     Last Name
                 </div>
-                <div>
-                    <i></i>
-                    <input type = "text"/>
+                <div class = "signUpIconAndContent">
+                    <i class="fa fa-user singUpIcon"></i>
+                    <input type = "text" placeholder="Last Name" pattern = "^[A-Za-z]+$"/>
                 </div>
             </div>
             
-            <div>
-                <div>
-                    E-Mail
+            <div class = "signUpFormRow">
+                <div class = "signUpTag">
+                    <span>E-Mail</span>
                 </div>
-                <div>
-                    <i></i>
-                    <input type = "email"/>
+                <div class = "signUpIconAndContent">
+                    <i class="fa fa-envelope singUpIcon"></i>
+                    <input type = "email" placeholder="E-mail Address" required/>
                 </div>
             </div>
             
-            <div>
-                <div>
+            <div class = "signUpFormRow">
+                <div class = "signUpTag">
                     Phone #
                 </div>
-                <div>
-                    <i></i>
-                    <input type = "number"/>
+                <div class = "signUpIconAndContent">
+                    <i class="fa fa-phone singUpIcon"></i>
+                    <input type = "number" placeholder="(+91)-00-0000-0000" maxlength="13" minlength="10" required/>
                 </div>
             </div>
             
-            <div>
-                <div>
+            <div class = "signUpFormRow">
+                <div class = "signUpTag">
                     Address
                 </div>
-                <div>
-                    <i></i>
-                    <input type = "text"/>
+                <div class = "signUpIconAndContent">
+                     <i class="fa fa-home singUpIcon"></i>
+                    <input type = "text" placeholder="Address"/>
                 </div>
             </div>
             
-            <div>
-                <div>
+            <div class = "signUpFormRow">
+                <div class = "signUpTag">
                     City
                 </div>
-                <div>
-                    <i></i>
-                    <input />
+                <div class = "signUpIconAndContent">
+                     <i class="fa fa-home singUpIcon"></i>
+                    <input type = "text" placeholder="City" pattern = "^[A-Za-z]+$" required/>
                 </div>
             </div>
             
-            <div>
-                <div>
+            <div class = "signUpFormRow">
+                <div class = "signUpTag">
                     State
                 </div>
-                <div>
-                    <i></i>
-                    <input />
+                <div class = "signUpIconAndContent">
+                    <i class="fa fa-list singUpIcon"></i>
+                    <select>
+                        <option>Please select your state</option>
+                        <option>Rajasthan</option>
+                        <option>Kerla</option>
+                        <option>MadhyaPradesh</option>
+                        <option>Bihar</option>
+                        <option>UttarPradesh</option>
+                        <option>Maharastra</option>
+                        <option>Delhi</option>
+                        <option>Kashmir</option>
+                    </select>
                 </div>
             </div>
             
-            <div>
-                <div>
+            <div class = "signUpFormRow">
+                <div class = "signUpTag">
                     Zip Code
                 </div>
-                <div>
-                    <i></i>
-                    <input type = "number"/>
+                <div class = "signUpIconAndContent">
+                    <i class="fa fa-home singUpIcon"></i>
+                    <input type = "number" placeholder="Zip Code" maxlength="6" minlength = "6" required/>
                 </div>
             </div>
             
-            <div>
-                <div>
+            <div class = "signUpFormRow">
+                <div class = "signUpTag">
                     Website or domain name
                 </div>
-                <div>
-                    <i></i>
-                    <input type = "text"/>
+                <div class = "signUpIconAndContent">
+                    <i class="fa fa-globe  singUpIcon"></i>
+                    <input type = "url"/>
                 </div>
             </div>
             
-            <div>
-                <div>
+            <div class = "signUpFormRow">
+                <div class = "signUpTag">
                     Do you have hosting?
                 </div>
-                <div>
-                    <i></i>
-                    <input type = "radio" />
+                <div class = "signUpIconAndContent">
+                    <input type = "radio" value = "Yes" name = "hosting" checked/>
+                    <span>Yes</span>
+                    <br>
+                    <input type = "radio" value = "No" name = "hosting"/>
+                    <span>No</span>
                 </div>
             </div>
             
-            <div>
-                <div>
+            <div class = "signUpFormRow">
+                <div class = "signUpTag">
                     Project Description
                 </div>
-                <div>
-                    <i></i>
-                    <input />
+                <div class = "signUpIconAndContent">
+                    <i class="fa fa-pencil singUpIcon"></i>
+                    <textarea required></textarea>
                 </div>
             </div>
+            
+            <div class = "signUpFormRow">
+                <div class = "signUpTag">
+                </div>
+                <div class = "signUpIconAndContent">
+                    <button id = "signUpSubmit">Send  <i class = "fa fa-paper-plane"></i></button>
+                </div>
+            </div>
+            
         </form>
     </body>
 </html>
