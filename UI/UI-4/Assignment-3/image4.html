@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <canvas id="myCanvas" width="100" height="100">
+            Your browser does not support the canvas element.
+        </canvas>
+
+        <script>
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+
+            ctx.beginPath();
+            ctx.arc(50,50,50,0,2*Math.PI);
+            ctx.fillStyle = "orange";
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.moveTo(78.5, 43);
+            ctx.lineTo(57, 43);
+            ctx.lineTo(57, 21.5);
+            ctx.lineTo(43, 21.5);
+            ctx.lineTo(43, 43);
+            ctx.lineTo(21.5, 43);
+            ctx.lineTo(21.5, 57);
+            ctx.lineTo(43, 57);
+            ctx.lineTo(43, 78.5);
+            ctx.lineTo(57, 78.5);
+            ctx.lineTo(57, 57);
+            ctx.lineTo(78.5, 57);
+            ctx.closePath();
+            ctx.fillStyle = "white";
+            ctx.fill();
+        </script>
+
+    </body>
+</html>
