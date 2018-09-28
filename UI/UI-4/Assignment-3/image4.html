@@ -11,26 +11,18 @@
             var ctx = canvas.getContext("2d");
 
             ctx.beginPath();
-            ctx.arc(50,50,50,0,2*Math.PI);
-            ctx.fillStyle = "orange";
+            ctx.arc(50,50,40,0,2*Math.PI);
+            ctx.fillStyle = "#fcb645";
             ctx.fill();
             
             ctx.beginPath();
-            ctx.moveTo(78.5, 43);
-            ctx.lineTo(57, 43);
-            ctx.lineTo(57, 21.5);
-            ctx.lineTo(43, 21.5);
-            ctx.lineTo(43, 43);
-            ctx.lineTo(21.5, 43);
-            ctx.lineTo(21.5, 57);
-            ctx.lineTo(43, 57);
-            ctx.lineTo(43, 78.5);
-            ctx.lineTo(57, 78.5);
-            ctx.lineTo(57, 57);
-            ctx.lineTo(78.5, 57);
-            ctx.closePath();
-            ctx.fillStyle = "white";
-            ctx.fill();
+            ctx.lineWidth = "15";
+            ctx.strokeStyle = "white";
+            ctx.moveTo(15, 50);
+            ctx.lineTo(85, 50);
+            ctx.moveTo(50, 15);
+            ctx.lineTo(50, 85);
+            ctx.stroke();
         </script>
 
     </body>
