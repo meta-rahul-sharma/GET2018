@@ -14,7 +14,7 @@
 }
 
 .thubmnail-img-setter {
-    height: 250px;
+    height: 280px;
     width: 180px;
 }
 
@@ -32,4 +32,8 @@ footer {
 
 .side-content {
     background-color: aliceblue;
+}
+
+.blog-title {
+    font-size: 40px;
 }
