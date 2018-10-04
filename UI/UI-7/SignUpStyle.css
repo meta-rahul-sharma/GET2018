@@ -56,3 +56,10 @@ body {
     width: 20px;
     height: 15px;
 }
+
+.signUpIconAndContent p {
+    background-color: darkgray;
+    width: 40%;
+    border-radius: 3px;
+    height: 40px;
+}
