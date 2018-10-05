@@ -171,9 +171,15 @@ function validateSignUpForm() {
         errorMessage = errorMessage + "city : city Details Invalid\n";
         result = false;
     }
-  /*  if(!isUrl("domainName", "urlSpan")) {
-        errorMessage = errorMessage + "url : url Details Incorrect\n";
-    }*/
+    
+    var selectBox = document.getElementById("state");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    
+    if(selectedValue === "rajasthan") {
+        if(!isUrl("domainName", "urlSpan")) {
+         errorMessage = errorMessage + "url : url Details Incorrect\n";
+        }   
+    } 
     
     if(result) {
         alert("Successfully Submitted");
