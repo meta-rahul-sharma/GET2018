@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <canvas id="myCanvas" width="100" height="100">
+            Your browser does not support the canvas element.
+        </canvas>
+
+        <script>
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+
+            ctx.beginPath();
+            ctx.arc(50,50,40,0,2*Math.PI);
+            ctx.lineWidth = "10";
+            ctx.strokeStyle = "#9e2a70";
+            ctx.stroke();
+        </script>
+
+    </body>
+</html>
