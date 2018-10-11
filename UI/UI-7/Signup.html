@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SignUp</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel = "stylesheet" href = "SignUpStyle.css">
+        <script src = "script.js"></script>
+        <script src = "dom.js"></script>
+    </head>
+    <body>
+        <h1 id = "contactUsHeading">Contact Us Today!</h1>
+        <form id = "form" 
+              action = "allDetails.html" onsubmit="return validateSignUpForm()" method = "get">
+            <div class = "signUpFormRow">
+                <div class = "signUpTag">
+                    <span>First Name</span>
+                </div>
+                <div class = "signUpIconAndContent">
+                    <i class="fa fa-user singUpIcon"></i>
+                    <input id = "firstName" type = "text" placeholder="First Name" minlength = "2" maxlength="15" onblur="validateName(id, 'firstNameSpan')"/>
+                    <span id = "firstNameSpan"></span>
+                </div>
+            </div>
+            
+            <div class = "signUpFormRow">
+                <div class = "signUpTag">
+                    Last Name
+                </div>
+                <div class = "signUpIconAndContent">
+                    <i class="fa fa-user singUpIcon"></i>
+                    <input id = "lastName" type = "text" placeholder="Last Name"
+                    minlength = "3" maxlength="15" onblur = "validateName(id, 'lastNameSpan')"/>
+                    <span id = "lastNameSpan"></span>
+                </div>
+            </div>
+            
+            <div class = "signUpFormRow">
+                <div class = "signUpTag">
+                    <span>E-Mail</span>
+                </div>
+                <div class = "signUpIconAndContent">
+                    <i class="fa fa-envelope singUpIcon"></i>
+                    <input id = "email" type = "text" placeholder="E-mail Address" onblur = "validateEmail(id, 'emailSpan')"/>
+                    <span id = "emailSpan"></span>
+                </div>
+            </div>
+            
+            <div class = "signUpFormRow">
+                <div class = "signUpTag">
+                    Phone #
+                </div>
+                <div class = "signUpIconAndContent">
+                    <i class="fa fa-phone singUpIcon"></i>
+                    <input id = "phoneNumber" type = "text" placeholder="(+91)-00-0000-0000" minlength = "10" maxlength = "10" onkeypress="return isNumber(event)" onblur = "validateContact(id, 'phoneSpan')"/>
+                    <span id = "phoneSpan"></span>
+                </div>
+            </div>
+            
+            <div class = "signUpFormRow">
+                <div class = "signUpTag">
+                    Address
+                </div>
+                <div class = "signUpIconAndContent">
+                    <i class="fa fa-home singUpIcon"></i>
+                    <input id = "address" type = "text" placeholder="Address" minlength = "20" maxlength="100"/>
+                </div>
+            </div>
+            
+            <div class = "signUpFormRow">
+                <div class = "signUpTag">
+                    City
+                </div>
+                <div class = "signUpIconAndContent">
+                     <i class="fa fa-home singUpIcon"></i>
+                    <input id = "city" type = "text" placeholder="City" minlength = "3" onblur = "validateName(id, 'citySpan')"/>
+                    <span id = "citySpan"></span>
+                </div>
+            </div>
+            
+            <div class = "signUpFormRow">
+                <div class = "signUpTag">
+                    State
+                </div>
+                <div class = "signUpIconAndContent">
+                    <i class="fa fa-list singUpIcon"></i>
+                    <select id = "state" onchange = "selectedState()" required>
+                        <option value = "">Please select your state</option>
+                        <option value = "rajasthan">Rajasthan</option>
+                        <option value = "haryana">Haryana</option>
+                        <option value = "maharastra">Maharastra</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div id = "sendButton" class = "signUpFormRow">
+                <div class = "signUpTag">
+                </div>
+                <div class = "signUpIconAndContent">
+                    <button type = "submit" id = "signUpSubmit">Send  <i class = "fa fa-paper-plane"></i></button>
+                </div>
+            </div>  
+        </form>
+    </body>
+</html>
