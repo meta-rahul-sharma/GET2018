@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Abhishek",
+        "contact": 9876542103,
+        "address": "Jaipur"
+    },
+    {
+        "id": 2,
+        "name": "Niraj",
+        "contact": 5421542341,
+        "address": "Nagaland"
+    },
+    {
+        "id": 3,
+        "name": "Rahul",
+        "contact": 4154712545,
+        "address": "Jaipur"
+    },
+    {
+        "id": 4,
+        "name": "Namrata",
+        "contact": 1245745645,
+        "address": "Ajmer"
+    },
+    {
+        "id": 5,
+        "name": "Tanu",
+        "contact": 4515746457,
+        "address": "Delhi"
+    },
+    {
+        "id": 6,
+        "name": "Abhay",
+        "contact": 4454574545,
+        "address": "Kanpur"
+    }
+]
