@@ -1,100 +1,38 @@
+<!DOCTYPE html>
 <html ng-app="app">
+
 <head>
-    <title>User Management</title>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script src="src/app.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <title>UserManagement</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body ng-controller="UserController">
-    <div class = "container">
+
+<body>
+    <div class="container" ng-controller="UserController">
         <header>
             <h2 class = "text-center">User Management</h2>
         </header>
-        
-        <main class = "p-5">
-            <div class = "d-flex justify-content-between">
-                <h2>Users</h2>
-                <button class = "btn btn-light" id = "add-user-button-design" data-toggle="modal" data-target="#addUser">Add User</button>
+        <div class="p-md-5">
+            <div class="row p-md-2">
+                <h2 class="col-6">Users</h2>
+                <div class="col-6 d-flex justify-content-end align-items-center"><button class = "btn btn-light" data-toggle="modal" data-target="#addUser">Add User</button></div>
             </div>
-
-            
-            <section class="row" >
-               <div class="col-md-4 mt-3" ng-repeat="user in users | filter:{name:query} track by $index">
-                   <div class="card " >
-                       <div class="d-flex">
-                           <div class="card-body">
-                               <i class="fa fa-user fa-7x"></i>
-                           </div>
-                           <div class="card-body" >
-                               <span>{{user.name}}</span>
-                               <a data-toggle="modal" data-target="#edit-{{user.id}}"><i class = "fa fa-edit"></i></a>
-                               <p><i class="fa fa-phone pr-1"></i>{{user.contact}}</p>
-                               <p><i class="fa fa-map-marker pr-1"></i>{{user.address}}</p>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-            </section>
-        </main>
-        
-        <!-- Modal add User-->
-        <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-pledby="exampleModalLabel" aria-hidden="true">
-           <div class="modal-dialog" role="document">
-               <div class="modal-content">
-                   <header class="modal-header">
-                       <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
-                       <button type="button" class="close" data-dismiss="modal" aria-p="Close">
-                           <span aria-hidden="true">&times;</span>
-                       </button>
-                   </header>
-                   <div class="modal-body">
-                       <form ng-submit="save(userToAdd)">
-                           <div class="form-group">
-                               <p>Name</p>
-                               <input class = "col-md-12" type="text" ng-model="userToAdd.name" required />
-                           </div>
-                           <div class="form-group">
-                               <p>Contact No</p>
-                               <input class = "col-md-12" type="number" ng-model="userToAdd.contact" required/>
-                           </div>
-                           <div class="form-group">
-                               <p>Address</p>
-                               <input class = "col-md-12" type="text" ng-model="userToAdd.address" required />
-                           </div>
-                       </form>
-                   </div>
-                   <div class="modal-footer">
-                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                       <button type="button" class="btn btn-primary">Save</button>
-                   </div>
-               </div>
-           </div>
-        </div>
-        
-        <!-- Modal edit User -->
-        <div class="modal fade" id="edit-{{user.id}}" tabindex="-1" role="dialog" aria-pledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <header class="p-2"> Edit User</header>
-                    <div class="modal-body">
-                        <form ng-submit="update(temp)" class="p-3">
-                            <input class="d-none" type="text" ng-model="temp.id" ng-init="temp.id = user.id" name="id">
-                            Name
-                            <div>
-                                <input class = "col-md-12" type="text" ng-model="temp.name" ng-init="temp.name = user.name" name="id" required>
+            <form class = "row" id="search" ng-submit="query = queryString">
+                <input class = "col-md-10 search-bar" type="search" placeholder="Search users by name" ng-model="queryString">
+                <button class="btn btn-light col-md-2">Search</button>
+            </form>
+            <div class="modal" id="addUser" tabindex="-1" role="dialog" aria-pledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <header class="p-2"> Add User</header>
+                        <form class="p-3" ng-submit="save(userToAdd)">
+                            Name<div><input type="text" ng-model="userToAdd.name" required>
                             </div>
-                            Contact<div>
-                                <input class = "col-md-12" type="number" ng-model="temp.contact" ng-init="temp.contact = user.contact" name="id" required>
+                            Contact<div><input type="number" ng-model="userToAdd.contact" required>
                             </div>
-                            Address<div>
-                                <input class = "col-md-12" type="text" ng-model="temp.address" ng-init="temp.address = user.address" name="id" required>
+                            Address<div><input type="text" ng-model="userToAdd.address" required>
                             </div>
                             <div class="text-right">
                                 <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
@@ -104,9 +42,56 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <div class="d-flex flex-wrap justify-content-center p-2">
+                    <div ng-repeat="user in users | filter:{name:query} track by $index" class="user-card m-3">
+                        <div class="card " >
+                           <div class="d-flex">
+                               <div class="card-body">
+                                   <i class="fa fa-user fa-7x"></i>
+                               </div>
+                               <div class="card-body" >
+                                   <span>{{user.name}}</span>
+                                   <a data-toggle="modal" data-target="#edit-{{user.id}}"><i class = "fa fa-edit"></i></a>
+                                   <p><i class="fa fa-phone pr-1"></i>{{user.contact}}</p>
+                                   <p><i class="fa fa-map-marker pr-1"></i>{{user.address}}</p>
+                               </div>
+                           </div>
+                       </div>
+                        <div class="modal" id="edit-{{user.id}}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <header class="p-2"> Edit User</header>
+                                    <form ng-submit="update(temp)" class="p-3">
+                                        <input class="d-none" type="text" ng-model="temp.id" ng-init="temp.id = user.id" name="id">
+                                        Name
+                                        <div>
+                                            <input type="text" ng-model="temp.name" ng-init="temp.name = user.name" name="id" required>
+                                        </div>
+                                        Contact<div>
+                                            <input type="number" ng-model="temp.contact" ng-init="temp.contact = user.contact" name="id" required>
+                                        </div>
+                                        Address<div>
+                                            <input type="text" ng-model="temp.address" ng-init="temp.address = user.address" name="id" required>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+<script src="dist/bundle.js"></script>
+
 </html>
