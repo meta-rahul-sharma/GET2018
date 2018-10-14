@@ -15,7 +15,7 @@ require("../app.module.js");
          * @return list of users
          */
         var init = function () {
-            return $http.get("src/user/userData.json").then(function (response) {
+            return $http.get("http://localhost:3000/user").then(function (response) {
                 response.data.forEach(function (user) {
                     userList[user.id] = user;
                     lastId = Math.max(lastId, user.id);
@@ -39,9 +39,15 @@ require("../app.module.js");
          * @param  user to be updated
          */
         var update = async function (user) {
-            console.log(user);
-            userList[user.id] = user;
-            return;
+            return $http({
+            method:'PUT',
+            url:'http://localhost:3000/user/'+user.id,
+            data:user,
+            headers: { 'Content-Type': 'application/json' }
+            }).then(function successCallback(response){
+                userList[user.id] = user;
+                return;
+            });
         }
 
         /**
@@ -49,9 +55,15 @@ require("../app.module.js");
          * @param  user to be saved
          */
         var save = async function (user) {
-            user.id = ++lastId;
-            userList[user.id] = user;
-            return;
+            return $http({
+            method:'POST',
+            url:'http://localhost:3000/user/',
+            data:user,
+            headers: { 'Content-Type': 'application/json' }
+            }).then(function successCallback(response){
+                userList[user.id] = user;
+                return;
+            });
         }
 
         return {             
