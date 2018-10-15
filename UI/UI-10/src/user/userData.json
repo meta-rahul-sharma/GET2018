@@ -1,0 +1,58 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "rahul",
+      "contact": 8947804883,
+      "address": "Jaipur"
+    },
+    {
+      "id": 2,
+      "name": "parkha",
+      "contact": 12121212121,
+      "address": "bombay"
+    },
+    {
+      "id": 3,
+      "name": "Rahul",
+      "contact": 4154712545,
+      "address": "Jaipur"
+    },
+    {
+      "id": 4,
+      "name": "john",
+      "contact": 1245745645,
+      "address": "Ajmer"
+    },
+    {
+      "id": 5,
+      "name": "vishkha",
+      "contact": 4515746457,
+      "address": "Delhi"
+    },
+    {
+      "id": 6,
+      "name": "har",
+      "contact": 4454574545,
+      "address": "nagpur"
+    },
+    {
+      "id": 7,
+      "name": "shareef bhai",
+      "contact": 34534523,
+      "address": "dsfasdfasdfasd"
+    },
+    {
+      "name": "dino james",
+      "contact": 954654654654,
+      "address": "kheda",
+      "id": 8
+    },
+    {
+      "id": 9,
+      "name": "umaid",
+      "contact": 23423423,
+      "address": "sdfasfaf"
+    }
+  ]
+}
