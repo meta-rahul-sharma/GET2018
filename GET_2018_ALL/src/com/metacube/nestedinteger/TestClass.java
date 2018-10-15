@@ -1,5 +1,10 @@
 package com.metacube.nestedinteger;
 
+import static java.util.Arrays.asList;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Used for Testing purpose of NestedList implementation
  * @author Rahul Sharma
@@ -8,29 +13,13 @@ package com.metacube.nestedinteger;
 public class TestClass {
 	public static void main(String args[]) throws NestedListException {
 		ImplementNestedList implement = new ImplementNestedList();
-		implement.addToList(1);
-		implement.addToList(20);
-		
-		ImplementNestedList implement1 = new ImplementNestedList();
-		implement1.addToList(1);
-		implement1.addToList(implement.getList());
-		
-		ImplementNestedList implement2 = new ImplementNestedList();
-		implement2.addToList(1);
-		implement2.addToList(implement1.getList());
-		
-		ImplementNestedList implement3 = new ImplementNestedList();
-		implement3.addToList(1);
-		implement3.addToList(2);
-		implement3.addToList(implement2.getList());
-		implement3.addToList(3);
-		implement3.addToList(4);
-		implement3.addToList(5);
-		int sum = implement3.sum(implement3.getList());
+		List<Object> nestedList = new ArrayList<Object>(asList(1, 2, asList(1, asList(1, asList(90, 99, 1000), 20), 3,
+				4, 5, asList(80, 2, asList(5, 4, 3, asList(22, 33, 83))))));
+		int sum = implement.sum(nestedList);
 		System.out.println(sum);
-		boolean search = implement3.search(implement3.getList(), 18);
+		boolean search = implement.search(nestedList, 99);
 		System.out.println(search);
-		int largestValue = implement3.largestValue(implement3.getList());
+		int largestValue = implement.largestValue(nestedList);
 		System.out.println(largestValue);
 	}
 }
