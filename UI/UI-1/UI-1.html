@@ -2,27 +2,18 @@
 <html>
     <head>
         <title>UI-First-Assignment</title>
-        <link rel = "stylesheet" href = "styleUI.css"/>
+        <link rel = "stylesheet" href="styleUI.css"/>
+        <script src="jquery-3.3.1.min.js"></script>
+        <script> 
+        function myLoader(){
+            $("#header").load("header.html");
+            $("#footer").load("footer.html");
+        }
+        </script>
     </head>
-    <body>
-        <div id = "headerContainer">
-           <header>
-                <div id = "logo">
-                    <img src = "images/logo.png"/>
-                </div>
-                <div id = "links">
-                    <nav>
-                        <a href = "">Home</a>
-                        <a href = "#features">Features</a>
-                        <a href = "#reviews">Reviews</a>
-                        <a href = "#downloads">Downloads</a>
-                    </nav>
-                </div>
-                <div id = "socialImages">
-                    <a class = "headerSocial" href = "https://www.facebook.com/"><img src = "images/facebook.png"/></a>
-                    <a class = "headerSocial" href = "https://www.instagram.com/"><img src = "images/insta.png"/></a>
-                    <a class = "headerSocial" href = "https://plus.google.com/"><img src = "images/google-plus.png"/></a>
-                </div>
+    <body onload="myLoader()">
+        <section id = "headerContainer">
+           <header id="header">
             </header>
         
             <div id = "funApp">
@@ -35,10 +26,10 @@
                     <img src = "images/phone1.png"/>
                 </div>
             </div>
-        </div>
+        </section>
         
         
-        <div id = "features" class = "siteContent">
+        <section id = "features" class = "siteContent">
             <div class = "heading">
                 <h2>Perfect Features</h2>
                 <p>only necessary</p>
@@ -49,7 +40,7 @@
                     <img src= "images/usability.png"/>
                 </div>
                 <div class = "featureContentDiv">
-                    <h3>Usability</h3>
+                    <span>Usability</span>
                     <p>Sometimes the simplest things are the hardest to find. So we created a new line for everyday life.</p>
                 </div>
             </div>
@@ -59,7 +50,7 @@
                     <img src= "images/parallex.png"/>
                 </div>
                 <div class = "featureContentDiv">
-                    <h3>Parallel Effect</h3>
+                    <span>Parallel Effect</span>
                     <p>Sometimes the simplest things are the hardest to find. So we created a new line for everyday life.</p>
                 </div>
             </div>
@@ -69,7 +60,7 @@
                     <img src= "images/colors.png"/>
                 </div>
                 <div class = "featureContentDiv">
-                    <h3>Unlimited Colors</h3>
+                    <span>Unlimited Colors</span>
                     <p>Sometimes the simplest things are the hardest to find. So we created a new line for everyday life.</p>
                 </div>
             </div>
@@ -77,9 +68,9 @@
             <div>
                 <img class = "setWidth100" src = "images/test1.png"/>
             </div>
-        </div>
+        </section>
         
-        <div id = "screenshots" class = "siteContent">
+        <section id = "screenshots" class = "siteContent">
             <div class = "heading">
                 <h2>Screenshots</h2>
                 <p>The brightest images</p>
@@ -87,7 +78,9 @@
             
             <div>
                 <div class = "screenShotInlineDiv">
+                    <div class = "degreeInCircle">15<sup>o</sup></div>
                     <img class = "setWidth60" src = "images/screen01.png"/>
+                    <div class = "weatherInCircle">Cloudy</div>
                 </div>
                 <div class = "screenShotInlineDiv">
                     <img src = "images/cloud1.png"/>
@@ -103,13 +96,17 @@
                     <p>Sometimes the simplest things are the hardest to find. So we created a new line for everyday life. Sometimes the simplest things.</p>    
                 </div>
                 <div class = "screenShotInlineDiv">
+                    <div class = "degreeInCircle">25<sup>o</sup></div>
                     <img class = "setWidth60" src = "images/screen02.png"/>
-                </div>
+                    <div class = "weatherInCircle">Sunny</div>
+               </div>
             </div>
             
             <div>
                 <div class = "screenShotInlineDiv">
+                    <div class = "degreeInCircle">9<sup>o</sup></div>
                     <img class = "setWidth60" src = "images/screen03.png"/>
+                    <div class = "weatherInCircle">Rainy</div>
                 </div>
                 <div class = "screenShotInlineDiv">
                     <img src = "images/rainy1.png"/>
@@ -117,37 +114,45 @@
                     <p>Sometimes the simplest things are the hardest to find. So we created a new line for everyday life. Sometimes the simplest things.</p>   
                 </div>
             </div>
-        </div>
+        </section>
         
-        <div id = "reviews" class = "siteContent">
+        <section id = "reviews" class = "siteContent">
             <div class = "heading">
                 <h2>What reviews are saying</h2>
                 <p>Reviews</p>
             </div>
             <div>
                 <div class  = "reviewInlineDiv">
+                    <img src = "images/quotestart.png" class = "reviewQuoteStarter"/>
                     <p>What art offers in space - a certain breathing room for the spirit.</p>
                     <p>John Updike</p>
+                    <img src = "images/quoteend.png" class = "reviewQuoteEnder"/>
                 </div>
                 <div class  = "reviewInlineDiv">
+                    <img src = "images/quotestart.png" class = "reviewQuoteStarter"/>
                     <p>We do not see nature with our eyes, but with or understandings and our hearts.</p>
                     <p>William Hazlitt</p>
+                    <img src = "images/quoteend.png" class = "reviewQuoteEnder"/>
                 </div>
             </div>
             
            <div>
                 <div class  = "reviewInlineDiv">
+                    <img src = "images/quotestart.png" class = "reviewQuoteStarter"/>
                     <p>The only courage that matters is the kind that gets you from one moment to the next.</p>
                     <p>Mignon McLaughlin</p>
+                    <img src = "images/quoteend.png" class = "reviewQuoteEnder"/>
                 </div>
                 <div class  = "reviewInlineDiv">
+                    <img src = "images/quotestart.png" class = "reviewQuoteStarter"/>
                     <p>No man has a good enough memory to be successful liar.</p>
                     <p>Abraham Lincoln</p>
+                    <img src = "images/quoteend.png" class = "reviewQuoteEnder"/>
                 </div>
             </div>
-        </div>
+        </section>
         
-        <div id = "downloads">
+        <section id = "downloads">
             <div id = "downloadContents" class = "downloadInlineDiv">
                 <h2>How Download the app?</h2>
                 <p>Just download the app from the store. Simple, nice and user-friendly application of the weather. Only relavant and useful information.</p>
@@ -163,32 +168,17 @@
             <div id = "downloadImages" class = "downloadInlineDiv">
                 <img src = "images/appdownload1.png"/>
             </div>
-        </div>
+        </section>
         
-        <div id = "footerContainer">
-            <footer>
-                <div id = "footerLogo">
-                    <img src = "images/footer-logo.png"/>
-                </div>
-                <div id = "links">
-                    <nav>
-                        <a href = "">Home</a>
-                        <a href = "#features">Features</a>
-                        <a href = "#reviews">Reviews</a>
-                        <a href = "#downloads">Downloads</a>
-                    </nav>
-                </div>
-                <div id = "socialImages">
-                    <a class = "headerSocial" href = "https://www.facebook.com/"><img src = "images/facebook.png"/></a>
-                    <a class = "headerSocial" href = "https://www.instagram.com/"><img src = "images/insta.png"/></a>
-                    <a class = "headerSocial" href = "https://plus.google.com/"><img src = "images/google-plus.png"/></a>
-                </div>
+        <section id = "footerContainer">
+            <footer id="footer">
+                
             </footer>
             <div>
                 <p>
                     All Rights Reserved
                 </p>
             </div>
-        </div>
+        </section>
     </body>
 </html>

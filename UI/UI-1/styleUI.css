@@ -1,6 +1,11 @@
+*{
+    border: 1px solid black;
+}
+
 #headerContainer {
     background-image: url(images/homebg.png);
     background-size: cover;
+    padding-bottom: 140px;
 }
 
 header {
@@ -9,6 +14,12 @@ header {
     align-items: center;
     justify-content: space-around;
     padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    opacity: 0.8;
 }
 
 .headerSocial > img {
@@ -24,14 +35,22 @@ body {
     margin: 0;
 }
 
-#funApp > div {
-    display: inline-block;
+#funApp{
+    display: flex;
+    justify-content: space-around;
     padding-top: 150px;
-    width = 40%;
-    text-align: left;
     vertical-align: top;
     color: white;
-    box-sizing: border-box;
+}
+
+#funAppButtons {
+    margin-left: 50px;
+    width: 40%;
+}
+
+#funAppImage {
+    width: 60%;
+    text-align: center;
 }
 
 #downloadButton {
@@ -105,6 +124,7 @@ footer a {
     display: inline-block;
     width: 49%;
     vertical-align: middle;
+    position: relative;
 }
 
 .reviewInlineDiv {
@@ -148,7 +168,7 @@ footer a {
     background-image: url(images/homebg.png);
 }
 
-.reviewInlineDiv p:first-child {
+.reviewInlineDiv p:nth-child(2) {
     color: black;
     font-family: verdana;
     font-weight: bold;
@@ -160,4 +180,36 @@ footer a {
 
 .setWidth100 {
     width: 100%;
+}
+
+.reviewQuoteEnder {
+    float: right;
+}
+
+.weatherInCircle {
+    color: white;
+    text-align: center;
+    height: 10%;
+    width: 20%;
+    background-color: skyblue;
+    z-index: 1;
+    border-radius: 100%;
+    position: absolute;
+    left:50%;
+    top:25%;
+    padding-top: 30px;
+}
+
+.degreeInCircle {
+    color: white;
+    text-align: center;
+    height: 10%;
+    width: 20%;
+    background-color: lightsalmon;
+    z-index: 1;
+    border-radius: 100%;
+    position: absolute;
+    left: -10%;
+    top:60%;
+    padding-top: 30px;
 }
