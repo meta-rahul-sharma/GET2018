@@ -1,0 +1,49 @@
+{
+    "data": 
+    [
+        {
+            "id" : "1",
+            "item" : "bread",
+            "price" : "100",
+            "description" : "it's about health" ,
+            "imagePath" : "\src\assets\Images\bread.jpg",
+            "category" : "bread"
+        },
+        
+        {
+            "id" : "2",
+            "item" : "bread",
+            "price" : "100",
+            "description" : "it's about health" ,
+            "imagePath" : "\src\assets\Images\bread.jpg",
+            "category" : "bread"    
+        },
+        
+        {
+            "id" : "3",
+            "item" : "bread",
+            "price" : "100",
+            "description" : "it's about health" ,
+            "imagePath" : "\src\assets\Images\bread.jpg",
+            "category" : "bread"    
+        }, 
+        
+        {
+            "id" : "4",
+            "item" : "bread",
+            "price" : "100",
+            "description" : "it's about health" ,
+            "imagePath" : "\src\assets\Images\bread.jpg",
+            "category" : "bread"    
+        },
+        
+        {
+            "id" : "5",
+            "item" : "bread",
+            "price" : "100",
+            "description" : "it's about health" ,
+            "imagePath" : "\src\assets\Images\bread.jpg",
+            "category" : "bread"    
+        }
+    ]
+}
