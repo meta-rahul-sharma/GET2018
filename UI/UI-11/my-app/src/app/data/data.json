@@ -3,47 +3,48 @@
     [
         {
             "id" : "1",
-            "item" : "bread",
+            "item" : "bread ajvaine",
             "price" : "100",
             "description" : "it's about health" ,
-            "imagePath" : "\src\assets\Images\bread.jpg",
+            "imagePath" : "src/assets/Images/breads/Bread.jpg",
             "category" : "bread"
         },
         
         {
             "id" : "2",
-            "item" : "bread",
+            "item" : "amul",
             "price" : "100",
             "description" : "it's about health" ,
-            "imagePath" : "\src\assets\Images\bread.jpg",
-            "category" : "bread"    
+            "imagePath" : "src/assets/Images/Dairy/dairy.png",
+            "category" : "dairy"    
         },
         
         {
             "id" : "3",
-            "item" : "bread",
+            "item" : "mix fruit",
             "price" : "100",
             "description" : "it's about health" ,
-            "imagePath" : "\src\assets\Images\bread.jpg",
-            "category" : "bread"    
-        }, 
+            "imagePath" : "src/assets/Images/Fruits/fruits.jpg",
+            "category" : "fruit"    
+        },
         
         {
             "id" : "4",
-            "item" : "bread",
+            "item" : "red Chilly",
             "price" : "100",
             "description" : "it's about health" ,
-            "imagePath" : "\src\assets\Images\bread.jpg",
-            "category" : "bread"    
+            "imagePath" : "src/assets/Images/SeasoningAndSpices/redChilly.jpg",
+            "category" : "seasoning"    
         },
         
         {
             "id" : "5",
-            "item" : "bread",
+            "item" : "mix fruit",
             "price" : "100",
             "description" : "it's about health" ,
-            "imagePath" : "\src\assets\Images\bread.jpg",
-            "category" : "bread"    
+            "imagePath" : "src/assets/Images/Vegetables/brinjal.jpg",
+            "category" : "vegetables"    
         }
+        
     ]
 }
