@@ -28,7 +28,7 @@
                 <img style="height: 200px;" ng-src={{item.imagePath}} class="col-12"/>
                 <p class="font-weight-bold text-capitalize">{{item.item}}</p>
                 <p>Price: {{item.price}} bucks</p>
-                <a href="#sdfjsd" class="col-12 btn btn-secondary">ADD TO CART</a>
+                <button class="btn btn-secondary btn-lg btn-block rounded-bottom" ng-click="addCart(item)">ADD TO CART</button>
             </div>
         </div>
     </section>

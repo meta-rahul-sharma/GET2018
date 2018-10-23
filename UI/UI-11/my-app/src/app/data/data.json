@@ -1,50 +1,145 @@
 {
-    "data": 
-    [
+  "data": [
+    {
+      "id": "1",
+      "item": "bread ajvaine",
+      "price": "100",
+      "description": "it's about health",
+      "imagePath": "src/assets/Images/breads/Bread.jpg",
+      "category": "bread"
+    },
+    {
+      "id": "2",
+      "item": "amul",
+      "price": "20",
+      "description": "it's about health",
+      "imagePath": "src/assets/Images/Dairy/dairy.png",
+      "category": "dairy"
+    },
+    {
+      "id": "3",
+      "item": "mix fruit",
+      "price": "40",
+      "description": "it's about health",
+      "imagePath": "src/assets/Images/Fruits/fruits.jpg",
+      "category": "fruit"
+    },
+    {
+      "id": "4",
+      "item": "red Chilly",
+      "price": "500",
+      "description": "it's about health",
+      "imagePath": "src/assets/Images/SeasoningAndSpices/redChilly.jpg",
+      "category": "seasoning"
+    },
+    {
+      "id": "5",
+      "item": "brinjal",
+      "price": "60",
+      "description": "it's about health",
+      "imagePath": "src/assets/Images/Vegetables/brinjal.jpg",
+      "category": "vegetables"
+    }
+  ],
+  "shopping-details": [
+    {
+      "id": 1,
+      "name": "rahul sharma",
+      "address1": "plot no. 606",
+      "address2": "purana kheda, murlipura",
+      "city": "jaipur"
+    }
+  ],
+  "shopping-cart": [],
+  "orders": [
+    {
+      "items": [
         {
-            "id" : "1",
-            "item" : "bread ajvaine",
-            "price" : "100",
-            "description" : "it's about health" ,
-            "imagePath" : "src/assets/Images/breads/Bread.jpg",
-            "category" : "bread"
-        },
-        
-        {
-            "id" : "2",
-            "item" : "amul",
-            "price" : "100",
-            "description" : "it's about health" ,
-            "imagePath" : "src/assets/Images/Dairy/dairy.png",
-            "category" : "dairy"    
-        },
-        
-        {
-            "id" : "3",
-            "item" : "mix fruit",
-            "price" : "100",
-            "description" : "it's about health" ,
-            "imagePath" : "src/assets/Images/Fruits/fruits.jpg",
-            "category" : "fruit"    
-        },
-        
-        {
-            "id" : "4",
-            "item" : "red Chilly",
-            "price" : "100",
-            "description" : "it's about health" ,
-            "imagePath" : "src/assets/Images/SeasoningAndSpices/redChilly.jpg",
-            "category" : "seasoning"    
-        },
-        
-        {
-            "id" : "5",
-            "item" : "mix fruit",
-            "price" : "100",
-            "description" : "it's about health" ,
-            "imagePath" : "src/assets/Images/Vegetables/brinjal.jpg",
-            "category" : "vegetables"    
+          "id": "1",
+          "item": "bread ajvaine",
+          "price": 200,
+          "imagePath": "src/assets/Images/breads/Bread.jpg",
+          "count": 2
         }
-        
-    ]
+      ],
+      "customerName": "rahul sharma",
+      "date": "10/23/2018",
+      "id": 1
+    },
+    {
+      "items": [],
+      "customerName": "rahul sharma",
+      "date": "10/23/2018",
+      "id": 2
+    },
+    {
+      "items": [
+        {
+          "id": "1",
+          "item": "bread ajvaine",
+          "price": 300,
+          "imagePath": "src/assets/Images/breads/Bread.jpg",
+          "count": 3
+        }
+      ],
+      "customerName": "rahul sharma",
+      "date": "10/23/2018",
+      "id": 3
+    },
+    {
+      "items": [
+        {
+          "id": "1",
+          "item": "bread ajvaine",
+          "price": 200,
+          "imagePath": "src/assets/Images/breads/Bread.jpg",
+          "count": 2
+        }
+      ],
+      "customerName": "rahul sharma",
+      "date": "10/23/2018",
+      "id": 4
+    },
+    {
+      "items": [
+        {
+          "id": "3",
+          "item": "mix fruit",
+          "price": "40",
+          "imagePath": "src/assets/Images/Fruits/fruits.jpg",
+          "count": 1
+        },
+        {
+          "id": "1",
+          "item": "bread ajvaine",
+          "price": "100",
+          "imagePath": "src/assets/Images/breads/Bread.jpg",
+          "count": 1
+        }
+      ],
+      "customerName": "rahul sharma",
+      "date": "10/23/2018",
+      "id": 5
+    },
+    {
+      "items": [],
+      "customerName": "rahul sharma",
+      "date": "10/23/2018",
+      "id": 6
+    },
+    {
+      "items": [
+        {
+          "id": "1",
+          "item": "bread ajvaine",
+          "price": 200,
+          "imagePath": "src/assets/Images/breads/Bread.jpg",
+          "count": 2
+        }
+      ],
+      "customerName": "rahul sharma",
+      "date": "10/23/2018",
+      "id": 7
+    }
+  ]
 }

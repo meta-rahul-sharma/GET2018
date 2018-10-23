@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mt-4">
+            <h1>Shopping Cart</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card col-md-8 row px-0 my-4">
+            <div class="card-header py-0 bg-transparent d-flex align-items-center justify-content-between">
+
+                <p class="col-md-4">You have {{$ctrl.cartCount}} items in you cart</p>
+                <button class="btn btn-light btn-sm col-md-3" ng-click="deleteAll()">Clear Shopping cart</button>
+
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3">
+                        <p class="font-weight-bold">Product</p>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- <button class="btn btn-secondary btn-sm btn-block rounded-bottom" ng-click="addCart(product)">ADD TO CART</button> -->
+                        <p class="font-weight-bold">Quantity</p>
+                    </div>
+                    <div class="col-md-2">
+                        <p class="font-weight-bold">Price</p>
+                    </div>
+                </div>
+                <div class="row align-items-center my-4 border-bottom px-0" ng-repeat="item in $ctrl.cartItems">
+                    <div class="col-md-3 my-2"><img ng-src={{item.imagePath}} ng-class="rounded-circle" height="50px"></div>
+                    <div class="col-md-3">
+                        <p>{{item.item}}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- <button class="btn btn-secondary btn-sm btn-block rounded-bottom" ng-click="addCart(product)">ADD TO CART</button> -->
+                        <p>{{item.count}}</p>
+                    </div>
+                    <div class="col-md-2">
+                        <p>${{item.price}}</p>
+                    </div>
+                </div>
+                <div class="row d-flex align-items-center">
+                    <div class="col-md-2 mr-auto"><a class="btn btn-primary" href="#!/shopping-address/">Check Out</a></div>
+                    <div class="col-md-2 ml-auto">
+                        <p>$ {{$ctrl.totalPrice}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
