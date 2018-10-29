@@ -1,0 +1,11 @@
+.sidebar-nav li:hover {
+    background-color: lightblue;
+    border-radius: 5px;
+    color: white;
+    
+}
+
+.sidebar-nav a:hover {
+    text-decoration: none;
+    color: white;
+}
