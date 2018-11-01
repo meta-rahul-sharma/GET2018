@@ -1,0 +1,15 @@
+header {
+    background-color: lightblue;
+    padding: 10px;
+}
+
+.search-bar {
+    width: auto;
+    height: 40px;
+    border-radius: 10px;
+    border-color: lightgray;
+}
+
+#add-user-button-design {
+    height: 30px;
+}
