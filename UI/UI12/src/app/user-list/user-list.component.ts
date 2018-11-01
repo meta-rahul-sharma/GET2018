@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UserListService } from '../user-list.service';
 import { User } from '../user';
 import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-list',
@@ -10,7 +9,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  @Input() nameToSearch="";
+  userFilter: any = { name: '' };
   users: User[];
   constructor(private userListService: UserListService) { }
 

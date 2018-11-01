@@ -9,13 +9,13 @@
         </div>
     </div>
     <form class = "row" id="search">
-        <input class = "col-md-10 search-bar" type="search" placeholder="Search users by name" [(ngModel)]="nameToSearch" name="search-bar">
+        <input class = "col-md-10 search-bar" type="search" placeholder="Search users by name" [(ngModel)]="userFilter.name" name="search-bar">
         <button type="submit" class="btn btn-light col-md-2">Search</button>
     </form>
 
     <div>
         <div class="row p-2">
-            <div *ngFor="let user of users" class="user-card col-lg-4 col-md-6 col-sm-12">
+            <div *ngFor="let user of users | filterBy: userFilter" class="user-card col-lg-4 col-md-6 col-sm-12">
                 <app-user-card [user]=user></app-user-card>
             </div>
         </div>
