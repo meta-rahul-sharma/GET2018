@@ -1,0 +1,24 @@
+<header>
+    <h2 class = "text-center">User Management</h2>
+</header>
+<div class="p-md-5">
+    <div class="row p-md-2">
+        <h2 class="col-6">Users</h2>
+        <div class="col-6 d-flex justify-content-end align-items-center">
+            <button class = "btn btn-light" data-toggle="modal" routerLink="/add">Add User</button>
+        </div>
+    </div>
+    <form class = "row" id="search">
+        <input class = "col-md-10 search-bar" type="search" placeholder="Search users by name" [(ngModel)]="userFilter.name" name="search-bar">
+        <button type="submit" class="btn btn-light col-md-2">Search</button>
+    </form>
+
+    <div>
+        <div class="row p-2">
+            <div *ngFor="let user of users | filterBy: userFilter" class="user-card col-lg-4 col-md-6 col-sm-12">
+                <app-user-card [user]=user></app-user-card>
+            </div>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>

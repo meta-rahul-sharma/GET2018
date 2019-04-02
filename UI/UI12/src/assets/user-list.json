@@ -1,0 +1,100 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "traul",
+      "contact": 8947804883,
+      "address": "Jaipur"
+    },
+    {
+      "id": 2,
+      "name": "charkha",
+      "contact": 12121212121,
+      "address": "bombay"
+    },
+    {
+      "id": 3,
+      "name": "Rahul",
+      "contact": 4154712545,
+      "address": "Jaipur"
+    },
+    {
+      "id": 4,
+      "name": "john",
+      "contact": 1245745645,
+      "address": "Ajmer"
+    },
+    {
+      "id": 5,
+      "name": "vishkha",
+      "contact": 4515746457,
+      "address": "Delhi"
+    },
+    {
+      "id": 6,
+      "name": "har",
+      "contact": 4454574545,
+      "address": "nagpur"
+    },
+    {
+      "id": 7,
+      "name": "shareef bhai",
+      "contact": 34534523,
+      "address": "dsfasdfasdfasd"
+    },
+    {
+      "name": "dino james",
+      "contact": 954654654654,
+      "address": "kheda",
+      "id": 8
+    },
+    {
+      "id": 9,
+      "name": "umaid",
+      "contact": 23423423,
+      "address": "sdfasfaf"
+    },
+    {
+      "name": "ra",
+      "contact": 65465465465,
+      "address": "asdfasfasfasfd",
+      "id": 10
+    },
+    {
+      "name": "test",
+      "contact": 8104310314,
+      "address": "rttu6u",
+      "id": 11
+    },
+    {
+      "name": "ishita",
+      "contact": 9214013876,
+      "address": "kheda",
+      "id": 14
+    },
+    {
+      "name": "jai",
+      "contact": 12345678,
+      "address": "kheda",
+      "id": 15
+    },
+    {
+      "name": "khai",
+      "id": 16,
+      "contact": 234523,
+      "address": "sdfasfas"
+    },
+    {
+      "name": "tanu",
+      "contact": 5954263545,
+      "address": "51sdja;lkajfkl",
+      "id": 17
+    },
+    {
+      "name": "tanu mittal",
+      "contact": 689864456465465,
+      "address": "jungle",
+      "id": 18
+    }
+  ]
+}
